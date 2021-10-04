@@ -3,12 +3,9 @@ package View;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -20,20 +17,24 @@ import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import Presenter.LoginAdminUserPresenter;
+
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
 public class LoginUserAdminView {
-
+	
+	private LoginAdminUserPresenter presenter;
+	
 	private JFrame frame;
 	private JTextField txtUsuario;
 	private JTextField txtPassword;
 	private JRadioButton rdbtnAdministrador;
 	private JRadioButton rdbtnUsuario;
-	private ButtonGroup group;
+	private ButtonGroup rbGroup;
 	private JButton btnLogin;
-	private ButtonModel model;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,6 +50,7 @@ public class LoginUserAdminView {
 	}
 
 	public LoginUserAdminView() {
+		presenter = new LoginAdminUserPresenter();
 		buildComponents();
 		setRdButtons();
 		
@@ -63,6 +65,7 @@ public class LoginUserAdminView {
 	private void buildComponents() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 486, 340);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
@@ -138,64 +141,82 @@ public class LoginUserAdminView {
 	}
 	
 	private void setRdButtons() {	
-		group = new ButtonGroup();
-		group.add(rdbtnAdministrador);
-		group.add(rdbtnUsuario);
+		rbGroup = new ButtonGroup();
+		rbGroup.add(rdbtnAdministrador);
+		rbGroup.add(rdbtnUsuario);
 	}
 		
 	private void btnLogin() {
-		checkUsuario();
-		checkPassword();
-		checkSelectedUser();
-
+		if(checkUsuario() && checkPassword() && checkUsuarioSeleccionado()) {
+			login();
+		}
 	}
 	
-	private void checkUsuario() {
+	private boolean checkUsuario() {
 		if((txtUsuario.getText().equals(""))) {
 			JOptionPane optionPane = new JOptionPane("Campo usuario requerido", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog("Advertencia");
+			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
+			
+			return false;
 		}
+		return true;
 	}
 	
-	private void checkPassword() {
+	private boolean checkPassword() {
 		if((txtPassword.getText().equals(""))) {
 			JOptionPane optionPane = new JOptionPane("Campo contraseña requerido", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog("Advertencia");
+			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
-		
+			
+			return false;
 		}
+		
+		return true;
 	}
 	
-	private void checkSelectedUser() {
-		JOptionPane optionPane = new JOptionPane("Tipo de usuario requerido", JOptionPane.ERROR_MESSAGE);    
-		JDialog dialog = optionPane.createDialog("Advertencia");
-		dialog.setAlwaysOnTop(true);
-		dialog.setVisible(true);
+	private boolean checkUsuarioSeleccionado() {	
+		ButtonModel modeloSeleccionado = rbGroup.getSelection();
+		
+		if(modeloSeleccionado == null) {
+			JOptionPane optionPane = new JOptionPane("Debe seleccionar un tipo de usuario", JOptionPane.ERROR_MESSAGE);    
+			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+			
+			return false;
+		}
+		
+		return true;
 	}
 	
 	private void login() {
-		String selected = getSelectedButtonText(group);
-		if(selected.equals("Administrador")) {
-			adminLogin();
-		}else if(selected.equals("Usuario")){
-			usuarioLogin();
-		} else {
-			JOptionPane optionPane = new JOptionPane("Debe seleccionar un tipo de usuario", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog("Advertencia");
-			dialog.setAlwaysOnTop(true);
-			dialog.setVisible(true);
+		String selected = getSelectedButtonText(rbGroup);
+		if(selected != null) {
+			if(selected.equals("Administrador")) {
+				adminLogin();
+			}else if(selected.equals("Usuario")){
+				usuarioLogin();		
+			}
 		}
 	}
 	
 	private void adminLogin() {
+		presenter.adminLogin(txtUsuario.getText(), txtPassword.getText());
+		System.out.println("Entro admin");
 		//clash with database
 	}
 	
 	private void usuarioLogin() {
+		presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText());
+		System.out.println("Entro user");
 		//clash with database 
+	}
+	
+	private void resetViews() {
+		
 	}
 	
 	 public String getSelectedButtonText(ButtonGroup buttonGroup) {
