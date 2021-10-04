@@ -8,6 +8,10 @@ import java.util.Vector;
  */
 
 public interface ModeloTabla {
+	
+	public boolean accederAdmin(String nombre, String password);
+	
+	public boolean accederUsuario(String nombre, String password);
 
 	public Vector<String> obtenerNombresColumnas();
 	
@@ -16,5 +20,7 @@ public interface ModeloTabla {
 	public boolean agregarTupla(Vector<Object> tupla);
 	
 	public boolean modificarTupla(Vector<Object> tupla);
+
+
 	
 }
