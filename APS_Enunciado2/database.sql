@@ -1,3 +1,6 @@
+DROP USER "admin"@"localhost";
+DROP DATABASE vacunas;
+
 CREATE DATABASE vacunas;
 
 USE vacunas;
@@ -14,19 +17,19 @@ CREATE TABLE Personas (
 ) ENGINE=InnoDB;
 
 CREATE TABLE Vacunas (
-    nombre VARCHAR(25) NOT NULL,
-    id INT AUTO_INCREMENT,
+    nombre_vacuna VARCHAR(25) NOT NULL,
+    id_vacuna INT AUTO_INCREMENT,
 
     CONSTRAINT pk_vacuna
-    PRIMARY KEY (id)
+    PRIMARY KEY (id_vacuna)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Provincias (
-    nombre VARCHAR(32) NOT NULL,
-    id INT AUTO_INCREMENT,
+    nombre_provincia VARCHAR(32) NOT NULL,
+    id_provincia INT AUTO_INCREMENT,
 
     CONSTRAINT pk_provincia
-    PRIMARY KEY (id)
+    PRIMARY KEY (id_provincia)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Regiones_Sanitarias (
@@ -37,7 +40,7 @@ CREATE TABLE Regiones_Sanitarias (
     PRIMARY KEY (id_provincia, id_region),
 
     CONSTRAINT fk_provincia
-    FOREIGN KEY (id_provincia) REFERENCES Provincias (id)
+    FOREIGN KEY (id_provincia) REFERENCES Provincias (id_provincia)
      ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 
@@ -46,8 +49,8 @@ CREATE TABLE Vacunas_Aplicadas (
     segunda_dosis DATE,
     cantidad_dosis INT UNSIGNED NOT NULL,
     dni INT UNSIGNED NOT NULL,
-    id_vacuna INT AUTO_INCREMENT,
-    provincia INT NOT NULL,
+    id_vacuna INT,
+    id_provincia INT NOT NULL,
     id_region INT NOT NULL,
 
     CONSTRAINT pk_aplicadas
@@ -58,11 +61,11 @@ CREATE TABLE Vacunas_Aplicadas (
      ON DELETE RESTRICT ON UPDATE RESTRICT,
 
     CONSTRAINT fk_aplicada_vacuna
-    FOREIGN KEY (id_vacuna) REFERENCES Vacunas (id)
+    FOREIGN KEY (id_vacuna) REFERENCES Vacunas (id_vacuna)
      ON DELETE RESTRICT ON UPDATE RESTRICT,
 
     CONSTRAINT fk_aplicada_region
-    FOREIGN KEY (provincia, id_region) REFERENCES Regiones_Sanitarias (id_provincia, id_region)
+    FOREIGN KEY (id_provincia, id_region) REFERENCES Regiones_Sanitarias (id_provincia, id_region)
      ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 
@@ -91,44 +94,51 @@ CREATE TABLE Usuarios (
     PRIMARY KEY (usuario)
 ) ENGINE=InnoDB;
 
+
 CREATE USER "admin"@"localhost" IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON vacunas.* TO "admin"@"localhost" WITH GRANT OPTION;
 
+# ---------------------------------------------------------------------------- VISTAS ----------------------------------------------------------------------------------------------
+
+CREATE VIEW Aplicacion_Vacunas AS
+SELECT P.nombre AS Nombre, P.apellido, P.fecha_nacimiento, V.nombre_vacuna, VA.primera_dosis, VA.segunda_dosis,
+ VA.cantidad_dosis, P.mail, P.dni, Pr.nombre_provincia, R.id_region
+FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
 
 # ---------------------------------------------------------------------------- CARGA DE DATOS INICIALES ----------------------------------------------------------------------------
 
 #Tabla Vacunas
-INSERT INTO Vacunas (nombre) VALUES ('Sputnik V');
-INSERT INTO Vacunas (nombre) VALUES ('Sinopharm');
-INSERT INTO Vacunas (nombre) VALUES ('Sputnik V');
-INSERT INTO Vacunas (nombre) VALUES ('Astrazeneca');
-INSERT INTO Vacunas (nombre) VALUES ('Johnson & Johnson');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sputnik V');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sinopharm');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sputnik V');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Astrazeneca');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Johnson & Johnson');
 
 #Tabla Provincias
-INSERT INTO Provincias (nombre) VALUES ('Buenos Aires');
-INSERT INTO Provincias (nombre) VALUES ('Ciudad Autonoma de Buenos Aires');
-INSERT INTO Provincias (nombre) VALUES ('Catamarca');
-INSERT INTO Provincias (nombre) VALUES ('Chaco');
-INSERT INTO Provincias (nombre) VALUES ('Chubut');
-INSERT INTO Provincias (nombre) VALUES ('Cordoba');
-INSERT INTO Provincias (nombre) VALUES ('Corrientes');
-INSERT INTO Provincias (nombre) VALUES ('Entre Rios');
-INSERT INTO Provincias (nombre) VALUES ('Formosa');
-INSERT INTO Provincias (nombre) VALUES ('Jujuy');#10
-INSERT INTO Provincias (nombre) VALUES ('La Pampa');
-INSERT INTO Provincias (nombre) VALUES ('La Rioja');
-INSERT INTO Provincias (nombre) VALUES ('Mendoza');
-INSERT INTO Provincias (nombre) VALUES ('Misiones');
-INSERT INTO Provincias (nombre) VALUES ('Neuquen');#15
-INSERT INTO Provincias (nombre) VALUES ('Rio Negro');
-INSERT INTO Provincias (nombre) VALUES ('Salta');
-INSERT INTO Provincias (nombre) VALUES ('San Juan');
-INSERT INTO Provincias (nombre) VALUES ('San Luis');
-INSERT INTO Provincias (nombre) VALUES ('Santa Cruz');#20
-INSERT INTO Provincias (nombre) VALUES ('Santa Fe');
-INSERT INTO Provincias (nombre) VALUES ('Santiago Del Estero');
-INSERT INTO Provincias (nombre) VALUES ('Tierra del Fuego');
-INSERT INTO Provincias (nombre) VALUES ('Tucuman');#24
+INSERT INTO Provincias (nombre_provincia) VALUES ('Buenos Aires');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Ciudad Autonoma de Buenos Aires');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Catamarca');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Chaco');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Chubut');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Cordoba');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Corrientes');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Entre Rios');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Formosa');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Jujuy');#10
+INSERT INTO Provincias (nombre_provincia) VALUES ('La Pampa');
+INSERT INTO Provincias (nombre_provincia) VALUES ('La Rioja');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Mendoza');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Misiones');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Neuquen');#15
+INSERT INTO Provincias (nombre_provincia) VALUES ('Rio Negro');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Salta');
+INSERT INTO Provincias (nombre_provincia) VALUES ('San Juan');
+INSERT INTO Provincias (nombre_provincia) VALUES ('San Luis');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Santa Cruz');#20
+INSERT INTO Provincias (nombre_provincia) VALUES ('Santa Fe');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Santiago Del Estero');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Tierra del Fuego');
+INSERT INTO Provincias (nombre_provincia) VALUES ('Tucuman');#24
 
 #Tabla Regiones_Sanitarias
 
@@ -262,3 +272,9 @@ INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (23,3);
 #Tucuman
 INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (24,1);
 INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (24,2);
+
+# ---------------------------------------------------------------------------- TESTS (BORRAR CUANDO SE TENGA LA UI COMPLETA) ----------------------------------------------------------------------------
+
+INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-5-12", "mail@gmail.com", 25987124);
+
+INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-15", "2021-09-23", 2, 25987124, 1, 2, 1);
