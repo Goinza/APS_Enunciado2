@@ -1,4 +1,4 @@
-DROP USER "admin"@"localhost";
+DROP USER "administrador"@"localhost";
 DROP DATABASE vacunas;
 
 CREATE DATABASE vacunas;
@@ -70,12 +70,20 @@ CREATE TABLE Vacunas_Aplicadas (
 ) ENGINE=InnoDB;
 
 CREATE TABLE Vacunas_Entregadas (
-    provincia VARCHAR(25) NOT NULL,
-    vacuna VARCHAR(25) NOT NULL,
+    id_provincia INT,
+    id_vacuna INT,
     cantidad INT UNSIGNED NOT NULL,
 
     CONSTRAINT pk_entrega
-    PRIMARY KEY (provincia, vacuna)
+    PRIMARY KEY (id_provincia, id_vacuna),
+
+    CONSTRAINT fk_entregada_provincia
+    FOREIGN KEY (id_provincia) REFERENCES Provincias (id_provincia)
+     ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+    CONSTRAINT fk_entregada_vacuna
+    FOREIGN KEY (id_vacuna) REFERENCES Vacunas (id_vacuna)
+     ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 
 CREATE TABLE Usuarios (
@@ -95,15 +103,21 @@ CREATE TABLE Usuarios (
 ) ENGINE=InnoDB;
 
 
-CREATE USER "admin"@"localhost" IDENTIFIED BY 'admin';
+CREATE USER "administrador"@"localhost" IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON vacunas.* TO "admin"@"localhost" WITH GRANT OPTION;
 
 # ---------------------------------------------------------------------------- VISTAS ----------------------------------------------------------------------------------------------
 
 CREATE VIEW Aplicacion_Vacunas AS
-SELECT P.nombre AS Nombre, P.apellido, P.fecha_nacimiento, V.nombre_vacuna, VA.primera_dosis, VA.segunda_dosis,
- VA.cantidad_dosis, P.mail, P.dni, Pr.nombre_provincia, R.id_region
+SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha Nacimiento", V.nombre_vacuna AS Vacuna, VA.primera_dosis AS "Primera Dosis", VA.segunda_dosis AS "Segunda Dosis",
+ VA.cantidad_dosis AS "Cantidad Dosis", P.mail AS Mail, P.dni as DNI, Pr.nombre_provincia AS Provincia, R.id_region AS "Region Sanitaria"
 FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
+
+CREATE VIEW Vacunas_Disponibles AS
+SELECT V.nombre_vacuna AS Vacuna, P.nombre_provincia AS Provincia, VE.cantidad-count(VA.dni) AS Disponibles
+FROM Vacunas V NATURAL JOIN Vacunas_Entregadas VE NATURAL JOIN Provincias P LEFT JOIN Vacunas_Aplicadas VA
+ON VE.id_vacuna=VA.id_vacuna
+GROUP BY VE.id_vacuna;
 
 # ---------------------------------------------------------------------------- CARGA DE DATOS INICIALES ----------------------------------------------------------------------------
 
@@ -275,6 +289,13 @@ INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (24,2);
 
 # ---------------------------------------------------------------------------- TESTS (BORRAR CUANDO SE TENGA LA UI COMPLETA) ----------------------------------------------------------------------------
 
-INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-5-12", "mail@gmail.com", 25987124);
+INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-5-12", "rp@gmail.com", 25987124);
+INSERT INTO Personas VALUES ("Luis", "Miguel", "1983-11-2", "lm@gmail.com", 42581357);
+INSERT INTO Personas VALUES ("Raul", "Rodriguez", "1960-1-30", "rr@gmail.com", 12345678);
 
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-15", "2021-09-23", 2, 25987124, 1, 2, 1);
+INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-16", "2021-09-20", 2, 42581357, 1, 2, 1);
+INSERT INTO Vacunas_Aplicadas VALUES ("2021-06-11", "2021-07-14", 2, 12345678, 3, 3, 1);
+
+INSERT INTO Vacunas_Entregadas VALUES (2, 1, 1500);
+INSERT INTO Vacunas_Entregadas VALUES (3, 3, 1500);
