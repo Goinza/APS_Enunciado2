@@ -4,7 +4,6 @@ import java.util.Vector;
 
 /**
  * Implementación mockup - siempre retorna los mismos valores.
- *
  */
 public class TestTabla implements ModeloTabla {
 
@@ -44,18 +43,6 @@ public class TestTabla implements ModeloTabla {
 
 	@Override
 	public boolean modificarTupla(Vector<Object> tupla) {
-		return true;
-	}
-
-	@Override
-	public boolean accederAdmin(String nombre, String password) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean accederUsuario(String nombre, String password) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

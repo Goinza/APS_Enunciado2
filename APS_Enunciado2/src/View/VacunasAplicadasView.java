@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.sql.*;
 
 import javax.swing.table.*;
+
+import Model.VacunasAplicadasModel;
+import Presenter.VacunasAplicadasPresenter;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,28 +26,16 @@ public class VacunasAplicadasView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable vacunasAplicadasTable;
+	private VacunasAplicadasPresenter presenter;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VacunasAplicadasView frame = new VacunasAplicadasView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VacunasAplicadasView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		presenter = new VacunasAplicadasPresenter();
+		buildGraphicComponents();
+		setVisible(true);
+	}
+	
+	private void buildGraphicComponents() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 702, 477);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

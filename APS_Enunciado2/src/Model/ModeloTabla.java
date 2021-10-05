@@ -8,10 +8,6 @@ import java.util.Vector;
  */
 
 public interface ModeloTabla {
-	
-	public boolean accederAdmin(String nombre, String password);
-	
-	public boolean accederUsuario(String nombre, String password);
 
 	public Vector<String> obtenerNombresColumnas();
 	

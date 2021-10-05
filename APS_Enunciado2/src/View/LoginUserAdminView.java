@@ -24,34 +24,21 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-public class LoginUserAdminView {
-	
+public class LoginUserAdminView extends JFrame{
+	private static final long serialVersionUID = -3461300705240046008L;
+
 	private LoginAdminUserPresenter presenter;
-	
-	private JFrame frame;
+
 	private JTextField txtUsuario;
 	private JTextField txtPassword;
+	private ButtonGroup rbGroup;
 	private JRadioButton rdbtnAdministrador;
 	private JRadioButton rdbtnUsuario;
-	private ButtonGroup rbGroup;
 	private JButton btnLogin;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginUserAdminView window = new LoginUserAdminView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public LoginUserAdminView() {
 		presenter = new LoginAdminUserPresenter();
-		buildComponents();
+		buildGraphicComponents();
 		setRdButtons();
 		
 		btnLogin.addActionListener(new ActionListener() { 
@@ -60,13 +47,14 @@ public class LoginUserAdminView {
 				btnLogin();
 			} 
 		} );
+		
+		setVisible(true);
 	}
 
-	private void buildComponents() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 486, 340);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private void buildGraphicComponents() {
+		this.setBounds(100, 100, 486, 340);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
 		
@@ -89,7 +77,7 @@ public class LoginUserAdminView {
 		btnLogin = new JButton("Iniciar sesion");
 		
 	
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -102,7 +90,7 @@ public class LoginUserAdminView {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(rdbtnUsuario, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 								.addComponent(rdbtnAdministrador, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
@@ -137,7 +125,7 @@ public class LoginUserAdminView {
 					.addComponent(btnLogin)
 					.addContainerGap(75, Short.MAX_VALUE))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		this.getContentPane().setLayout(groupLayout);
 	}
 	
 	private void setRdButtons() {	
@@ -150,12 +138,13 @@ public class LoginUserAdminView {
 		if(checkUsuario() && checkPassword() && checkUsuarioSeleccionado()) {
 			login();
 		}
+		flushView();
 	}
 	
 	private boolean checkUsuario() {
 		if((txtUsuario.getText().equals(""))) {
 			JOptionPane optionPane = new JOptionPane("Campo usuario requerido", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
+			JDialog dialog = optionPane.createDialog(this, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 			
@@ -167,7 +156,7 @@ public class LoginUserAdminView {
 	private boolean checkPassword() {
 		if((txtPassword.getText().equals(""))) {
 			JOptionPane optionPane = new JOptionPane("Campo contraseña requerido", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
+			JDialog dialog = optionPane.createDialog(this, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 			
@@ -182,7 +171,7 @@ public class LoginUserAdminView {
 		
 		if(modeloSeleccionado == null) {
 			JOptionPane optionPane = new JOptionPane("Debe seleccionar un tipo de usuario", JOptionPane.ERROR_MESSAGE);    
-			JDialog dialog = optionPane.createDialog(frame, "Advertencia");
+			JDialog dialog = optionPane.createDialog(this, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 			
@@ -205,18 +194,17 @@ public class LoginUserAdminView {
 	
 	private void adminLogin() {
 		presenter.adminLogin(txtUsuario.getText(), txtPassword.getText());
-		System.out.println("Entro admin");
-		//clash with database
 	}
 	
 	private void usuarioLogin() {
 		presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText());
-		System.out.println("Entro user");
-		//clash with database 
 	}
 	
-	private void resetViews() {
+	private void flushView() {
+		txtUsuario.setText("");
+		txtPassword.setText("");
 		
+		rbGroup.clearSelection();
 	}
 	
 	 public String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -230,5 +218,4 @@ public class LoginUserAdminView {
 
 	        return null;
 	    }
-	
 }

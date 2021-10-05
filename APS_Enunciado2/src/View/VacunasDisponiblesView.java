@@ -23,30 +23,6 @@ public class VacunasDisponiblesView extends JFrame {
 	private JPanel contentPane;
 	private JTable vacunasDisponiblesTable;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable() {
-			public void run()
-			{
-				try
-				{
-					VacunasDisponiblesView frame = new VacunasDisponiblesView();
-					frame.setVisible(true);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VacunasDisponiblesView()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
