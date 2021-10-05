@@ -124,7 +124,7 @@ GROUP BY VE.id_vacuna;
 #Tabla Vacunas
 INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sputnik V');
 INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sinopharm');
-INSERT INTO Vacunas (nombre_vacuna) VALUES ('Sputnik V');
+INSERT INTO Vacunas (nombre_vacuna) VALUES ('Moderna');
 INSERT INTO Vacunas (nombre_vacuna) VALUES ('Astrazeneca');
 INSERT INTO Vacunas (nombre_vacuna) VALUES ('Johnson & Johnson');
 
@@ -138,21 +138,21 @@ INSERT INTO Provincias (nombre_provincia) VALUES ('Cordoba');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Corrientes');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Entre Rios');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Formosa');
-INSERT INTO Provincias (nombre_provincia) VALUES ('Jujuy');#10
+INSERT INTO Provincias (nombre_provincia) VALUES ('Jujuy');
 INSERT INTO Provincias (nombre_provincia) VALUES ('La Pampa');
 INSERT INTO Provincias (nombre_provincia) VALUES ('La Rioja');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Mendoza');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Misiones');
-INSERT INTO Provincias (nombre_provincia) VALUES ('Neuquen');#15
+INSERT INTO Provincias (nombre_provincia) VALUES ('Neuquen');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Rio Negro');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Salta');
 INSERT INTO Provincias (nombre_provincia) VALUES ('San Juan');
 INSERT INTO Provincias (nombre_provincia) VALUES ('San Luis');
-INSERT INTO Provincias (nombre_provincia) VALUES ('Santa Cruz');#20
+INSERT INTO Provincias (nombre_provincia) VALUES ('Santa Cruz');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Santa Fe');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Santiago Del Estero');
 INSERT INTO Provincias (nombre_provincia) VALUES ('Tierra del Fuego');
-INSERT INTO Provincias (nombre_provincia) VALUES ('Tucuman');#24
+INSERT INTO Provincias (nombre_provincia) VALUES ('Tucuman');
 
 #Tabla Regiones_Sanitarias
 
@@ -289,13 +289,171 @@ INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (24,2);
 
 # ---------------------------------------------------------------------------- TESTS (BORRAR CUANDO SE TENGA LA UI COMPLETA) ----------------------------------------------------------------------------
 
-INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-5-12", "rp@gmail.com", 25987124);
-INSERT INTO Personas VALUES ("Luis", "Miguel", "1983-11-2", "lm@gmail.com", 42581357);
-INSERT INTO Personas VALUES ("Raul", "Rodriguez", "1960-1-30", "rr@gmail.com", 12345678);
+#Tabla Personas
+INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-05-12", "rp@gmail.com", 25987124);
+INSERT INTO Personas VALUES ("Luis", "Miguel", "1983-11-02", "lm@gmail.com", 42581357);
+INSERT INTO Personas VALUES ("Raul", "Rodriguez", "1960-01-30", "rr@gmail.com", 12345678);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Domingo Faustino','Sarmiento','1850-07-15','dsarmi_bokita@gmail.com',11111111);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Julian','Alvarez','1950-11-01','madrid_091218@hotmail.com',11111112);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Marcelo','Gallardo','1980-08-10','elmuneco@river.com',11111113);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan Carlos','Hola','1953-12-24','dsarmi_bokita@gmail.com',11111114);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan Pedro','Molina','1990-02-14','hola1234@gmail.com',11111115);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan','Lopez','1978-07-03','hola1234@gmail.com',11111116);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Rodrigo','Rodriguez','1958-01-12','hola12345@gmail.com',11111117);
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Alan','Turing','1940-05-25','enigma123@gmail.com',11111118);
 
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-15", "2021-09-23", 2, 25987124, 1, 2, 1);
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-16", "2021-09-20", 2, 42581357, 1, 2, 1);
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-06-11", "2021-07-14", 2, 12345678, 3, 3, 1);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111111,1,1,10);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111112,1,7,1);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111113,2,19,4);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111114,2,18,2);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111115,3,6,5);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111116,3,8,3);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111117,4,14,1);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01',NULL,2,11111118,1,1,10);
 
-INSERT INTO Vacunas_Entregadas VALUES (2, 1, 1500);
-INSERT INTO Vacunas_Entregadas VALUES (3, 3, 1500);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (2,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (2,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (2,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (2,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (2,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (3,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (3,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (3,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (3,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (3,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (4,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (4,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (4,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (4,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (4,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (5,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (5,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (5,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (5,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (5,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (6,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (6,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (6,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (6,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (6,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (7,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (7,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (7,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (7,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (7,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (8,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (8,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (8,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (8,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (8,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (9,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (9,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (9,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (9,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (9,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (10,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (10,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (10,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (10,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (10,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (11,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (11,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (11,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (11,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (11,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (12,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (12,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (12,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (12,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (12,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (13,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (13,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (13,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (13,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (13,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (14,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (14,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (14,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (14,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (14,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (15,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (15,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (15,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (15,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (15,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (16,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (16,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (16,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (16,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (16,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (17,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (17,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (17,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (17,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (17,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (18,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (18,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (18,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (18,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (18,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (19,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (19,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (19,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (19,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (19,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (20,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (20,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (20,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (20,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (20,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (21,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (21,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (21,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (21,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (21,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (22,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (22,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (22,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (22,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (22,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (23,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (23,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (23,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (23,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (23,5,1000000);
+
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,1,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,2,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,3,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,4,1000000);
+INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,5,1000000);
