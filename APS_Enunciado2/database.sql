@@ -114,10 +114,20 @@ SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha 
 FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
 
 CREATE VIEW Vacunas_Disponibles AS
-SELECT V.nombre_vacuna AS Vacuna, P.nombre_provincia AS Provincia, VE.cantidad-count(VA.dni) AS Disponibles
-FROM Vacunas V NATURAL JOIN Vacunas_Entregadas VE NATURAL JOIN Provincias P LEFT JOIN Vacunas_Aplicadas VA
-ON VE.id_vacuna=VA.id_vacuna
-GROUP BY VE.id_vacuna;
+SELECT p.nombre_provincia,v.nombre_vacuna, (CASE WHEN (tabla_aplicadas.idpcia IS NOT NULL) THEN vent.cantidad - tabla_aplicadas.aplicadas ELSE vent.cantidad END) disponibles
+FROM Vacunas_Entregadas vent 
+INNER JOIN Provincias p ON vent.id_provincia = p.id_provincia 
+INNER JOIN Vacunas v ON vent.id_vacuna = v.id_vacuna
+LEFT JOIN 
+        (
+            SELECT p.id_provincia idpcia,p.nombre_provincia,vap.id_vacuna, v.nombre_vacuna, SUM(CASE WHEN (vap.segunda_dosis IS NOT NULL) THEN 2 ELSE 1 END) aplicadas 
+            FROM Vacunas_Aplicadas vap 
+            INNER JOIN Provincias p ON vap.id_provincia = p.id_provincia 
+            INNER JOIN Vacunas v ON v.id_vacuna = vap.id_vacuna
+            GROUP BY p.nombre_provincia,vap.id_vacuna
+        ) tabla_aplicadas ON vent.id_provincia = tabla_aplicadas.idpcia AND vent.id_vacuna = tabla_aplicadas.id_vacuna
+GROUP BY p.nombre_provincia,vent.id_vacuna
+ORDER BY p.nombre_provincia;
 
 # ---------------------------------------------------------------------------- CARGA DE DATOS INICIALES ----------------------------------------------------------------------------
 
