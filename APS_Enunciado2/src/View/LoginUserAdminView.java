@@ -25,7 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 public class LoginUserAdminView extends JFrame{
-	private static final long serialVersionUID = -3461300705240046008L;
+	private static final long serialVersionUID = 1L;
 
 	private LoginUserAdminPresenter presenter;
 
@@ -135,9 +135,12 @@ public class LoginUserAdminView extends JFrame{
 	}
 		
 	private void btnLogin() {
-		if(checkUsuario() && checkPassword() && checkUsuarioSeleccionado()) {
-			login();
-		}
+		checkUsuario();  
+		checkPassword();
+		checkUsuarioSeleccionado();
+		
+		login();
+		
 		flushView();
 	}
 	
@@ -196,10 +199,16 @@ public class LoginUserAdminView extends JFrame{
 	
 	private void adminLoginInput() {
 		presenter.adminLogin(txtUsuario.getText(), txtPassword.getText());
+		presenter.success("Administrador");
 	}
 	
 	private void usuarioLoginInput() {
 		presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText());
+		presenter.success("Usuario");
+	}
+	
+	public String getUserName() {
+		return txtUsuario.getText();
 	}
 	
 	private void flushView() {

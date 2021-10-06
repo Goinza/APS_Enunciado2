@@ -15,10 +15,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AdminView extends JFrame {
+	
+	private String adminName;
 
 	private JPanel contentPane;
+	private VacunasDisponiblesView vacunasDisponiblesView;
+	private VacunasAplicadasView vacunasAplicadasView;
+	private AltaUsuarioView altaUsuarioView;
 
 	public AdminView(String adminName) {
+		super("Administrador");
+		this.adminName = adminName;
+		buildGraphicComponents();
+	}
+	
+	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 697, 450);
 		contentPane = new JPanel();
@@ -34,26 +45,29 @@ public class AdminView extends JFrame {
 		JButton btnVerVacunasAplicadas = new JButton("Vacunas aplicadas");
 		btnVerVacunasAplicadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				vacunasAplicadasView = new VacunasAplicadasView();
+				vacunasAplicadasView.setVisible(true);
 			}
 		});
 		
 		JButton btnVerVacunasDisponibles = new JButton("Vacunas disponibles");
 		btnVerVacunasDisponibles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				vacunasDisponiblesView = new VacunasDisponiblesView();
+				vacunasDisponiblesView.setVisible(true);
 			}
 		});
 		
 		JButton btnRegistrarNuevoUsuario = new JButton("Registrar nuevo usuario");
 		btnRegistrarNuevoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				altaUsuarioView = new AltaUsuarioView();
+				altaUsuarioView.setVisible(true);
 			}
 		});
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
@@ -75,7 +89,7 @@ public class AdminView extends JFrame {
 								.addComponent(lblNombreUsuario, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 							.addComponent(btnVerVacunasDisponibles)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton)
+								.addComponent(btnSalir)
 								.addComponent(btnRegistrarNuevoUsuario))))
 					.addContainerGap(494, Short.MAX_VALUE))
 		);
@@ -95,7 +109,7 @@ public class AdminView extends JFrame {
 					.addGap(18)
 					.addComponent(btnRegistrarNuevoUsuario)
 					.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
+					.addComponent(btnSalir)
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
