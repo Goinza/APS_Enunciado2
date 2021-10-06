@@ -467,3 +467,6 @@ INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,2,10
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,3,1000000);
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,4,1000000);
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,5,1000000);
+
+
+INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, domicilio, es_admin) VALUES ("Fede45", "123", "Federico", "Garcia", "Empleado", "fg@gmail.com", 25681248, 291457131, "Calle 123", 0);
