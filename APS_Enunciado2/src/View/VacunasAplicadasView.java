@@ -1,15 +1,9 @@
 package View;
 
-import java.awt.EventQueue;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.*;
 
-import javax.swing.table.*;
-
-import Model.VacunasAplicadasModel;
 import Presenter.VacunasAplicadasPresenter;
 
 import javax.swing.JFrame;
@@ -19,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-
-//import quick.dbtable.DBTable;
 
 public class VacunasAplicadasView extends JFrame {
 
@@ -54,6 +46,7 @@ public class VacunasAplicadasView extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnModificar.setBounds(483, 397, 85, 21);

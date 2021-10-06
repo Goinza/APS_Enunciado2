@@ -18,7 +18,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import Presenter.LoginAdminUserPresenter;
+import Presenter.LoginUserAdminPresenter;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -27,7 +27,7 @@ import javax.swing.JDialog;
 public class LoginUserAdminView extends JFrame{
 	private static final long serialVersionUID = -3461300705240046008L;
 
-	private LoginAdminUserPresenter presenter;
+	private LoginUserAdminPresenter presenter;
 
 	private JTextField txtUsuario;
 	private JTextField txtPassword;
@@ -35,9 +35,10 @@ public class LoginUserAdminView extends JFrame{
 	private JRadioButton rdbtnAdministrador;
 	private JRadioButton rdbtnUsuario;
 	private JButton btnLogin;
+
 	
 	public LoginUserAdminView() {
-		presenter = new LoginAdminUserPresenter();
+		presenter = new LoginUserAdminPresenter();
 		buildGraphicComponents();
 		setRdButtons();
 		
@@ -48,7 +49,6 @@ public class LoginUserAdminView extends JFrame{
 			} 
 		} );
 		
-		setVisible(true);
 	}
 
 	private void buildGraphicComponents() {
@@ -185,18 +185,20 @@ public class LoginUserAdminView extends JFrame{
 		String selected = getSelectedButtonText(rbGroup);
 		if(selected != null) {
 			if(selected.equals("Administrador")) {
-				adminLogin();
+				adminLoginInput();
 			}else if(selected.equals("Usuario")){
-				usuarioLogin();		
+				usuarioLoginInput();		
 			}
 		}
+		
+		presenter.success(txtUsuario.getText());
 	}
 	
-	private void adminLogin() {
+	private void adminLoginInput() {
 		presenter.adminLogin(txtUsuario.getText(), txtPassword.getText());
 	}
 	
-	private void usuarioLogin() {
+	private void usuarioLoginInput() {
 		presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText());
 	}
 	

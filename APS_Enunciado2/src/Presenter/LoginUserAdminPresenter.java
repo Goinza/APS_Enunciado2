@@ -3,11 +3,14 @@ package Presenter;
 
 import Model.ModeloAccesoImpl;
 
-public class LoginAdminUserPresenter {
+public class LoginUserAdminPresenter {
 	private ModeloAccesoImpl modelo;
 	
-	public LoginAdminUserPresenter() {
+	private MainPresenter mainView;
+	
+	public LoginUserAdminPresenter() {
 		modelo = new ModeloAccesoImpl();
+		mainView = new MainPresenter();
 	}
 	
 	public boolean adminLogin(String nombre, String password) {
@@ -16,6 +19,10 @@ public class LoginAdminUserPresenter {
 	
 	public boolean usuarioLogin(String nombre, String password) {
 		return modelo.accederUsuario(nombre, password);
+	}
+	
+	public void success(String userType) {
+		mainView.displayView(userType);
 	}
 	
 }
