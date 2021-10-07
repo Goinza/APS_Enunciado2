@@ -104,7 +104,7 @@ CREATE TABLE Usuarios (
 
 
 CREATE USER "administrador"@"localhost" IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON vacunas.* TO "admin"@"localhost" WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON vacunas.* TO "administrador"@"localhost" WITH GRANT OPTION;
 
 # ---------------------------------------------------------------------------- VISTAS ----------------------------------------------------------------------------------------------
 

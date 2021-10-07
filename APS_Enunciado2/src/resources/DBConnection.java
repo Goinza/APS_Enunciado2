@@ -35,9 +35,6 @@ public class DBConnection
 			Statement stm = cnx.createStatement();
 										
 			rs = stm.executeQuery(query);
-
-			rs.close();
-			stm.close();
 			
 		}
 		catch (SQLException ex)	

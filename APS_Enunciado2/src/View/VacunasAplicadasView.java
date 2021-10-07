@@ -69,8 +69,8 @@ public class VacunasAplicadasView extends JFrame {
 		String url = "jdbc:mysql://" + servidor + "/" +baseDatos+ "?serverTimezone=America/Argentina/Buenos_Aires";
 		try 
 		{
-			//															username, password
-			Connection cnx = java.sql.DriverManager.getConnection(url, "root", "mysqltati");
+																	
+			Connection cnx = java.sql.DriverManager.getConnection(url, "administrador", "admin");
 			Statement s = cnx.createStatement();
 	        ResultSet rs = s.executeQuery("SELECT * FROM Aplicacion_Vacunas;");
 	        
