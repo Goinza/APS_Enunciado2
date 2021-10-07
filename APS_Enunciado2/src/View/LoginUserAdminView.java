@@ -198,13 +198,27 @@ public class LoginUserAdminView extends JFrame{
 	}
 	
 	private void adminLoginInput() {
-		presenter.adminLogin(txtUsuario.getText(), txtPassword.getText());
-		presenter.success("Administrador");
+		if (presenter.adminLogin(txtUsuario.getText(), txtPassword.getText())) {
+			presenter.success("Administrador");	
+		}		
+		else {
+			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
+			JDialog dialog = optionPane.createDialog(this, "Error");
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+		}
 	}
 	
 	private void usuarioLoginInput() {
-		presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText());
-		presenter.success("Usuario");
+		if (presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText())) {
+			presenter.success("Usuario");	
+		}	
+		else {
+			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
+			JDialog dialog = optionPane.createDialog(this, "Error");
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+		}
 	}
 	
 	public String getUserName() {
