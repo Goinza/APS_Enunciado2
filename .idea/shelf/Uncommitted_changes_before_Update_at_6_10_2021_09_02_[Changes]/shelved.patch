@@ -1,0 +1,1127 @@
+Index: APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java b/APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java
+new file mode 100644
+--- /dev/null	(date 1633474238355)
++++ b/APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java	(date 1633474238355)
+@@ -0,0 +1,105 @@
++package Presenter;
++
++import Excepciones.*;
++import View.VistaDatosVacunado;
++
++import java.util.Date;
++
++public abstract class PresentadorVacunadoAbs implements PresentadorDatos
++{
++    protected VistaDatosVacunado vista;
++
++    private void validarNombre() throws NombreNoValidoException
++    {
++        String nombre = vista.obtenerNombre();
++        boolean valido = !nombre.isBlank() && Character.isAlphabetic(nombre.charAt(0));
++        if (!valido)
++            throw new NombreNoValidoException();
++    }
++
++    private void validarApellido() throws ApellidoNoValidoException
++    {
++        String apellido = vista.obtenerApellido();
++        boolean valido = !apellido.isBlank() && Character.isAlphabetic(apellido.charAt(0));
++        if (!valido)
++            throw new ApellidoNoValidoException();
++    }
++
++    private void validarDNI() throws DNINoValidoException
++    {
++        String dni = vista.obtenerDNI();
++        boolean valido = !dni.isBlank();
++        for (int i = 0; i < dni.length() && valido; i++)
++            valido = valido && Character.isDigit(dni.charAt(i));
++        if (!valido)
++            throw new DNINoValidoException();
++    }
++
++    private void validarMail() throws MailNoValidoException
++    {
++        String mail = vista.obtenerMail();
++        if (mail.isBlank())
++            throw new MailNoValidoException();
++        int atIndex = mail.indexOf('@');
++        if (atIndex > 0)
++        {
++            int dotIndex = mail.indexOf('.', atIndex);
++            if (dotIndex < atIndex)
++                throw new MailNoValidoException();
++        }
++        else
++            throw new MailNoValidoException();
++    }
++
++    private void validarFechaNacimiento() throws FechaDeNacimientoNoValidaException
++    {
++        Date fecha = vista.obtenerFechaDeNacimiento();
++        if (fecha == null)
++            throw new FechaDeNacimientoNoValidaException();
++    }
++
++    private void validarVacuna() throws VacunaNoValidaException
++    {
++        if (vista.obtenerVacuna() == null)
++            throw new VacunaNoValidaException();
++    }
++
++    private void validarDosis() throws DosisNoValidasException
++    {
++        if (!vista.dosisValidas())
++            throw new DosisNoValidasException();
++    }
++
++    private void validarProvincia() throws ProvinciaNoValidException
++    {
++        if (vista.obtenerProvincia() == null)
++            throw new ProvinciaNoValidException();
++    }
++
++    private void validarRegion() throws RegionSanitariaNoValidaException
++    {
++        if (vista.obtenerRegionSanitaria() == null)
++            throw new RegionSanitariaNoValidaException();
++    }
++
++    protected void validarDatos() throws RegionSanitariaNoValidaException, ProvinciaNoValidException, DosisNoValidasException,
++            VacunaNoValidaException, MailNoValidoException, FechaDeNacimientoNoValidaException,
++                        DNINoValidoException, ApellidoNoValidoException, NombreNoValidoException
++    {
++        validarNombre();
++        validarApellido();
++        validarDNI();
++        validarMail();
++        validarFechaNacimiento();
++        validarVacuna();
++        validarDosis();
++        validarProvincia();
++        validarRegion();
++    }
++
++    @Override
++    public void establecerVista(VistaDatosVacunado vista)
++    {
++        this.vista = vista;
++    }
++}
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+new file mode 100644
+--- /dev/null	(date 1633482910896)
++++ b/.idea/runConfigurations.xml	(date 1633482910896)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1633482859539)
++++ b/.idea/vcs.xml	(date 1633482859539)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: APS_Enunciado2/src/Testing/TestCargaDeVacunados.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java b/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java
+new file mode 100644
+--- /dev/null	(date 1633486547148)
++++ b/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java	(date 1633486547148)
+@@ -0,0 +1,18 @@
++package Testing;
++
++import Presenter.PresentadorCargaVacunado;
++import Presenter.PresentadorCargaVacunadoImpl;
++import View.VentanaCargaDatosVacunado;
++import View.VistaDatosVacunado;
++
++public class TestCargaDeVacunados
++{
++    public static void main(String[] args)
++    {
++        PresentadorCargaVacunado presenter = new PresentadorCargaVacunadoImpl();
++        VistaDatosVacunado vista = new VentanaCargaDatosVacunado(presenter);
++
++        String[] vac = {"vac1", "vac2"};
++        vista.actualizarVacunas(vac);
++    }
++}
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1633482859508)
++++ b/.idea/modules.xml	(date 1633482859508)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/APS_Enunciado2.iml" filepath="$PROJECT_DIR$/APS_Enunciado2.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: APS_Enunciado2/src/Excepciones/DNINoValidoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/DNINoValidoException.java b/APS_Enunciado2/src/Excepciones/DNINoValidoException.java
+new file mode 100644
+--- /dev/null	(date 1633469192352)
++++ b/APS_Enunciado2/src/Excepciones/DNINoValidoException.java	(date 1633469192352)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class DNINoValidoException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/DosisNoValidasException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/DosisNoValidasException.java b/APS_Enunciado2/src/Excepciones/DosisNoValidasException.java
+new file mode 100644
+--- /dev/null	(date 1633471786534)
++++ b/APS_Enunciado2/src/Excepciones/DosisNoValidasException.java	(date 1633471786534)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class DosisNoValidasException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/MailNoValidoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/MailNoValidoException.java b/APS_Enunciado2/src/Excepciones/MailNoValidoException.java
+new file mode 100644
+--- /dev/null	(date 1633470068078)
++++ b/APS_Enunciado2/src/Excepciones/MailNoValidoException.java	(date 1633470068078)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class MailNoValidoException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/VacunaNoValidaException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/VacunaNoValidaException.java b/APS_Enunciado2/src/Excepciones/VacunaNoValidaException.java
+new file mode 100644
+--- /dev/null	(date 1633470068093)
++++ b/APS_Enunciado2/src/Excepciones/VacunaNoValidaException.java	(date 1633470068093)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class VacunaNoValidaException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/NombreNoValidoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/NombreNoValidoException.java b/APS_Enunciado2/src/Excepciones/NombreNoValidoException.java
+new file mode 100644
+--- /dev/null	(date 1633470068191)
++++ b/APS_Enunciado2/src/Excepciones/NombreNoValidoException.java	(date 1633470068191)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class NombreNoValidoException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/ProvinciaNoValidException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/ProvinciaNoValidException.java b/APS_Enunciado2/src/Excepciones/ProvinciaNoValidException.java
+new file mode 100644
+--- /dev/null	(date 1633470068139)
++++ b/APS_Enunciado2/src/Excepciones/ProvinciaNoValidException.java	(date 1633470068139)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class ProvinciaNoValidException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/ApellidoNoValidoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/ApellidoNoValidoException.java b/APS_Enunciado2/src/Excepciones/ApellidoNoValidoException.java
+new file mode 100644
+--- /dev/null	(date 1633470068156)
++++ b/APS_Enunciado2/src/Excepciones/ApellidoNoValidoException.java	(date 1633470068156)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class ApellidoNoValidoException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/RegionSanitariaNoValidaException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/RegionSanitariaNoValidaException.java b/APS_Enunciado2/src/Excepciones/RegionSanitariaNoValidaException.java
+new file mode 100644
+--- /dev/null	(date 1633470068103)
++++ b/APS_Enunciado2/src/Excepciones/RegionSanitariaNoValidaException.java	(date 1633470068103)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class RegionSanitariaNoValidaException extends Exception
++{
++}
+Index: APS_Enunciado2/src/Excepciones/VacunadoYaRegistradoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/VacunadoYaRegistradoException.java b/APS_Enunciado2/src/Excepciones/VacunadoYaRegistradoException.java
+new file mode 100644
+--- /dev/null	(date 1633470068166)
++++ b/APS_Enunciado2/src/Excepciones/VacunadoYaRegistradoException.java	(date 1633470068166)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class VacunadoYaRegistradoException extends Exception
++{
++}
+Index: APS_Enunciado2/src/View/PanelFecha.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/View/PanelFecha.java b/APS_Enunciado2/src/View/PanelFecha.java
+new file mode 100644
+--- /dev/null	(date 1633485212760)
++++ b/APS_Enunciado2/src/View/PanelFecha.java	(date 1633485212760)
+@@ -0,0 +1,181 @@
++package View;
++
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.Date;
++
++public class PanelFecha extends JPanel
++{
++    private JComboBox cbDia;
++    private JComboBox cbMes;
++    private JComboBox cbAgno;
++
++    public PanelFecha()
++    {
++        super();
++        this.setLayout(new GridLayout(1, 3));
++
++        cbDia = new JComboBox();
++        cbMes = new JComboBox();
++        cbAgno = new JComboBox();
++
++        initCBDia(31);
++        initCBMes();
++        initCBAgno();
++
++        this.add(cbDia);
++        this.add(cbMes);
++        this.add(cbAgno);
++
++        asignarListeners();
++    }
++
++    private void initCBDia(int cantDias)
++    {
++        String[] dias = new String[cantDias + 1];
++        llenarArregloHasta(dias, cantDias, 0);
++        cbDia.setModel(new DefaultComboBoxModel(dias));
++    }
++
++    private void initCBMes()
++    {
++        String[] meses = new String[13];
++        llenarArregloHasta(meses, 12, 0);
++        cbMes.setModel(new DefaultComboBoxModel(meses));
++    }
++
++    private void initCBAgno()
++    {
++        String[] agnos = new String[121];
++        llenarArregloHasta(agnos, 120, 1900);
++        cbAgno.setModel(new DefaultComboBoxModel(agnos));
++    }
++
++    private void llenarArregloHasta(String[] arr, int n, int extra)
++    {
++        arr[0] = "";
++        for(int i = 1; i <= n; i++)
++        {
++            String representacionString = String.valueOf(i + extra);
++            if (i + extra < 10)
++                representacionString = "0" + representacionString;
++            arr[i] = representacionString;
++        }
++    }
++
++    private void asignarListeners()
++    {
++        cbMes.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                if (seleccionValida(cbMes))
++                    ajustarCBDia();
++            }
++        });
++
++        cbAgno.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                if (seleccionValida(cbMes))
++                    ajustarCBDia();
++            }
++        });
++    }
++
++    private void ajustarCBDia()
++    {
++        String diaSeleccionado = null;
++
++        if (seleccionValida(cbDia))
++            diaSeleccionado = (String) cbDia.getSelectedItem();
++
++        int cantDias = cantDias(cbMes.getSelectedIndex());
++        initCBDia(cantDias);
++
++        if (diaSeleccionado != null)
++        {
++            if (Integer.valueOf(diaSeleccionado) > cantDias)
++                cbDia.setSelectedItem(String.valueOf(cantDias));
++            else
++                cbDia.setSelectedItem(diaSeleccionado);
++        }
++    }
++
++    public Date obtenerFecha()
++    {
++        if (seleccionValida())
++            return new Date(obtenerAgno(), obtenerMes(), obtenerDia());
++        else
++            return null;
++    }
++
++    public void establecerFecha(Date fecha)
++    {
++        cbDia.setSelectedItem(String.valueOf(fecha.getDay()));
++        cbMes.setSelectedItem(String.valueOf(fecha.getMonth()));
++        cbAgno.setSelectedItem(String.valueOf(fecha.getYear()));
++    }
++
++    public int obtenerAgno()
++    {
++        if(seleccionValida(cbAgno))
++            return Integer.valueOf((String)cbAgno.getSelectedItem());
++        else
++            return -1;
++    }
++
++    public int obtenerMes()
++    {
++        if(seleccionValida(cbMes))
++            return Integer.valueOf((String)cbMes.getSelectedItem());
++        else
++            return -1;
++    }
++
++    public int obtenerDia()
++    {
++        if(seleccionValida(cbDia))
++            return Integer.valueOf((String)cbDia.getSelectedItem());
++        else
++            return -1;
++    }
++
++    public boolean seleccionValida()
++    {
++        return seleccionValida(cbDia) && seleccionValida(cbMes) && seleccionValida(cbAgno);
++    }
++
++    public boolean seleccionNula()
++    {
++        return cbDia.getSelectedIndex() == 0 && cbMes.getSelectedIndex() == 0 && cbAgno.getSelectedIndex() == 0;
++    }
++
++    private boolean seleccionValida(JComboBox cb)
++    {
++        return cb.getSelectedIndex() != 0;
++    }
++
++    private int cantDias(int m)
++    {
++        if(m == 4 || m == 6 || m == 9 || m == 11)
++            return 30;
++        else if (m == 1 || m == 3 || m == 5 || m == 7 || m== 8 || m == 10 || m == 12)
++            return 31;
++        else if (seleccionValida(cbAgno))
++        {
++            int agno = Integer.parseInt((String) cbAgno.getSelectedItem());
++            if (agno % 4 == 0)
++                return 29;
++            else
++                return 28;
++        }
++        else
++            return 28;
++    }
++}
+Index: APS_Enunciado2/src/Excepciones/FechaDeNacimientoNoValidaException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Excepciones/FechaDeNacimientoNoValidaException.java b/APS_Enunciado2/src/Excepciones/FechaDeNacimientoNoValidaException.java
+new file mode 100644
+--- /dev/null	(date 1633469192320)
++++ b/APS_Enunciado2/src/Excepciones/FechaDeNacimientoNoValidaException.java	(date 1633469192320)
+@@ -0,0 +1,5 @@
++package Excepciones;
++
++public class FechaDeNacimientoNoValidaException extends Exception
++{
++}
+Index: APS_Enunciado2/src/View/VentanaDatosVacunado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/View/VentanaDatosVacunado.java b/APS_Enunciado2/src/View/VentanaDatosVacunado.java
+new file mode 100644
+--- /dev/null	(date 1633486407414)
++++ b/APS_Enunciado2/src/View/VentanaDatosVacunado.java	(date 1633486407414)
+@@ -0,0 +1,325 @@
++package View;
++
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.Date;
++
++public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosVacunado
++{
++    JTextField tfNombreVacunado;
++    JTextField tfApellido;
++    JTextField tfDNIVacunado;
++    PanelFecha pnFechaDeNacimiento;
++    JTextField tfMailVacunado;
++    JComboBox cbVacuna;
++    PanelFecha pnFechaPrimeraDosis;
++    PanelFecha pnFechaSegundaDosis;
++    JTextField tfDosisAplicadas;
++    JComboBox cbProvinciaDeVacunacion;
++    JComboBox cbRegionSanitaria;
++
++    boolean segundaDosisIngresada;
++
++    JPanel[][] celdasInferiores;
++    JButton btnCancelar;
++
++    public VentanaDatosVacunado(String titulo) throws HeadlessException
++    {
++        super();
++        this.setSize(600, 600);
++        setLayout(new BorderLayout(10, 10));
++
++        JLabel lbTitulo = new JLabel(" " + titulo);
++        add(lbTitulo, BorderLayout.PAGE_START);
++
++        inicializarPanelCampos();
++        inicializarPanelInferior();
++        accionesEspecificas();
++
++        setLocationRelativeTo(null);
++        setVisible(true);
++        setResizable(false);
++        setDefaultCloseOperation(EXIT_ON_CLOSE);
++    }
++
++    private void inicializarPanelCampos()
++    {
++        JPanel panelCampos = new JPanel(new GridLayout(0, 2, 5, 5));
++
++        JLabel lbNombreVacunado = new JLabel("   Nombre");
++        JLabel lbApellido = new JLabel("   Apellido");
++        JLabel lbDNIVacunado = new JLabel("   DNI");
++        JLabel lbFechaNacimiento = new JLabel("   Fecha de nacimiento");
++        JLabel lbMailVacunado = new JLabel("   Correo electrónico");
++        JLabel lbVacuna = new JLabel("   Vacuna");
++        JLabel lbFechaPrimeraDosis = new JLabel("   Fecha de primera dosis");
++        JLabel lbFechaSegundaDosis = new JLabel("   Fecha de segunda dosis");
++        JLabel lbDosisAplicadas = new JLabel("   Cantidad de dosis recibidas");
++        JLabel lbProvinciaDeVacunacion = new JLabel("   Provincia de vacunación");
++        JLabel lbRegionSanitaria = new JLabel("   Región sanitaria");
++
++        tfNombreVacunado = new JTextField();
++        tfApellido = new JTextField();
++        pnFechaDeNacimiento = new PanelFecha();
++        cbVacuna = new JComboBox();
++        pnFechaPrimeraDosis = new PanelFecha();
++        pnFechaSegundaDosis = new PanelFecha();
++        tfDosisAplicadas = new JTextField();
++        tfMailVacunado = new JTextField();
++        tfDNIVacunado = new JTextField();
++        cbProvinciaDeVacunacion = new JComboBox();
++        cbRegionSanitaria = new JComboBox();
++
++        tfDosisAplicadas.setEnabled(false);
++        
++        panelCampos.add(lbNombreVacunado);
++        panelCampos.add(tfNombreVacunado);
++        panelCampos.add(lbApellido);
++        panelCampos.add(tfApellido);
++        panelCampos.add(lbDNIVacunado);
++        panelCampos.add(tfDNIVacunado);
++        panelCampos.add(lbMailVacunado);
++        panelCampos.add(tfMailVacunado);
++        panelCampos.add(lbFechaNacimiento);
++        panelCampos.add(pnFechaDeNacimiento);
++        panelCampos.add(lbVacuna);
++        panelCampos.add(cbVacuna);
++        panelCampos.add(lbFechaPrimeraDosis);
++        panelCampos.add(pnFechaPrimeraDosis);
++        panelCampos.add(lbFechaSegundaDosis);
++        panelCampos.add(pnFechaSegundaDosis);
++        panelCampos.add(lbDosisAplicadas);
++        panelCampos.add(tfDosisAplicadas);
++        panelCampos.add(lbProvinciaDeVacunacion);
++        panelCampos.add(cbProvinciaDeVacunacion);
++        panelCampos.add(lbRegionSanitaria);
++        panelCampos.add(cbRegionSanitaria);
++
++        add(panelCampos, BorderLayout.CENTER);
++    }
++
++    private void inicializarPanelInferior()
++    {
++        JPanel panelInferior = new JPanel(new GridLayout(2, 3, 5, 5));
++
++        celdasInferiores = new JPanel[2][3];
++        for (int i = 0; i < 2; i++)
++        {
++            for (int j = 0; j < 3; j++)
++            {
++                celdasInferiores[i][j] = new JPanel();
++                panelInferior.add(celdasInferiores[i][j]);
++            }
++        }
++
++        btnCancelar = new JButton("Cancelar");
++        btnCancelar.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                setVisible(false);
++                dispose();
++            }
++        });
++        celdasInferiores[1][2].add(btnCancelar);
++
++        add(panelInferior, BorderLayout.SOUTH);
++    }
++
++    protected abstract void accionesEspecificas();
++
++    @Override
++    public String obtenerNombre()
++    {
++        return tfNombreVacunado.getText();
++    }
++
++    @Override
++    public void establecerNombre(String nombre)
++    {
++        tfNombreVacunado.setText(nombre);
++    }
++
++    @Override
++    public String obtenerApellido()
++    {
++        return tfApellido.getText();
++    }
++
++    @Override
++    public void establecerApellido(String apellido)
++    {
++        tfApellido.setText(apellido);
++    }
++
++    @Override
++    public Date obtenerFechaDeNacimiento()
++    {
++        return pnFechaDeNacimiento.obtenerFecha();
++    }
++
++    @Override
++    public void establecerFecha(Date fecha)
++    {
++        pnFechaDeNacimiento.establecerFecha(fecha);
++    }
++
++    @Override
++    public String obtenerVacuna()
++    {
++        return valorComboBox(cbVacuna);
++    }
++
++    @Override
++    public void establecerNombreVacuna(String nombre)
++    {
++        cbVacuna.setSelectedItem(nombre);
++    }
++
++    @Override
++    public Date obtenerFechaPrimeraDosis()
++    {
++        return pnFechaPrimeraDosis.obtenerFecha();
++    }
++
++    @Override
++    public void establecerFechaPrimeraDosis(Date fecha)
++    {
++        pnFechaPrimeraDosis.establecerFecha(fecha);
++    }
++
++    @Override
++    public Date obtenerFechaSegundaDosis()
++    {
++        return pnFechaSegundaDosis.obtenerFecha();
++    }
++
++    @Override
++    public void establecerFechaSegundaDosis(Date fecha)
++    {
++        pnFechaSegundaDosis.establecerFecha(fecha);
++    }
++
++    @Override
++    public int obtenerCantidadDeDosisAplicadas()
++    {
++        return Integer.valueOf(tfDosisAplicadas.getText());
++    }
++
++    @Override
++    public void establecerCantidadDeDosisAplicadas(int dosis)
++    {
++        tfDosisAplicadas.setText(String.valueOf(dosis));
++    }
++
++    @Override
++    public String obtenerMail()
++    {
++        return tfMailVacunado.getText();
++    }
++
++    @Override
++    public void establecerMail(String mail)
++    {
++        tfMailVacunado.setText(mail);
++    }
++
++    @Override
++    public String obtenerDNI()
++    {
++        return tfDNIVacunado.getText();
++    }
++
++    @Override
++    public void establecerDNI(String dni)
++    {
++        tfDNIVacunado.setText(dni);
++    }
++
++    @Override
++    public String obtenerProvincia()
++    {
++        return valorComboBox(cbProvinciaDeVacunacion);
++    }
++
++    @Override
++    public void establecerProvincia(String provincia)
++    {
++        cbProvinciaDeVacunacion.setSelectedItem(provincia);
++    }
++
++    @Override
++    public String obtenerRegionSanitaria()
++    {
++        return valorComboBox(cbRegionSanitaria);
++    }
++
++    @Override
++    public void establecerRegionSanitaria(String region)
++    {
++        cbRegionSanitaria.setSelectedItem(region);
++    }
++
++    @Override
++    public void actualizarVacunas(String[] vacunas)
++    {
++        actualizarComboBox(cbVacuna, vacunas);
++    }
++
++    @Override
++    public void actualizarProvincias(String[] provincias)
++    {
++        actualizarComboBox(cbProvinciaDeVacunacion, provincias);
++    }
++
++    @Override
++    public void actualizarRegionesSanitarias(String[] regiones)
++    {
++        actualizarComboBox(cbRegionSanitaria, regiones);
++    }
++
++    @Override
++    public boolean dosisValidas()
++    {
++        boolean valido = pnFechaPrimeraDosis.seleccionValida() && (pnFechaSegundaDosis.seleccionValida() || pnFechaSegundaDosis.seleccionNula());
++        if (valido && pnFechaSegundaDosis.seleccionValida())
++        {
++            Date fechaPrimera = pnFechaPrimeraDosis.obtenerFecha();
++            Date fechaSegunda = pnFechaSegundaDosis.obtenerFecha();
++            if(fechaPrimera.compareTo(fechaSegunda) > 0)
++                valido = false;
++        }
++        return valido;
++    }
++
++    @Override
++    public void mostrarAviso(String aviso)
++    {
++        JOptionPane.showMessageDialog(this, aviso, "Información", JOptionPane.INFORMATION_MESSAGE);
++    }
++
++    @Override
++    public void mostrarAlerta(String alerta)
++    {
++        JOptionPane.showMessageDialog(this, alerta, "Información", JOptionPane.ERROR_MESSAGE);
++    }
++
++    private void actualizarComboBox(JComboBox comboBox, String[] opciones)
++    {
++        comboBox.removeAllItems();
++        comboBox.setModel(new DefaultComboBoxModel(opciones));
++        comboBox.insertItemAt("", 0);
++        comboBox.setSelectedIndex(0);
++    }
++
++    private String valorComboBox(JComboBox cb)
++    {
++        String ret = (String)cb.getSelectedItem();
++        if (ret == "")
++            ret = null;
++        return ret;
++    }
++}
+Index: APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java b/APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java
+new file mode 100644
+--- /dev/null	(date 1633474189242)
++++ b/APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java	(date 1633474189242)
+@@ -0,0 +1,41 @@
++package View;
++
++import Presenter.PresentadorCargaVacunado;
++
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
++{
++    JButton botonGuardar;
++    PresentadorCargaVacunado presentador;
++
++    public VentanaCargaDatosVacunado(PresentadorCargaVacunado presentador)
++    {
++        super("Carga de datos");
++        this.presentador = presentador;
++        presentador.establecerVista(this);
++
++        botonGuardar.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                presentador.guardar();
++            }
++        });
++    }
++
++
++
++    @Override
++    protected void accionesEspecificas()
++    {
++        JPanel panelInferior = new JPanel(new GridLayout(2, 3, 5, 5));
++
++        botonGuardar = new JButton("Guardar");
++        celdasInferiores[0][1].add(botonGuardar);
++    }
++}
+Index: APS_Enunciado2/src/Presenter/PresentadorCargaVacunado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorCargaVacunado.java b/APS_Enunciado2/src/Presenter/PresentadorCargaVacunado.java
+new file mode 100644
+--- /dev/null	(date 1633473642622)
++++ b/APS_Enunciado2/src/Presenter/PresentadorCargaVacunado.java	(date 1633473642622)
+@@ -0,0 +1,6 @@
++package Presenter;
++
++public interface PresentadorCargaVacunado extends PresentadorDatos
++{
++    void guardar();
++}
+Index: APS_Enunciado2/src/View/VistaDatosVacunado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/View/VistaDatosVacunado.java b/APS_Enunciado2/src/View/VistaDatosVacunado.java
+new file mode 100644
+--- /dev/null	(date 1633471786505)
++++ b/APS_Enunciado2/src/View/VistaDatosVacunado.java	(date 1633471786505)
+@@ -0,0 +1,62 @@
++package View;
++
++import java.util.Date;
++
++public interface VistaDatosVacunado
++{
++    String obtenerNombre();
++
++    void establecerNombre(String nombre);
++
++    String obtenerApellido();
++    
++    void establecerApellido(String apellido);
++    
++    Date obtenerFechaDeNacimiento();
++    
++    void establecerFecha(Date fecha);
++    
++    String obtenerVacuna();
++
++    void establecerNombreVacuna(String nombre);
++    
++    Date obtenerFechaPrimeraDosis();
++    
++    void establecerFechaPrimeraDosis(Date fecha);
++
++    Date obtenerFechaSegundaDosis();
++
++    void establecerFechaSegundaDosis(Date fecha);
++
++    int obtenerCantidadDeDosisAplicadas();
++
++    void establecerCantidadDeDosisAplicadas(int dosis);
++
++    String obtenerMail();
++
++    void establecerMail(String mail);
++
++    String obtenerDNI();
++
++    void establecerDNI(String dni);
++
++    String obtenerProvincia();
++
++    void establecerProvincia(String provincia);
++
++    String obtenerRegionSanitaria();
++
++    void establecerRegionSanitaria(String region);
++
++    void actualizarVacunas(String[] vacunas);
++
++    void actualizarProvincias(String[] provincias);
++
++    void actualizarRegionesSanitarias(String[] regionesSanitarias);
++
++    boolean dosisValidas();
++
++    void mostrarAviso(String aviso);
++
++    void mostrarAlerta(String alerta);
++}
+Index: APS_Enunciado2/src/Presenter/PresentadorDatos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorDatos.java b/APS_Enunciado2/src/Presenter/PresentadorDatos.java
+new file mode 100644
+--- /dev/null	(date 1633473642596)
++++ b/APS_Enunciado2/src/Presenter/PresentadorDatos.java	(date 1633473642596)
+@@ -0,0 +1,8 @@
++package Presenter;
++
++import View.VistaDatosVacunado;
++
++public interface PresentadorDatos
++{
++    void establecerVista(VistaDatosVacunado vista);
++}
+Index: APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java b/APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java
+new file mode 100644
+--- /dev/null	(date 1633486407422)
++++ b/APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java	(date 1633486407422)
+@@ -0,0 +1,40 @@
++package Presenter;
++
++import Excepciones.*;
++import View.VistaDatosVacunado;
++
++public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs implements PresentadorCargaVacunado
++{
++    @Override
++    public void guardar()
++    {
++        try
++        {
++            validarDatos();
++
++            // TODO: 5/10/2021 Verificar que el usuario no prexista.
++
++            // TODO: 5/10/2021 Almacenar la nueva entrada en la base de datos.
++
++            vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
++        } catch (NombreNoValidoException e) {
++            vista.mostrarAlerta("El campo Nombre se encuentra vacío o presenta un formato no válido.");
++        } catch (MailNoValidoException e) {
++            vista.mostrarAlerta("El campo Mail se encuentra vacío o presenta un formato no válido.");
++        } catch (FechaDeNacimientoNoValidaException e) {
++            vista.mostrarAlerta("No se ha seleccionado una Fecha de Nacimiento, o se lo ha hecho parcialmente.");
++        } catch (ApellidoNoValidoException e) {
++            vista.mostrarAlerta("El campo Apellido se encuentra vacío o presenta un formato no válido.");
++        } catch (RegionSanitariaNoValidaException e) {
++            vista.mostrarAlerta("Seleccione una región sanitaria.");
++        } catch (DosisNoValidasException e) {
++            vista.mostrarAlerta("Debe seleccionar una fecha de primera dosis. De seleccionar una para la segunda, asegúrese de haber ingresado todos los campos y que la fecha resultante sea posterior a la primera.");
++        } catch (VacunaNoValidaException e) {
++            vista.mostrarAlerta("Seleccione una Vacuna.");
++        } catch (ProvinciaNoValidException e) {
++            vista.mostrarAlerta("Seleccione una Provincia.");
++        } catch (DNINoValidoException e) {
++            vista.mostrarAlerta("El campo DNI se encuentra vacío o presenta un formato no válido.");
++        }
++    }
++}
+Index: APS_Enunciado2/src/Presenter/PresentadorModificacionVacunadoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunadoImpl.java b/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunadoImpl.java
+new file mode 100644
+--- /dev/null	(date 1633474099267)
++++ b/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunadoImpl.java	(date 1633474099267)
+@@ -0,0 +1,18 @@
++package Presenter;
++
++import View.VistaDatosVacunado;
++
++public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs implements PresentadorModificacionVacunado
++{
++    private int dniGuardado;
++
++    public PresentadorModificacionVacunadoImpl(int dni)
++    {
++        dniGuardado = dni;
++    }
++
++    @Override
++    public void actualizar()
++    {
++    }
++}
+Index: APS_Enunciado2/src/Presenter/PresentadorModificacionVacunado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunado.java b/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunado.java
+new file mode 100644
+--- /dev/null	(date 1633473642609)
++++ b/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunado.java	(date 1633473642609)
+@@ -0,0 +1,6 @@
++package Presenter;
++
++public interface PresentadorModificacionVacunado extends PresentadorDatos
++{
++    void actualizar();
++}
