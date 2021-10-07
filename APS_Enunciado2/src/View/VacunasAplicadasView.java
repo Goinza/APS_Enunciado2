@@ -2,12 +2,19 @@ package View;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 import Presenter.VacunasAplicadasPresenter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -19,6 +26,7 @@ public class VacunasAplicadasView extends JFrame {
 	private JPanel contentPane;
 	private JTable vacunasAplicadasTable;
 	private VacunasAplicadasPresenter presenter;
+	private JScrollPane scrollAplicadas;
 
 	public VacunasAplicadasView() {
 		presenter = new VacunasAplicadasPresenter();
@@ -56,9 +64,58 @@ public class VacunasAplicadasView extends JFrame {
 		btnCargar.setBounds(580, 397, 85, 21);
 		contentPane.add(btnCargar);
 		
-		vacunasAplicadasTable = new JTable();
-		vacunasAplicadasTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		vacunasAplicadasTable.setBounds(10, 46, 655, 327);
-		contentPane.add(vacunasAplicadasTable);
+		String servidor = "localhost:3306";
+		String baseDatos = "vacunas";
+		String url = "jdbc:mysql://" + servidor + "/" +baseDatos+ "?serverTimezone=America/Argentina/Buenos_Aires";
+		try 
+		{
+			//															username, password
+			Connection cnx = java.sql.DriverManager.getConnection(url, "root", "mysqltati");
+			Statement s = cnx.createStatement();
+	        ResultSet rs = s.executeQuery("SELECT * FROM Aplicacion_Vacunas;");
+	        
+	        ResultSetMetaData md = rs.getMetaData();
+	        int cantColumnas = md.getColumnCount();
+	        
+	        Vector<String> nombreColumnas = new Vector<String> ();
+	        Vector<Vector<Object>> datos = new Vector<Vector<Object>>(); 
+	        Vector<Object> aux;
+	        
+	        //Agrego las columnas
+	        for (int i=1; i<=cantColumnas; i++)
+	        {
+	            nombreColumnas.add(md.getColumnLabel(i));
+	        }         
+	        
+	      //Agrego las tuplas
+	        while (rs.next())
+	        {
+	        	aux = new Vector<Object>();
+	        	
+	        	for (int i=1; i<=cantColumnas; i++)
+		        {
+		        	aux.add(rs.getString(i));
+		        }   
+
+	        	datos.add(aux);
+	        }
+	        
+	        vacunasAplicadasTable = new JTable(datos, nombreColumnas);
+	        vacunasAplicadasTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	        vacunasAplicadasTable.setBounds(33, 45, 655, 327);
+			
+	        scrollAplicadas = new JScrollPane(vacunasAplicadasTable);
+	        scrollAplicadas.setBounds(33, 45, 655, 327);
+            contentPane.add(scrollAplicadas);
+            repaint();
+	        
+	        this.repaint();
+		}
+		catch (SQLException ex)	
+		{
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
 	}
 }
