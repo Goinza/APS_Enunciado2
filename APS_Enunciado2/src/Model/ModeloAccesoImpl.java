@@ -10,7 +10,7 @@ public class ModeloAccesoImpl implements ModeloAcceso {
 	@Override
 	public boolean accederAdmin(String nombre, String password) {
 		DBConnection database = new DBConnection();
-		ResultSet result = database.realizarConsulta("select * from Usuarios where usuario='"+nombre+"' and contrasena='"+password+"' and es_admin = 0");
+		ResultSet result = database.realizarConsulta("select * from Usuarios where usuario='"+nombre+"' and contrasena='"+password+"' and es_admin = 1");
 		boolean acceso = false;
 		try {
 			acceso = result.next();
@@ -25,7 +25,7 @@ public class ModeloAccesoImpl implements ModeloAcceso {
 	@Override
 	public boolean accederUsuario(String nombre, String password) {
 		DBConnection database = new DBConnection();
-		ResultSet result = database.realizarConsulta("select * from Usuarios where usuario='"+nombre+"' and contrasena='"+password+"' and es_admin = 1");
+		ResultSet result = database.realizarConsulta("select * from Usuarios where usuario='"+nombre+"' and contrasena='"+password+"' and es_admin = 0");
 		boolean acceso = false;
 		try {
 			acceso = result.next();
