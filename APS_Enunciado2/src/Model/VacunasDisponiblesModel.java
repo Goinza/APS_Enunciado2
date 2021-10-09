@@ -30,7 +30,7 @@ public class VacunasDisponiblesModel
 	
 	public Vector<String> getNombreColumnas()
 	{		
-		Vector<String> nombreColumnas = new Vector<String> ();
+		Vector<String> nombreColumnas = new Vector<String>();
 		try
 		{
 			//Agrego las columnas

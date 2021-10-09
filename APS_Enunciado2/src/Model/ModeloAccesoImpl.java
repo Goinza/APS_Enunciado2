@@ -16,7 +16,6 @@ public class ModeloAccesoImpl implements ModeloAcceso {
 		try
 		{
 			acceso = result.next();
-			//database.cerrarConexion();
 		}
 		catch (SQLException e)
 		{
@@ -35,7 +34,6 @@ public class ModeloAccesoImpl implements ModeloAcceso {
 		try
 		{
 			acceso = result.next();
-			//database.cerrarConexion();
 		}
 		catch (SQLException e)
 		{
