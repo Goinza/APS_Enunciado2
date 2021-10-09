@@ -56,7 +56,6 @@ public class VacunasDisponiblesView extends JFrame {
 			scrollDisponibles = new JScrollPane(vacunasDisponiblesTable);
 			scrollDisponibles.setBounds(33, 45, 655, 327);
             contentPane.add(scrollDisponibles);
-            System.out.println("AAAAAAAAAAA");
             repaint();
 	        
 	        this.repaint();

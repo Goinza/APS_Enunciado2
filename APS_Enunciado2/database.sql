@@ -114,7 +114,7 @@ SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha 
 FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
 
 CREATE VIEW Vacunas_Disponibles AS
-SELECT p.nombre_provincia,v.nombre_vacuna, (CASE WHEN (tabla_aplicadas.idpcia IS NOT NULL) THEN vent.cantidad - tabla_aplicadas.aplicadas ELSE vent.cantidad END) disponibles
+SELECT p.nombre_provincia AS 'Provincia',(CASE WHEN (tabla_aplicadas.idpcia IS NOT NULL) THEN vent.cantidad - tabla_aplicadas.aplicadas ELSE vent.cantidad END) AS 'Cantidad de Vacunas Disponibles', v.nombre_vacuna 'Tipo de Vacuna'
 FROM Vacunas_Entregadas vent 
 INNER JOIN Provincias p ON vent.id_provincia = p.id_provincia 
 INNER JOIN Vacunas v ON vent.id_vacuna = v.id_vacuna
