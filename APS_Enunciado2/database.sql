@@ -322,7 +322,7 @@ INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id
 INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111115,3,6,5);
 INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111116,3,8,3);
 INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01','2021-01-22',2,11111117,4,14,1);
-INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01',NULL,2,11111118,1,1,10);
+INSERT INTO Vacunas_Aplicadas (primera_dosis,segunda_dosis,cantidad_dosis,dni,id_vacuna,id_provincia,id_region) VALUES ('2021-01-01',NULL,1,11111118,1,1,10);
 
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,1,1000000);
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (1,2,1000000);

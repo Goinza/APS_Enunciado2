@@ -12,11 +12,21 @@ public class VacunasAplicadasModel
 	private ResultSet query_vista_aplicadas;
 	private ResultSetMetaData md;
 	private int cantColumnas;
+	private Filtro filtro;
 	
-	public VacunasAplicadasModel()
+	public VacunasAplicadasModel(Filtro filtro)
 	{
+		this.filtro = filtro;
+		updateQuery();
+	}
+	
+	public void setFiltro(Filtro filtro) {
+		this.filtro = filtro;
+	}
+	
+	public void updateQuery() {
 		DBConnection database = DBConnection.getInstance();
-		query_vista_aplicadas = database.realizarConsulta("SELECT * FROM Aplicacion_Vacunas;");
+		query_vista_aplicadas = database.realizarConsulta(filtro.obtenerConsulta());
 		try
 		{
 			md = query_vista_aplicadas.getMetaData();

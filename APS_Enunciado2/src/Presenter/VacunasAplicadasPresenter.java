@@ -2,6 +2,8 @@ package Presenter;
 
 import java.util.Vector;
 
+import Model.Filtro;
+import Model.SinFiltro;
 import Model.VacunasAplicadasModel;
 import View.VacunasAplicadasView;
 
@@ -12,7 +14,12 @@ public class VacunasAplicadasPresenter
 	
 	public VacunasAplicadasPresenter(boolean admin_logueado)
 	{
-		modelo = new VacunasAplicadasModel();
+		modelo = new VacunasAplicadasModel(new SinFiltro());
+		vista = new VacunasAplicadasView(admin_logueado);
+	}
+	
+	public VacunasAplicadasPresenter(boolean admin_logueado, Filtro filtro) {
+		modelo = new VacunasAplicadasModel(filtro);
 		vista = new VacunasAplicadasView(admin_logueado);
 	}
 		
