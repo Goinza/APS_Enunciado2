@@ -29,6 +29,8 @@ public class PanelFecha extends JPanel
         this.add(cbMes);
         this.add(cbAgno);
 
+        desactivar();
+
         asignarListeners();
     }
 
@@ -154,6 +156,31 @@ public class PanelFecha extends JPanel
     public boolean seleccionNula()
     {
         return cbDia.getSelectedIndex() == 0 && cbMes.getSelectedIndex() == 0 && cbAgno.getSelectedIndex() == 0;
+    }
+
+    public void activar()
+    {
+        activar(cbDia);
+        activar(cbMes);
+        activar(cbAgno);
+    }
+
+    public void desactivar()
+    {
+        desactivar(cbDia);
+        desactivar(cbMes);
+        desactivar(cbAgno);
+    }
+
+    private void desactivar(JComboBox cb)
+    {
+        cb.setSelectedIndex(0);
+        cb.setEnabled(false);
+    }
+
+    private void activar(JComboBox cb)
+    {
+        cb.setEnabled(true);
     }
 
     private boolean seleccionValida(JComboBox cb)

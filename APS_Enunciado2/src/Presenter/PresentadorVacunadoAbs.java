@@ -1,13 +1,20 @@
 package Presenter;
 
 import Excepciones.*;
+import Model.*;
+import Model.Provincia;
 import View.VistaDatosVacunado;
 
 import java.util.Date;
+import java.util.List;
 
 public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 {
     protected VistaDatosVacunado vista;
+    protected ModeloPersonas modeloPersona;
+    protected ModeloProvincias modeloProvincias;
+    protected ModeloVacunas modeloVacunas;
+    protected ModeloRegiones modeloRegiones;
 
     private void validarNombre() throws NombreNoValidoException
     {
@@ -78,7 +85,7 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     private void validarRegion() throws RegionSanitariaNoValidaException
     {
-        if (vista.obtenerRegionSanitaria() == null)
+        if (vista.obtenerRegion() == null)
             throw new RegionSanitariaNoValidaException();
     }
 
@@ -101,5 +108,20 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     public void establecerVista(VistaDatosVacunado vista)
     {
         this.vista = vista;
+    }
+
+    @Override
+    public void inicializarVista()
+    {
+        List<Provincia> provincias = modeloProvincias.obtenerProvincias();
+        vista.actualizarProvincias(provincias);
+    }
+
+    @Override
+    public void provinciaSeleccionada()
+    {
+        Provincia provincia = vista.obtenerProvincia();
+        vista.actualizarRegiones(modeloRegiones.obtenerRegiones(provincia));
+        vista.actualizarVacunas(modeloVacunas.obtenerVacunasPorProvincia(provincia));
     }
 }

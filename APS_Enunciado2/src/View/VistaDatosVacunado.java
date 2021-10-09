@@ -1,6 +1,10 @@
 package View;
 
+import Model.Provincia;
+import Model.Vacuna;
+
 import java.util.Date;
+import java.util.List;
 
 public interface VistaDatosVacunado
 {
@@ -16,7 +20,7 @@ public interface VistaDatosVacunado
     
     void establecerFecha(Date fecha);
     
-    String obtenerVacuna();
+    Vacuna obtenerVacuna();
 
     void establecerNombreVacuna(String nombre);
     
@@ -38,21 +42,21 @@ public interface VistaDatosVacunado
 
     String obtenerDNI();
 
-    void establecerDNI(String dni);
+    void establecerDNI(int dni);
 
-    String obtenerProvincia();
+    Provincia obtenerProvincia();
 
     void establecerProvincia(String provincia);
 
-    String obtenerRegionSanitaria();
+    Integer obtenerRegion();
 
     void establecerRegionSanitaria(String region);
 
-    void actualizarVacunas(String[] vacunas);
+    void actualizarVacunas(List<Vacuna> vacunas);
 
-    void actualizarProvincias(String[] provincias);
+    void actualizarProvincias(List<Provincia> provincias);
 
-    void actualizarRegionesSanitarias(String[] regionesSanitarias);
+    void actualizarRegiones(List<Integer> regionesSanitarias);
 
     boolean dosisValidas();
 

@@ -1,19 +1,39 @@
 package Presenter;
 
 import Excepciones.*;
-import View.VistaDatosVacunado;
+import Model.Persona;
+import Model.Provincia;
+import Model.Vacuna;
 
-public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs implements PresentadorCargaVacunado
+import java.util.Date;
+
+public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs
 {
     @Override
-    public void guardar()
+    public void actuar()
     {
         try
         {
             validarDatos();
 
-            // TODO: 5/10/2021 Verificar que el usuario no prexista.
+            int dni = Integer.valueOf(vista.obtenerDNI());
+            if(modeloPersona.obtenerPersona(dni) != null)
+                throw new PersonaYaAlmacenadaException();
+            else
+            {
+                Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerFechaDeNacimiento());
 
+                modeloPersona.almacenarPersona(persona);
+
+                Vacuna vacuna = vista.obtenerVacuna();
+                Provincia provincia = vista.obtenerProvincia();
+                int region = vista.obtenerRegion();
+                Date primeraDosis = vista.obtenerFechaPrimeraDosis();
+                Date segundaDosis = vista.obtenerFechaSegundaDosis();
+
+
+
+            }
             // TODO: 5/10/2021 Almacenar la nueva entrada en la base de datos.
 
             vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
@@ -35,6 +55,8 @@ public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs impleme
             vista.mostrarAlerta("Seleccione una Provincia.");
         } catch (DNINoValidoException e) {
             vista.mostrarAlerta("El campo DNI se encuentra vacío o presenta un formato no válido.");
+        } catch (PersonaYaAlmacenadaException e) {
+            vista.mostrarAlerta("Imposible guardar: ya se registra una instancia de vacunación para el ciudadano ingresado.");
         }
     }
 }

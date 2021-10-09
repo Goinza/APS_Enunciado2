@@ -1,13 +1,22 @@
 package View;
 
+import Model.Provincia;
+import Model.Vacuna;
+import Presenter.PresentadorDatos;
+
+import java.util.HashMap;
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Map;
 
 public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosVacunado
 {
+    PresentadorDatos presentador;
+
     JTextField tfNombreVacunado;
     JTextField tfApellido;
     JTextField tfDNIVacunado;
@@ -17,19 +26,22 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     PanelFecha pnFechaPrimeraDosis;
     PanelFecha pnFechaSegundaDosis;
     JTextField tfDosisAplicadas;
-    JComboBox cbProvinciaDeVacunacion;
-    JComboBox cbRegionSanitaria;
+    JComboBox cbProvincia;
+    JComboBox cbRegion;
 
-    boolean segundaDosisIngresada;
+    Map<String, Provincia> mapeoProvincias;
+    Map<String, Vacuna> mapeoVacunas;
 
     JPanel[][] celdasInferiores;
     JButton btnCancelar;
 
-    public VentanaDatosVacunado(String titulo) throws HeadlessException
+    public VentanaDatosVacunado(String titulo, PresentadorDatos presentador)
     {
         super();
         this.setSize(600, 600);
         setLayout(new BorderLayout(10, 10));
+
+        this.presentador = presentador;
 
         JLabel lbTitulo = new JLabel(" " + titulo);
         add(lbTitulo, BorderLayout.PAGE_START);
@@ -37,7 +49,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         inicializarPanelCampos();
         inicializarPanelInferior();
         accionesEspecificas();
-
+        
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
@@ -69,10 +81,14 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         tfDosisAplicadas = new JTextField();
         tfMailVacunado = new JTextField();
         tfDNIVacunado = new JTextField();
-        cbProvinciaDeVacunacion = new JComboBox();
-        cbRegionSanitaria = new JComboBox();
+        cbProvincia = new JComboBox();
+        cbRegion = new JComboBox();
 
         tfDosisAplicadas.setEnabled(false);
+        cbRegion.setEnabled(false);
+        cbVacuna.setEnabled(false);
+        pnFechaPrimeraDosis.desactivar();
+        pnFechaSegundaDosis.desactivar();
         
         panelCampos.add(lbNombreVacunado);
         panelCampos.add(tfNombreVacunado);
@@ -84,6 +100,10 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         panelCampos.add(tfMailVacunado);
         panelCampos.add(lbFechaNacimiento);
         panelCampos.add(pnFechaDeNacimiento);
+        panelCampos.add(lbProvinciaDeVacunacion);
+        panelCampos.add(cbProvincia);
+        panelCampos.add(lbRegionSanitaria);
+        panelCampos.add(cbRegion);
         panelCampos.add(lbVacuna);
         panelCampos.add(cbVacuna);
         panelCampos.add(lbFechaPrimeraDosis);
@@ -92,12 +112,46 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         panelCampos.add(pnFechaSegundaDosis);
         panelCampos.add(lbDosisAplicadas);
         panelCampos.add(tfDosisAplicadas);
-        panelCampos.add(lbProvinciaDeVacunacion);
-        panelCampos.add(cbProvinciaDeVacunacion);
-        panelCampos.add(lbRegionSanitaria);
-        panelCampos.add(cbRegionSanitaria);
-
         add(panelCampos, BorderLayout.CENTER);
+
+        cbProvincia.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (seleccionValida(cbProvincia))
+                {
+                    presentador.provinciaSeleccionada();
+                    cbRegion.setEnabled(true);
+                    cbVacuna.setEnabled(true);
+                }
+                else
+                {
+                    cbProvincia.setSelectedIndex(0);
+                    cbRegion.setEnabled(false);
+                    cbVacuna.setSelectedIndex(0);
+                    cbVacuna.setEnabled(false);
+                }
+            }
+        });
+
+        cbVacuna.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (seleccionValida(cbVacuna))
+                {
+                    pnFechaPrimeraDosis.activar();
+                    pnFechaSegundaDosis.activar();
+                }
+                else {
+                    pnFechaPrimeraDosis.desactivar();
+                    pnFechaSegundaDosis.desactivar();
+                }
+            }
+        });
+
     }
 
     private void inicializarPanelInferior()
@@ -168,9 +222,9 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public String obtenerVacuna()
+    public Vacuna obtenerVacuna()
     {
-        return valorComboBox(cbVacuna);
+        return mapeoVacunas.get(valorComboBox(cbVacuna));
     }
 
     @Override
@@ -234,51 +288,73 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public void establecerDNI(String dni)
+    public void establecerDNI(int dni)
     {
-        tfDNIVacunado.setText(dni);
+        tfDNIVacunado.setText(String.valueOf(dni));
     }
 
     @Override
-    public String obtenerProvincia()
+    public Provincia obtenerProvincia()
     {
-        return valorComboBox(cbProvinciaDeVacunacion);
+        return mapeoProvincias.get(valorComboBox(cbVacuna));
     }
 
     @Override
     public void establecerProvincia(String provincia)
     {
-        cbProvinciaDeVacunacion.setSelectedItem(provincia);
+        cbProvincia.setSelectedItem(provincia);
     }
 
     @Override
-    public String obtenerRegionSanitaria()
+    public Integer obtenerRegion()
     {
-        return valorComboBox(cbRegionSanitaria);
+        return Integer.valueOf(valorComboBox(cbRegion));
     }
 
     @Override
     public void establecerRegionSanitaria(String region)
     {
-        cbRegionSanitaria.setSelectedItem(region);
+        cbRegion.setSelectedItem(region);
+    }
+
+
+    @Override
+    public void actualizarVacunas(List<Vacuna> vacunas)
+    {
+        String[] a = new String[vacunas.size()];
+        mapeoVacunas = new HashMap<>();
+
+        int i = 0;
+        for (Vacuna v: vacunas) {
+            a[i++] = v.obtenerNombre();
+            mapeoVacunas.put(v.obtenerNombre(), v);
+        }
+        actualizarComboBox(cbVacuna, a);
     }
 
     @Override
-    public void actualizarVacunas(String[] vacunas)
+    public void actualizarProvincias(List<Provincia> provincias)
     {
-        actualizarComboBox(cbVacuna, vacunas);
+        String[] a = new String[provincias.size()];
+        mapeoProvincias = new HashMap<>();
+
+        int i = 0;
+        for (Provincia p : provincias)
+        {
+            a[i++] = p.obtenerNombre();
+            mapeoProvincias.put(p.obtenerNombre(), p);
+        }
+        actualizarComboBox(cbProvincia, a);
     }
 
     @Override
-    public void actualizarProvincias(String[] provincias)
+    public void actualizarRegiones(List<Integer> regionesSanitarias)
     {
-        actualizarComboBox(cbProvinciaDeVacunacion, provincias);
-    }
-
-    @Override
-    public void actualizarRegionesSanitarias(String[] regiones)
-    {
-        actualizarComboBox(cbRegionSanitaria, regiones);
+        String[] a = new String[regionesSanitarias.size()];
+        int i = 0;
+        for (Integer n : regionesSanitarias)
+            a[i++] = n.toString();
+        actualizarComboBox(cbRegion, a);
     }
 
     @Override
@@ -321,5 +397,10 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         if (ret == "")
             ret = null;
         return ret;
+    }
+
+    private boolean seleccionValida(JComboBox cb)
+    {
+        return cb.getSelectedIndex() != 0;
     }
 }

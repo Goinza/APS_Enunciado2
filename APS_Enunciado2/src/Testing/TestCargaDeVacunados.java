@@ -11,8 +11,5 @@ public class TestCargaDeVacunados
     {
         PresentadorCargaVacunado presenter = new PresentadorCargaVacunadoImpl();
         VistaDatosVacunado vista = new VentanaCargaDatosVacunado(presenter);
-
-        String[] vac = {"vac1", "vac2"};
-        vista.actualizarVacunas(vac);
     }
 }

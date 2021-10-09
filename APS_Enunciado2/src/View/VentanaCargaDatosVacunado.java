@@ -14,9 +14,11 @@ public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
 
     public VentanaCargaDatosVacunado(PresentadorCargaVacunado presentador)
     {
-        super("Carga de datos");
+        super("Carga de datos", presentador);
         this.presentador = presentador;
         presentador.establecerVista(this);
+
+        presentador.inicializarVista();
 
         botonGuardar.addActionListener(new ActionListener()
         {
@@ -27,8 +29,6 @@ public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
             }
         });
     }
-
-
 
     @Override
     protected void accionesEspecificas()

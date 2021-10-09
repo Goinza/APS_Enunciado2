@@ -1,7 +1,7 @@
 package Model;
 
 public interface ModeloAcceso {
-	boolean accederAdmin(String nombre, String password);
+	boolean accederAdmin(Provincia nombre, Provincia password);
 
-	boolean accederUsuario(String nombre, String password);
+	boolean accederUsuario(Provincia nombre, Provincia password);
 }
