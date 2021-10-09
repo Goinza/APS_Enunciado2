@@ -25,7 +25,6 @@ public class VacunasAplicadasView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable vacunasAplicadasTable;
-	private VacunasAplicadasPresenter presenter;
 	private JScrollPane scrollAplicadas;
 	private boolean esAdmin;
 
@@ -38,7 +37,7 @@ public class VacunasAplicadasView extends JFrame {
 	
 	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 702, 477);
+		setBounds(100, 100, 1147, 477);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,7 +109,7 @@ public class VacunasAplicadasView extends JFrame {
 	        vacunasAplicadasTable.setBounds(33, 45, 655, 327);
 			
 	        scrollAplicadas = new JScrollPane(vacunasAplicadasTable);
-	        scrollAplicadas.setBounds(33, 45, 655, 327);
+	        scrollAplicadas.setBounds(10, 45, 1113, 327);
             contentPane.add(scrollAplicadas);
             repaint();
 	        
