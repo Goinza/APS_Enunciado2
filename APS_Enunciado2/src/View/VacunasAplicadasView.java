@@ -51,6 +51,11 @@ public class VacunasAplicadasView extends JFrame {
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(10, 397, 85, 21);
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				dispose();
+			}
+		});
 		contentPane.add(btnVolver);
 		
 		if(esAdmin)

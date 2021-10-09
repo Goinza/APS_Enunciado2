@@ -40,7 +40,7 @@ public class VacunasDisponiblesView extends JFrame {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				//AL HOME
+				dispose();
 			}
 		});
 		btnVolver.setBounds(33, 395, 85, 21);
