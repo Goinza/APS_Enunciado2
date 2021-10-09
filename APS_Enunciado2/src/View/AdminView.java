@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Presenter.VacunasDisponiblesPresenter;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -19,8 +22,8 @@ public class AdminView extends JFrame {
 	private String adminName;
 
 	private JPanel contentPane;
-	private VacunasDisponiblesView vacunasDisponiblesView;
 	private VacunasAplicadasView vacunasAplicadasView;
+	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
 	private AltaUsuarioView altaUsuarioView;
 
 	public AdminView(String adminName) {
@@ -45,7 +48,7 @@ public class AdminView extends JFrame {
 		JButton btnVerVacunasAplicadas = new JButton("Vacunas aplicadas");
 		btnVerVacunasAplicadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasAplicadasView = new VacunasAplicadasView();
+				vacunasAplicadasView = new VacunasAplicadasView(true);
 				vacunasAplicadasView.setVisible(true);
 			}
 		});
@@ -53,8 +56,8 @@ public class AdminView extends JFrame {
 		JButton btnVerVacunasDisponibles = new JButton("Vacunas disponibles");
 		btnVerVacunasDisponibles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasDisponiblesView = new VacunasDisponiblesView();
-				vacunasDisponiblesView.setVisible(true);
+				vacunasDisponiblesPresenter = new VacunasDisponiblesPresenter();
+				vacunasDisponiblesPresenter.renderizarVista();
 			}
 		});
 		

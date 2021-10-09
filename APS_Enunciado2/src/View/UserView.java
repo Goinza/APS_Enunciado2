@@ -3,6 +3,9 @@ package View;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Presenter.VacunasDisponiblesPresenter;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -18,7 +21,7 @@ public class UserView extends JFrame {
 
 	private JPanel contentPane;
 	private VacunasAplicadasView vacunasAplicadasView;
-	private VacunasDisponiblesView vacunasDisponiblesView;
+	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
 
 	public UserView(String userName) {
 		super("Usuario");
@@ -42,7 +45,7 @@ public class UserView extends JFrame {
 		JButton btnVerVacunasAplicadas = new JButton("Vacunas aplicadas");
 		btnVerVacunasAplicadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasAplicadasView = new VacunasAplicadasView();
+				vacunasAplicadasView = new VacunasAplicadasView(false);
 				vacunasAplicadasView.setVisible(true);
 			}
 		});
@@ -50,8 +53,8 @@ public class UserView extends JFrame {
 		JButton btnVerVacunasDisponibles = new JButton("Vacunas disponibles");
 		btnVerVacunasDisponibles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasDisponiblesView = new VacunasDisponiblesView();
-				vacunasDisponiblesView.setVisible(true);
+				vacunasDisponiblesPresenter = new VacunasDisponiblesPresenter();
+				vacunasDisponiblesPresenter.renderizarVista();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
