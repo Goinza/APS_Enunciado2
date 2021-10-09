@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
 
 import javax.swing.GroupLayout;
@@ -13,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class UserView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -20,8 +22,8 @@ public class UserView extends JFrame {
 	private final String userName;
 
 	private JPanel contentPane;
-	private VacunasAplicadasView vacunasAplicadasView;
 	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
+	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
 
 	public UserView(String userName) {
 		super("Usuario");
@@ -31,22 +33,24 @@ public class UserView extends JFrame {
 	
 	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 507, 459);
+		setBounds(100, 100, 508, 459);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
+		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
 		JLabel lblUserName = new JLabel(userName);
 		
 		JLabel lblUsuarioComun = new JLabel("Usuario comun");
+		lblUsuarioComun.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
 		JButton btnVerVacunasAplicadas = new JButton("Vacunas aplicadas");
 		btnVerVacunasAplicadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasAplicadasView = new VacunasAplicadasView(false);
-				vacunasAplicadasView.setVisible(true);
+				vacunasAplicadasPresenter = new VacunasAplicadasPresenter(false);
+				vacunasAplicadasPresenter.renderizarVista();
 			}
 		});
 		
@@ -61,37 +65,38 @@ public class UserView extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(34)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(81)
-							.addComponent(btnVerVacunasAplicadas))
+							.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(lblUserName, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(34, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(34)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(lblUserName, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))))
+							.addContainerGap()
+							.addComponent(btnVerVacunasDisponibles))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(97)
-							.addComponent(btnVerVacunasDisponibles)))
-					.addContainerGap(279, Short.MAX_VALUE))
+							.addGap(177)
+							.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(181))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(37)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblBienvenido)
-						.addComponent(lblUserName))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(lblUserName)
+						.addComponent(lblBienvenido))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblUsuarioComun)
-					.addGap(138)
+					.addGap(83)
 					.addComponent(btnVerVacunasAplicadas)
 					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addContainerGap(134, Short.MAX_VALUE))
+					.addContainerGap(200, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

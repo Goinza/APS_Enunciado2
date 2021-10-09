@@ -25,6 +25,12 @@ public class VacunasDisponiblesView extends JFrame {
 
 	public VacunasDisponiblesView()
 	{ 	
+		buildGraphicComponents();
+		setVisible(true);
+	}
+	
+	private void buildGraphicComponents()
+	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 735, 493);
 		contentPane = new JPanel();
@@ -59,6 +65,6 @@ public class VacunasDisponiblesView extends JFrame {
             repaint();
 	        
 	        this.repaint();
-	 }
+	}
 
 }

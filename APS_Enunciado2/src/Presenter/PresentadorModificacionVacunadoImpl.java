@@ -2,7 +2,7 @@ package Presenter;
 
 import View.VistaDatosVacunado;
 
-public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs implements PresentadorModificacionVacunado
+public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs //implements PresentadorModificacionVacunado
 {
     private int dniGuardado;
 
@@ -11,8 +11,14 @@ public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs 
         dniGuardado = dni;
     }
 
-    @Override
+    /*@Override
     public void actualizar()
     {
-    }
+    }*/
+
+	@Override
+	public void actuar() {
+		
+		
+	}
 }

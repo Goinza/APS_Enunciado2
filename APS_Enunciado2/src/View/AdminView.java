@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
 
 import javax.swing.GroupLayout;
@@ -16,14 +17,15 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class AdminView extends JFrame {
 	
 	private String adminName;
 
 	private JPanel contentPane;
-	private VacunasAplicadasView vacunasAplicadasView;
 	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
+	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
 	private AltaUsuarioView altaUsuarioView;
 
 	public AdminView(String adminName) {
@@ -34,22 +36,24 @@ public class AdminView extends JFrame {
 	
 	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 697, 450);
+		setBounds(100, 100, 596, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
+		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
 		JLabel lblNombreUsuario = new JLabel(adminName);
 		
 		JLabel lblUsuarioAdministrador = new JLabel("Usuario Administrador");
+		lblUsuarioAdministrador.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
 		JButton btnVerVacunasAplicadas = new JButton("Vacunas aplicadas");
 		btnVerVacunasAplicadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vacunasAplicadasView = new VacunasAplicadasView(true);
-				vacunasAplicadasView.setVisible(true);
+				vacunasAplicadasPresenter = new VacunasAplicadasPresenter(true);
+				vacunasAplicadasPresenter.renderizarVista();
 			}
 		});
 		
@@ -83,18 +87,18 @@ public class AdminView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(30)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUsuarioAdministrador, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnVerVacunasAplicadas)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(lblNombreUsuario, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-							.addComponent(btnVerVacunasDisponibles)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnSalir)
-								.addComponent(btnRegistrarNuevoUsuario))))
-					.addContainerGap(494, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addGap(35)
+							.addComponent(lblNombreUsuario, GroupLayout.PREFERRED_SIZE, 425, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnSalir)
+						.addComponent(lblUsuarioAdministrador, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(221)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnRegistrarNuevoUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -105,13 +109,13 @@ public class AdminView extends JFrame {
 						.addComponent(lblNombreUsuario))
 					.addGap(18)
 					.addComponent(lblUsuarioAdministrador)
-					.addGap(85)
+					.addGap(70)
 					.addComponent(btnVerVacunasAplicadas)
-					.addGap(18)
+					.addGap(29)
 					.addComponent(btnVerVacunasDisponibles)
-					.addGap(18)
+					.addGap(29)
 					.addComponent(btnRegistrarNuevoUsuario)
-					.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
 					.addComponent(btnSalir)
 					.addContainerGap())
 		);
