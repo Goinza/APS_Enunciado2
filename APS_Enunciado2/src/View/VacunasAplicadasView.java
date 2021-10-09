@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
-import Presenter.VacunasAplicadasPresenter;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -29,7 +27,6 @@ public class VacunasAplicadasView extends JFrame {
 	private boolean esAdmin;
 
 	public VacunasAplicadasView(boolean admin) {
-		presenter = new VacunasAplicadasPresenter();
 		buildGraphicComponents();
 		setVisible(true);
 		esAdmin = admin;
