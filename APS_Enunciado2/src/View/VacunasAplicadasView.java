@@ -27,11 +27,13 @@ public class VacunasAplicadasView extends JFrame {
 	private JTable vacunasAplicadasTable;
 	private VacunasAplicadasPresenter presenter;
 	private JScrollPane scrollAplicadas;
+	private boolean esAdmin;
 
-	public VacunasAplicadasView() {
+	public VacunasAplicadasView(boolean admin) {
 		presenter = new VacunasAplicadasPresenter();
 		buildGraphicComponents();
 		setVisible(true);
+		esAdmin = admin;
 	}
 	
 	private void buildGraphicComponents() {
@@ -51,18 +53,21 @@ public class VacunasAplicadasView extends JFrame {
 		btnVolver.setBounds(10, 397, 85, 21);
 		contentPane.add(btnVolver);
 		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnModificar.setBounds(483, 397, 85, 21);
-		contentPane.add(btnModificar);
-		
-		JButton btnCargar = new JButton("Cargar");
-		btnCargar.setBounds(580, 397, 85, 21);
-		contentPane.add(btnCargar);
+		if(esAdmin)
+		{
+			JButton btnModificar = new JButton("Modificar");
+			btnModificar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			btnModificar.setBounds(483, 397, 85, 21);
+			contentPane.add(btnModificar);
+			
+			JButton btnCargar = new JButton("Cargar");
+			btnCargar.setBounds(580, 397, 85, 21);
+			contentPane.add(btnCargar);
+		}
 		
 		String servidor = "localhost:3306";
 		String baseDatos = "vacunas";

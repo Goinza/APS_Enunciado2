@@ -7,12 +7,14 @@ import java.sql.Statement;
 
 public class DBConnection
 {
+	private static DBConnection INSTANCE = null;
+	
 	private String servidor = "localhost:3306";
 	private String baseDatos = "vacunas";
 	private String url = "jdbc:mysql://" + servidor + "/" +baseDatos+ "?serverTimezone=America/Argentina/Buenos_Aires";
 	private Connection cnx;
 	
-	public DBConnection()
+	private DBConnection()
 	{
 		try 
 		{
@@ -24,6 +26,16 @@ public class DBConnection
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
+	}
+	
+	public static DBConnection getInstance()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new DBConnection();
+		}
+		
+		return INSTANCE;
 	}
 	
 	public ResultSet realizarConsulta(String query)
@@ -45,6 +57,8 @@ public class DBConnection
 		}
 		return rs;
 	}
+	
+	
 	
 	public void cerrarConexion() throws SQLException
 	{
