@@ -2,9 +2,9 @@ package Presenter;
 
 import java.util.Vector;
 
-import Model.Filtro;
-import Model.SinFiltro;
 import Model.VacunasAplicadasModel;
+import Model.Filtros.Filtro;
+import Model.Filtros.SinFiltro;
 import View.VacunasAplicadasView;
 
 public class VacunasAplicadasPresenter

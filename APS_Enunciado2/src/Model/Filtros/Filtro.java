@@ -1,4 +1,4 @@
-package Model;
+package Model.Filtros;
 
 public interface Filtro {
 	

@@ -1,4 +1,4 @@
-package Model;
+package Model.Filtros;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package Model;
+package Model.Filtros;
 
 public class FiltroCantidadDosis implements Filtro {
 
