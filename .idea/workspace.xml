@@ -2,28 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Excepciones/PersonaYaAlmacenadaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloProvincias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloRegiones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunasAplicadas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Persona.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Provincia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloAcceso.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloAcceso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloAccesoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloAccesoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunas.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorCargaVacunado.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorCargaVacunadoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorModificacionVacunado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/PresentadorVacunadoAbs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/PanelFecha.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/PanelFecha.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/VentanaCargaDatosVacunado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/VentanaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/VentanaDatosVacunado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/VistaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/VistaDatosVacunado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +25,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1z6yUqJ9ciKejogLPBAwQUWWiyC" />
   <component name="ProjectLevelVcsManager">
@@ -111,6 +104,8 @@
       <workItem from="1633635411346" duration="5723000" />
       <workItem from="1633726824646" duration="131000" />
       <workItem from="1633727001114" duration="11854000" />
+      <workItem from="1633875677871" duration="3000" />
+      <workItem from="1633899766122" duration="2233000" />
     </task>
     <servers />
   </component>

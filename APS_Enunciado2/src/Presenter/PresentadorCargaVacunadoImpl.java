@@ -4,6 +4,7 @@ import Excepciones.*;
 import Model.Persona;
 import Model.Provincia;
 import Model.Vacuna;
+import View.VistaDatosVacunado;
 
 import java.util.Date;
 

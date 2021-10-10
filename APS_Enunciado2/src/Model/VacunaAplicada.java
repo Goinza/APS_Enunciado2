@@ -7,16 +7,17 @@ public class VacunaAplicada
     private Date primeraDosis;
     private Date segundaDosis;
     private int cantidadDosis;
-    private Persona persona;
+    private int dni;
     private int idVacuna;
     private int idProvincia;
     private int idRegion;
 
-    public VacunaAplicada(Date primeraDosis, Date segundaDosis, Persona persona, int idVacuna, int idProvincia, int idRegion)
+    public VacunaAplicada(Date primeraDosis, Date segundaDosis, int cantidadDosis, int dni, int idVacuna, int idProvincia, int idRegion)
     {
         this.primeraDosis = primeraDosis;
         this.segundaDosis = segundaDosis;
-        this.persona = persona;
+        this.cantidadDosis = cantidadDosis;
+        this.dni = dni;
         this.idVacuna = idVacuna;
         this.idProvincia = idProvincia;
         this.idRegion = idRegion;
@@ -52,14 +53,14 @@ public class VacunaAplicada
         this.cantidadDosis = cantidadDosis;
     }
 
-    public Persona obtenerPersona()
+    public int obtenerDni()
     {
-        return persona;
+        return dni;
     }
 
-    public void establecerPersona(Persona persona)
+    public void establecerDni(int dni)
     {
-        this.persona = persona;
+        this.dni = dni;
     }
 
     public int obtenerIdVacuna()

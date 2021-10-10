@@ -1,6 +1,6 @@
 package View;
 
-import Presenter.PresentadorCargaVacunado;
+import Presenter.PresentadorDatos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
 public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
 {
     JButton botonGuardar;
-    PresentadorCargaVacunado presentador;
+    PresentadorDatos presentador;
 
-    public VentanaCargaDatosVacunado(PresentadorCargaVacunado presentador)
+    public VentanaCargaDatosVacunado(PresentadorDatos presentador)
     {
         super("Carga de datos", presentador);
         this.presentador = presentador;
@@ -25,7 +25,7 @@ public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                presentador.guardar();
+                presentador.actuar();
             }
         });
     }
