@@ -129,7 +129,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
                 {
                     cbProvincia.setSelectedIndex(0);
                     cbRegion.setEnabled(false);
-                    cbVacuna.setSelectedIndex(0);
+                    //cbVacuna.setSelectedIndex(0);
                     cbVacuna.setEnabled(false);
                 }
             }

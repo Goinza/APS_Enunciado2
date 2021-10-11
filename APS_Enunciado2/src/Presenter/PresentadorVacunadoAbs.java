@@ -17,6 +17,7 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     protected PresentadorVacunadoAbs() {
     	modeloPersona = new ModeloPersonaImpl();
     	modeloProvincias = new ModeloProvinciasImpl();
+    	modeloVacunas = new ModeloVacunasImpl();
     }
 
     private void validarNombre() throws NombreNoValidoException
