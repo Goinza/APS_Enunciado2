@@ -22,7 +22,7 @@ public class TestingModificacionVacunados {
 	private static void testPersona(){
 		ModeloPersonas mp = new ModeloPersonaImpl();
 		Persona p = mp.obtenerPersona(11111118);
-		System.out.println(p.getFechaNacimiento().toString());
+		System.out.println(p.obtenerFechaNacimiento().toString());
 	}
 	
 	private static void testRegiones() {

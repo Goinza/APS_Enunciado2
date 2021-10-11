@@ -19,9 +19,9 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
 {
     PresentadorDatos presentador;
 
-    JTextField tfNombreVacunado;
+    JTextField tfNombre;
     JTextField tfApellido;
-    JTextField tfDNIVacunado;
+    JTextField tfDNI;
     PanelFecha pnFechaDeNacimiento;
     JTextField tfMailVacunado;
     JComboBox cbVacuna;
@@ -82,7 +82,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         JLabel lbProvinciaDeVacunacion = new JLabel("   Provincia de vacunación");
         JLabel lbRegionSanitaria = new JLabel("   Región sanitaria");
 
-        tfNombreVacunado = new JTextField();
+        tfNombre = new JTextField();
         tfApellido = new JTextField();
         pnFechaDeNacimiento = new PanelFecha();
         cbVacuna = new JComboBox();
@@ -90,7 +90,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         pnFechaSegundaDosis = new PanelFecha();
         tfDosisAplicadas = new JTextField();
         tfMailVacunado = new JTextField();
-        tfDNIVacunado = new JTextField();
+        tfDNI = new JTextField();
         cbProvincia = new JComboBox();
         cbRegion = new JComboBox();
 
@@ -102,11 +102,11 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         pnFechaSegundaDosis.desactivar();
         
         panelCampos.add(lbNombreVacunado);
-        panelCampos.add(tfNombreVacunado);
+        panelCampos.add(tfNombre);
         panelCampos.add(lbApellido);
         panelCampos.add(tfApellido);
         panelCampos.add(lbDNIVacunado);
-        panelCampos.add(tfDNIVacunado);
+        panelCampos.add(tfDNI);
         panelCampos.add(lbMailVacunado);
         panelCampos.add(tfMailVacunado);
         panelCampos.add(lbFechaNacimiento);
@@ -199,13 +199,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     @Override
     public String obtenerNombre()
     {
-        return tfNombreVacunado.getText();
+        return tfNombre.getText();
     }
 
     @Override
     public void establecerNombre(String nombre)
     {
-        tfNombreVacunado.setText(nombre);
+        tfNombre.setText(nombre);
     }
 
     @Override
@@ -295,13 +295,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     @Override
     public String obtenerDNI()
     {
-        return tfDNIVacunado.getText();
+        return tfDNI.getText();
     }
 
     @Override
     public void establecerDNI(int dni)
     {
-        tfDNIVacunado.setText(String.valueOf(dni));
+        tfDNI.setText(String.valueOf(dni));
     }
 
     @Override

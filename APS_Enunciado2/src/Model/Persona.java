@@ -19,58 +19,58 @@ public class Persona
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getDni()
+    public int obtenerDni()
     {
         return dni;
     }
 
-    public void setDni(int dni)
+    public void establecerDni(int dni)
     {
         this.dni = dni;
     }
 
-    public String getNombre()
+    public String obtenerNombre()
     {
         return nombre;
     }
 
-    public void setNombre(String nombre)
+    public void establecerNombre(String nombre)
     {
         this.nombre = nombre;
     }
 
-    public String getApellido()
+    public String obtenerApellido()
     {
         return apellido;
     }
 
-    public void setApellido(String apellido)
+    public void establecerApellido(String apellido)
     {
         this.apellido = apellido;
     }
 
-    public String getMail()
+    public String obtenerMail()
     {
         return mail;
     }
 
-    public void setMail(String mail)
+    public void establecerMail(String mail)
     {
         this.mail = mail;
     }
 
-    public Date getFechaNacimiento()
+    public Date obtenerFechaNacimiento()
     {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento)
+    public void establecerFechaNacimiento(Date fechaNacimiento)
     {
         this.fechaNacimiento = fechaNacimiento;
     }
 
     public boolean equals(Persona persona)
     {
-        return dni == persona.getDni();
+        return dni == persona.obtenerDni();
     }
 }

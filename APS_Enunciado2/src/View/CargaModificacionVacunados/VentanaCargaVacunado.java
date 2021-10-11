@@ -7,12 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaCargaDatosVacunado extends VentanaDatosVacunado
+public class VentanaCargaVacunado extends VentanaDatosVacunado
 {
     JButton botonGuardar;
     PresentadorDatos presentador;
 
-    public VentanaCargaDatosVacunado(PresentadorDatos presentador)
+    public VentanaCargaVacunado(PresentadorDatos presentador)
     {
         super("Carga de datos", presentador);
         this.presentador = presentador;

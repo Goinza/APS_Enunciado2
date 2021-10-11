@@ -35,11 +35,11 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 
 	@Override
 	public void almacenarPersona(Persona persona) {
-		String nombre = persona.getNombre();
-		String apellido = persona.getApellido();
-		String fechaNacimiento = getFechaNacimientoFromDate(persona.getFechaNacimiento());
-		String mail = persona.getMail();
-		int dni = persona.getDni();
+		String nombre = persona.obtenerNombre();
+		String apellido = persona.obtenerApellido();
+		String fechaNacimiento = getFechaNacimientoFromDate(persona.obtenerFechaNacimiento());
+		String mail = persona.obtenerMail();
+		int dni = persona.obtenerDni();
 		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ");";
 		
 		DBConnection database = DBConnection.getInstance();

@@ -8,10 +8,10 @@ import Model.VacunaAplicada;
 
 import java.util.Date;
 
-public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs
+public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
 {
 	
-	public PresentadorCargaVacunadoImpl() {
+	public PresentadorCargaVacunado() {
 		super();
 	}
 	
@@ -37,7 +37,7 @@ public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs
                 Date primeraDosis = vista.obtenerFechaPrimeraDosis();
                 Date segundaDosis = vista.obtenerFechaSegundaDosis();
 
-                VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.getDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
+                VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.obtenerDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
 
                 vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
                 vista.cerrar();
