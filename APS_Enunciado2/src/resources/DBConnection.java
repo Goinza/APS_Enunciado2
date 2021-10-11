@@ -58,6 +58,23 @@ public class DBConnection
 		return rs;
 	}
 	
+	public boolean realizarStatement(String statement) {
+		boolean success = false;
+		try 
+		{
+			Statement stm = cnx.createStatement();
+										
+			success = stm.execute(statement);
+			
+		}
+		catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		
+		return success;
+	}
 	
 	
 	public void cerrarConexion() throws SQLException

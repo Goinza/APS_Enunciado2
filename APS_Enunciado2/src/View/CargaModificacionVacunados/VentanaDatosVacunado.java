@@ -94,6 +94,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         cbProvincia = new JComboBox();
         cbRegion = new JComboBox();
 
+        pnFechaDeNacimiento.activar();
         tfDosisAplicadas.setEnabled(false);
         cbRegion.setEnabled(false);
         cbVacuna.setEnabled(false);
@@ -306,7 +307,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     @Override
     public Provincia obtenerProvincia()
     {
-        return mapeoProvincias.get(valorComboBox(cbVacuna));
+        return mapeoProvincias.get(valorComboBox(cbProvincia));
     }
 
     @Override

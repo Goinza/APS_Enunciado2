@@ -40,10 +40,10 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		String fechaNacimiento = getFechaNacimientoFromDate(persona.getFechaNacimiento());
 		String mail = persona.getMail();
 		int dni = persona.getDni();
-		String query = "INSERT INTO Personas VALUES (" + nombre + ", " + apellido + ", " + fechaNacimiento + ", " + mail + ", " + dni + ");";
+		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ");";
 		
 		DBConnection database = DBConnection.getInstance();
-		database.realizarConsulta(query);
+		database.realizarStatement(query);
 	}
 	
 	private Date getFechaNacimientoFromString(String stringFecha) throws ParseException {
