@@ -1,10 +1,10 @@
-package Presenter;
+package Presenter.CargaModificacionVacunados;
 
 import Excepciones.*;
 import Model.Persona;
 import Model.Provincia;
 import Model.Vacuna;
-import View.VistaDatosVacunado;
+import Model.VacunaAplicada;
 
 import java.util.Date;
 
@@ -37,12 +37,11 @@ public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs
                 Date primeraDosis = vista.obtenerFechaPrimeraDosis();
                 Date segundaDosis = vista.obtenerFechaSegundaDosis();
 
+                VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.getDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
 
-
+                vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
+                vista.cerrar();
             }
-            // TODO: 5/10/2021 Almacenar la nueva entrada en la base de datos.
-
-            vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
         } catch (NombreNoValidoException e) {
             vista.mostrarAlerta("El campo Nombre se encuentra vacío o presenta un formato no válido.");
         } catch (MailNoValidoException e) {

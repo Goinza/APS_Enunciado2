@@ -1,4 +1,4 @@
-package View;
+package View.CargaModificacionVacunados;
 
 import javax.swing.*;
 import java.awt.*;

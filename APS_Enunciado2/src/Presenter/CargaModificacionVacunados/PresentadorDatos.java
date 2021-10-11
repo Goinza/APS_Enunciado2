@@ -1,6 +1,6 @@
-package Presenter;
+package Presenter.CargaModificacionVacunados;
 
-import View.VistaDatosVacunado;
+import View.CargaModificacionVacunados.VistaDatosVacunado;
 
 public interface PresentadorDatos
 {

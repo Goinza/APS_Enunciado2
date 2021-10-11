@@ -1,4 +1,4 @@
-package View;
+package View.CargaModificacionVacunados;
 
 import Model.Provincia;
 import Model.Vacuna;
@@ -63,4 +63,6 @@ public interface VistaDatosVacunado
     void mostrarAviso(String aviso);
 
     void mostrarAlerta(String alerta);
+
+    void cerrar();
 }

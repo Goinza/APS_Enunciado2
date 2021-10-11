@@ -1,8 +1,8 @@
-package Presenter;
+package Presenter.CargaModificacionVacunados;
 
 import Excepciones.*;
 import Model.*;
-import View.VistaDatosVacunado;
+import View.CargaModificacionVacunados.VistaDatosVacunado;
 
 import java.util.Date;
 import java.util.List;

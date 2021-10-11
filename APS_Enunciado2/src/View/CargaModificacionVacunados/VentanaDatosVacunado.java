@@ -1,9 +1,11 @@
-package View;
+package View.CargaModificacionVacunados;
 
 import Model.Provincia;
 import Model.Vacuna;
-import Presenter.PresentadorDatos;
+import Presenter.CargaModificacionVacunados.PresentadorDatos;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.*;
@@ -53,7 +55,15 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosed(WindowEvent e)
+            {
+                cerrar();
+            }
+        });
     }
 
     private void inicializarPanelCampos()
@@ -381,6 +391,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     public void mostrarAlerta(String alerta)
     {
         JOptionPane.showMessageDialog(this, alerta, "Información", JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    public void cerrar()
+    {
+        setVisible(false);
+        dispose();
     }
 
     private void actualizarComboBox(JComboBox comboBox, String[] opciones)

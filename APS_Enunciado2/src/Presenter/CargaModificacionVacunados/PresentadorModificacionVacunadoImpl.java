@@ -1,6 +1,4 @@
-package Presenter;
-
-import View.VistaDatosVacunado;
+package Presenter.CargaModificacionVacunados;
 
 public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs //implements PresentadorModificacionVacunado
 {

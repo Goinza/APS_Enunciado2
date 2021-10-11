@@ -1,6 +1,6 @@
-package View;
+package View.CargaModificacionVacunados;
 
-import Presenter.PresentadorDatos;
+import Presenter.CargaModificacionVacunados.PresentadorDatos;
 
 import javax.swing.*;
 import java.awt.*;
