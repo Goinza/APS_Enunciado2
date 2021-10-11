@@ -8,6 +8,7 @@ public class PresentadorModificacionVacunadoImpl extends PresentadorVacunadoAbs 
 
     public PresentadorModificacionVacunadoImpl(int dni)
     {
+    	super();
         dniGuardado = dni;
     }
 

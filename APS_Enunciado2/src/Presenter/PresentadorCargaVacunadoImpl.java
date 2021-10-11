@@ -10,6 +10,11 @@ import java.util.Date;
 
 public class PresentadorCargaVacunadoImpl extends PresentadorVacunadoAbs
 {
+	
+	public PresentadorCargaVacunadoImpl() {
+		super();
+	}
+	
     @Override
     public void actuar()
     {

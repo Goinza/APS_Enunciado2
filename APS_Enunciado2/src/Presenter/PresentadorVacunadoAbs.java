@@ -2,7 +2,6 @@ package Presenter;
 
 import Excepciones.*;
 import Model.*;
-import Model.Provincia;
 import View.VistaDatosVacunado;
 
 import java.util.Date;
@@ -14,7 +13,11 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     protected ModeloPersonas modeloPersona;
     protected ModeloProvincias modeloProvincias;
     protected ModeloVacunas modeloVacunas;
-    protected ModeloRegiones modeloRegiones;
+    
+    protected PresentadorVacunadoAbs() {
+    	modeloPersona = new ModeloPersonaImpl();
+    	modeloProvincias = new ModeloProvinciasImpl();
+    }
 
     private void validarNombre() throws NombreNoValidoException
     {
@@ -121,7 +124,9 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     public void provinciaSeleccionada()
     {
         Provincia provincia = vista.obtenerProvincia();
-        vista.actualizarRegiones(modeloRegiones.obtenerRegiones(provincia));
-        vista.actualizarVacunas(modeloVacunas.obtenerVacunasPorProvincia(provincia));
+        if (provincia!=null) {
+            vista.actualizarRegiones(modeloProvincias.obtenerRegiones(provincia));
+            vista.actualizarVacunas(modeloVacunas.obtenerVacunasPorProvincia(provincia));	
+        }
     }
 }
