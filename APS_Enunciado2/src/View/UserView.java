@@ -24,6 +24,7 @@ public class UserView extends JFrame {
 	private JPanel contentPane;
 	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
 	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
+	private LoginUserAdminView loginUserAdminView;
 
 	public UserView(String userName) {
 		super("Usuario");
@@ -61,27 +62,37 @@ public class UserView extends JFrame {
 				vacunasDisponiblesPresenter.renderizarVista();
 			}
 		});
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginUserAdminView = new LoginUserAdminView();
+				loginUserAdminView.setVisible(true);
+				setVisible(false);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(34)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-							.addGap(33)
-							.addComponent(lblUserName, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(34, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(btnVerVacunasDisponibles))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(177)
-							.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
 					.addGap(181))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(34)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(lblUserName, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -96,9 +107,10 @@ public class UserView extends JFrame {
 					.addComponent(btnVerVacunasAplicadas)
 					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addContainerGap(200, Short.MAX_VALUE))
+					.addGap(115)
+					.addComponent(btnSalir)
+					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }

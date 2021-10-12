@@ -21,3 +21,8 @@ public class AltaUsuarioView extends JFrame {
 	}
 
 }
+
+
+// espacios en blanco 
+// contrasaenia minima al menos 6 caracteres
+// consultar eliminar planes -> por definitivo,  
