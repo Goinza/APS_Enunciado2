@@ -51,4 +51,22 @@ public class ModeloProvinciasImpl implements ModeloProvincias {
 		return lista;
 	}
 
+	@Override
+	public Provincia obtenerProvincia(int id) {
+		DBConnection database = DBConnection.getInstance();
+		ResultSet result = database.realizarConsulta("SELECT * FROM Provincias WHERE id_provincia=" + id + ";");
+		Provincia provincia = null;
+		String nombre;
+		try {
+			if (result.next()) {
+				nombre = result.getString("nombre_provincia");
+				provincia = new Provincia(id, nombre);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return provincia;
+	}
+
 }
