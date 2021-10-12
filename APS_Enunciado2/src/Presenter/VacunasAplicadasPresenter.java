@@ -42,16 +42,6 @@ public class VacunasAplicadasPresenter
 	}
 	
 	public void crearVistaModificacionVacunas(JTable vacunasAplicadasTable) {
-		/*int selectedRow = vacunasAplicadasTable.getSelectedRow();
-		int columnCount = vacunasAplicadasTable.getColumnCount();
-
-		String nombre, apellido;
-		
-		try {
-		}
-		catch (ParseException e) {
-			e.printStackTrace();
-		}		*/
 	}
 
 }
