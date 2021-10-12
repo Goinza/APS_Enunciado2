@@ -13,7 +13,9 @@ import Model.VacunaAplicada;
 import Model.VacunasAplicadasModel;
 import Model.Filtros.Filtro;
 import Model.Filtros.SinFiltro;
+import Presenter.CargaModificacionVacunados.PresentadorModificacion;
 import View.VacunasAplicadasView;
+import View.CargaModificacionVacunados.VentanaCargaVacunado;
 
 public class VacunasAplicadasPresenter
 {
@@ -42,6 +44,11 @@ public class VacunasAplicadasPresenter
 	}
 	
 	public void crearVistaModificacionVacunas(JTable vacunasAplicadasTable) {
+		int selectedRow = vacunasAplicadasTable.getSelectedRow();
+		vacunasAplicadasTable.getValueAt(selectedRow, 0); //Nombre
+		VacunaAplicada vacunaAplicada = null;
+		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);
+		VentanaModificacionVacunado vista = new VentanaModificacionVacunado(presentador);
 	}
 
 }
