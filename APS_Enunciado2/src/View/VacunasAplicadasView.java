@@ -9,6 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import Presenter.VacunasAplicadasPresenter;
+import Presenter.CargaModificacionVacunados.PresentadorCargaVacunado;
+import Presenter.CargaModificacionVacunados.PresentadorDatos;
+import View.CargaModificacionVacunados.VentanaCargaVacunado;
+import View.CargaModificacionVacunados.VistaDatosVacunado;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -20,11 +27,12 @@ public class VacunasAplicadasView extends JFrame {
 	private JTable vacunasAplicadasTable;
 	private JScrollPane scrollAplicadas;
 	private boolean esAdmin;
+	private VacunasAplicadasPresenter presenter;
 
 	public VacunasAplicadasView(boolean admin)
 	{
-		buildGraphicComponents();
 		esAdmin = admin;
+		buildGraphicComponents();
 	}
 	
 	private void buildGraphicComponents()
@@ -40,10 +48,9 @@ public class VacunasAplicadasView extends JFrame {
 		lblTitulo.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		lblTitulo.setBounds(10, 10, 187, 38);
 		contentPane.add(lblTitulo);
-		
-		//Boton Volver
+
 		JButton btnVolver = new JButton("Volver");
-		btnVolver.setBounds(10, 397, 85, 21);
+		btnVolver.setBounds(10, 397, 100, 21);
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				dispose();
@@ -51,31 +58,38 @@ public class VacunasAplicadasView extends JFrame {
 		});
 		contentPane.add(btnVolver);
 		
-		//Botones Modificar y Cargar, SOLO si el usuario logueado es Administrador
 		if(esAdmin)
 		{
 			JButton btnModificar = new JButton("Modificar");
 			btnModificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//MODIFICO DATOS VACUNA
+					
 				}
 			});
-			btnModificar.setBounds(483, 397, 85, 21);
+			btnModificar.setBounds(883, 397, 100, 21);
 			contentPane.add(btnModificar);
 			
 			JButton btnCargar = new JButton("Cargar");
 			btnCargar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//CARGA NUEVA VACUNA
+			        PresentadorDatos presenterDatos = new PresentadorCargaVacunado(presenter);
+			        VistaDatosVacunado vistaDatos = new VentanaCargaVacunado(presenterDatos);
 				}
 			});
-			btnCargar.setBounds(580, 397, 85, 21);
+			btnCargar.setBounds(1000, 397, 100, 21);
 			contentPane.add(btnCargar);
 		}
 	}
 	
+	public void setPresenter(VacunasAplicadasPresenter presenter) {
+		this.presenter = presenter;
+	}
+	
 	public void rellenarTabla(Vector<Vector<Object>> datos, Vector<String> nombreColumnas)
 	{
+		if (scrollAplicadas != null) {
+			contentPane.remove(scrollAplicadas);
+		}
 		vacunasAplicadasTable = new JTable(datos, nombreColumnas);
 		vacunasAplicadasTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		vacunasAplicadasTable.setBounds(33, 45, 655, 327);
@@ -83,8 +97,6 @@ public class VacunasAplicadasView extends JFrame {
 		scrollAplicadas = new JScrollPane(vacunasAplicadasTable);
 		scrollAplicadas.setBounds(10, 45, 1113, 327);
 		contentPane.add(scrollAplicadas);
-        repaint();
-	        
-	    this.repaint();
+        contentPane.repaint();	        
 	}
 }

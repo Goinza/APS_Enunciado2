@@ -3,9 +3,11 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Vector;
 
 import Model.Filtros.Filtro;
+import Model.Filtros.SinFiltro;
 import resources.DBConnection;
 
 public class VacunasAplicadasModel
@@ -14,6 +16,12 @@ public class VacunasAplicadasModel
 	private ResultSetMetaData md;
 	private int cantColumnas;
 	private Filtro filtro;
+	
+	public VacunasAplicadasModel()
+	{
+		this.filtro = new SinFiltro();
+		updateQuery();
+	}
 	
 	public VacunasAplicadasModel(Filtro filtro)
 	{
@@ -60,6 +68,7 @@ public class VacunasAplicadasModel
 	
 	public Vector<Vector<Object>> getFilas()
 	{
+		updateQuery();
 		Vector<Vector<Object>> datos = new Vector<Vector<Object>>(); 
         Vector<Object> aux;
         
@@ -86,4 +95,34 @@ public class VacunasAplicadasModel
         
         return datos;
 	}
+	
+	public void agregarVacunaAplicada(VacunaAplicada vacunaAplicada) {		
+		DBConnection database = DBConnection.getInstance();
+		String primeraDosis = getFechaFromDate(vacunaAplicada.obtenerPrimeraDosis());
+		String segundaDosis = getFechaFromDate(vacunaAplicada.obtenerSegundaDosis());
+		int cantidadDosis = vacunaAplicada.obtenerCantidadDosis();
+		int dni = vacunaAplicada.obtenerDni();
+		int idVacuna = vacunaAplicada.obtenerIdVacuna();
+		int idProvincia = vacunaAplicada.obtenerIdProvincia();
+		int idRegion = vacunaAplicada.obtenerRegion();
+		String query;
+		if (segundaDosis == null) {
+			query = "INSERT INTO Vacunas_Aplicadas VALUES ('" + primeraDosis + "', NULL, " + cantidadDosis + ", " + dni + ", " + idVacuna + ", " + idProvincia + ", " + idRegion + ");";
+		}
+		else {
+			query = "INSERT INTO Vacunas_Aplicadas VALUES ('" + primeraDosis + "', '" + segundaDosis + "', " + cantidadDosis + ", " + dni + ", " + idVacuna + ", " + idProvincia + ", " + idRegion + ");";
+		}
+		database.realizarStatement(query);
+	}
+	
+	private String getFechaFromDate(Date dateFecha) {
+		if (dateFecha == null) return null;
+		
+		int year = dateFecha.getYear();
+		int month = dateFecha.getMonth();
+		int day = dateFecha.getDay();
+		
+		return year + "-" + month + "-" + day;
+	}
+	
 }

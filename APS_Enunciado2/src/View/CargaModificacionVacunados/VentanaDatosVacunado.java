@@ -397,6 +397,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     public void cerrar()
     {
         setVisible(false);
+        presentador.fin();
         dispose();
     }
 

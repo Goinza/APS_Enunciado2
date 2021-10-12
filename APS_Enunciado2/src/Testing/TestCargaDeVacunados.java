@@ -9,7 +9,7 @@ public class TestCargaDeVacunados
 {
     public static void main(String[] args)
     {
-        PresentadorDatos presenter = new PresentadorCargaVacunado();
-        VistaDatosVacunado vista = new VentanaCargaVacunado(presenter);
+        //PresentadorDatos presenter = new PresentadorCargaVacunado();
+        //VistaDatosVacunado vista = new VentanaCargaVacunado(presenter);
     }
 }

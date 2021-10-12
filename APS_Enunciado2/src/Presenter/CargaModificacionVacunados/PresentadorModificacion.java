@@ -5,6 +5,7 @@ import Model.Persona;
 import Model.Provincia;
 import Model.Vacuna;
 import Model.VacunaAplicada;
+import Presenter.VacunasAplicadasPresenter;
 
 import java.util.Date;
 
@@ -12,8 +13,9 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
 {
     VacunaAplicada vacunaAplicada;
 
-    public PresentadorModificacion(VacunaAplicada vacunaAplicada)
+    public PresentadorModificacion(VacunaAplicada vacunaAplicada, VacunasAplicadasPresenter presenterVacunasAplicadas)
     {
+    	super(presenterVacunasAplicadas);
         this.vacunaAplicada = vacunaAplicada;
     }
 

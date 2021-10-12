@@ -5,14 +5,15 @@ import Model.Persona;
 import Model.Provincia;
 import Model.Vacuna;
 import Model.VacunaAplicada;
+import Presenter.VacunasAplicadasPresenter;
 
 import java.util.Date;
 
 public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
 {
 	
-	public PresentadorCargaVacunado() {
-		super();
+	public PresentadorCargaVacunado(VacunasAplicadasPresenter presenterVacunasAplicadas) {
+		super(presenterVacunasAplicadas);
 	}
 	
     @Override
@@ -38,9 +39,9 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
                 Date segundaDosis = vista.obtenerFechaSegundaDosis();
 
                 VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.obtenerDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
-
-                // TODO: 12/10/2021 <<GUARDAR>> EN LA TABLA DE VACUNAS APLICADAS
-
+                
+                modeloVacunasAplicadas.agregarVacunaAplicada(vacunaAplicada);
+                
                 vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
                 vista.cerrar();
             }
