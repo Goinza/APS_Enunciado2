@@ -48,16 +48,17 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 
 
 	@Override
-	public void actualizarPersona(Persona persona)
+	public void actualizarPersona(int dni, Persona persona)
 	{
-		// TODO: 12/10/2021 Este método actualiza la entrada asociada a la persona ingresada con los datos contenidos en el parámetro de entrada.
+		DBConnection database = DBConnection.getInstance();
+		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "' " +
+									"apellido = '" + persona.obtenerApellido() + "' fecha_nacimiento = '" + getFechaNacimientoFromDate(persona.obtenerFechaNacimiento()) + "' " +
+									"mal = '" + persona.obtenerMail() + "' dni = " + persona.obtenerDni() + " WHERE dni = " + dni + ";");
 	}
 
 	private Date getFechaNacimientoFromString(String stringFecha) throws ParseException {
 		 DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		 Date date = format.parse(stringFecha);
-		 
-		 return date;
+		 return format.parse(stringFecha);
 	}
 	
 	private String getFechaNacimientoFromDate(Date dateFecha) {

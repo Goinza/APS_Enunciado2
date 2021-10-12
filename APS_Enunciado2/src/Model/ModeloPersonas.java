@@ -7,5 +7,5 @@ public interface ModeloPersonas
 
     void almacenarPersona(Persona persona);
 
-    void actualizarPersona(Persona persona);
+    void actualizarPersona(int dni, Persona persona);
 }

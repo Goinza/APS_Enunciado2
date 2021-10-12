@@ -5,14 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonas.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunas.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunasImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloVacunasImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorCargaVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorCargaVacunado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +33,7 @@
   </component>
   <component name="ProjectId" id="1z6yUqJ9ciKejogLPBAwQUWWiyC" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -116,6 +110,7 @@
       <workItem from="1633981451912" duration="1120000" />
       <workItem from="1633986012428" duration="4051000" />
       <workItem from="1634001185780" duration="2328000" />
+      <workItem from="1634053970081" duration="2103000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia.">
       <created>1633995846479</created>
