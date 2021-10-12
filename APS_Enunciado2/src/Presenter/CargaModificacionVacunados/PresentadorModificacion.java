@@ -56,7 +56,7 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
                 Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerFechaDeNacimiento());
 
 
-                modeloPersona.actualizarPersona(persona);
+                modeloPersona.actualizarPersona(vacunaAplicada.obtenerDni(), persona);
 
                 Vacuna vacuna = vista.obtenerVacuna();
                 Provincia provincia = vista.obtenerProvincia();
