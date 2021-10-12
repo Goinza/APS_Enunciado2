@@ -5,6 +5,11 @@ public class Vacuna
     private int id;
     private String nombre;
 
+    public Vacuna()
+    {
+        id = 0;
+    }
+
     public Vacuna(int id, String nombre)
     {
         this.id = id;

@@ -83,7 +83,7 @@ public class VacunaAplicada
         this.idProvincia = idProvincia;
     }
 
-    public int obtenerIdRegion()
+    public int obtenerRegion()
     {
         return idRegion;
     }

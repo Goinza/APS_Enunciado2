@@ -39,6 +39,8 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
 
                 VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.obtenerDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
 
+                // TODO: 12/10/2021 <<GUARDAR>> EN LA TABLA DE VACUNAS APLICADAS
+
                 vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
                 vista.cerrar();
             }

@@ -6,4 +6,6 @@ public interface ModeloPersonas
     Persona obtenerPersona(int dni);
 
     void almacenarPersona(Persona persona);
+
+    void actualizarPersona(Persona persona);
 }

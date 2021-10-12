@@ -28,8 +28,26 @@ public class ModeloVacunasImpl implements ModeloVacunas {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return lista;
+	}
+
+	@Override
+	public Vacuna obtenerVacuna(int id)
+	{
+		DBConnection database = DBConnection.getInstance();
+		ResultSet result = database.realizarConsulta("SELECT * FROM Vacunas WHERE id_vacuna ;");
+		Vacuna vac = new Vacuna();
+		try
+		{
+			result.next();
+			vac.establecerId(result.getInt("id_vacuna"));
+			vac.establecerNombre(result.getString("nombre_vacuna"));
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return vac;
 	}
 
 	@Override

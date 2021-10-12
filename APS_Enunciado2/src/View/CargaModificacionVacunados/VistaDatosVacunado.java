@@ -22,7 +22,7 @@ public interface VistaDatosVacunado
     
     Vacuna obtenerVacuna();
 
-    void establecerNombreVacuna(String nombre);
+    void establecerVacuna(String nombre);
     
     Date obtenerFechaPrimeraDosis();
     
@@ -50,7 +50,7 @@ public interface VistaDatosVacunado
 
     Integer obtenerRegion();
 
-    void establecerRegionSanitaria(String region);
+    void establecerRegion(int region);
 
     void actualizarVacunas(List<Vacuna> vacunas);
 

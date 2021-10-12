@@ -45,7 +45,14 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		DBConnection database = DBConnection.getInstance();
 		database.realizarStatement(query);
 	}
-	
+
+
+	@Override
+	public void actualizarPersona(Persona persona)
+	{
+		// TODO: 12/10/2021 Este método actualiza la entrada asociada a la persona ingresada con los datos contenidos en el parámetro de entrada.
+	}
+
 	private Date getFechaNacimientoFromString(String stringFecha) throws ParseException {
 		 DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		 Date date = format.parse(stringFecha);

@@ -239,7 +239,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public void establecerNombreVacuna(String nombre)
+    public void establecerVacuna(String nombre)
     {
         cbVacuna.setSelectedItem(nombre);
     }
@@ -323,11 +323,10 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public void establecerRegionSanitaria(String region)
+    public void establecerRegion(int region)
     {
-        cbRegion.setSelectedItem(region);
+        cbRegion.setSelectedItem(String.valueOf(region));
     }
-
 
     @Override
     public void actualizarVacunas(List<Vacuna> vacunas)
