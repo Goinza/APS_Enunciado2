@@ -52,9 +52,9 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 	public void actualizarPersona(int dni, Persona persona)
 	{
 		DBConnection database = DBConnection.getInstance();
-		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "' " +
-									"apellido = '" + persona.obtenerApellido() + "' fecha_nacimiento = '" + persona.obtenerFechaNacimiento().toString() + "' " +
-									"mal = '" + persona.obtenerMail() + "' dni = " + persona.obtenerDni() + " WHERE dni = " + dni + ";");
+		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "', " +
+									"apellido = '" + persona.obtenerApellido() + "', fecha_nacimiento = '" + persona.obtenerFechaNacimiento().toString() + "', " +
+									"mail = '" + persona.obtenerMail() + "', dni = " + persona.obtenerDni() + " WHERE dni = " + dni + ";");
 	}
 
 }

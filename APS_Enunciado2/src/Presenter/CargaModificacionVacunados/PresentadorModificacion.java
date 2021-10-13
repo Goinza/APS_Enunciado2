@@ -36,6 +36,7 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         vista.establecerMail(vacunaAplicada.obtenerPersona().obtenerMail());
         vista.establecerFecha(persona.obtenerFechaNacimiento());
         vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
+        provinciaSeleccionada();
         vista.establecerRegion(region);
         vista.establecerVacuna(vacunaAplicada.obtenerVacuna().obtenerNombre());
         vista.establecerFechaPrimeraDosis(primeraDosis);
@@ -65,9 +66,9 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
                 Fecha primeraDosis = vista.obtenerFechaPrimeraDosis();
                 Fecha segundaDosis = vista.obtenerFechaSegundaDosis();
 
-                VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, vacuna, primeraDosis, segundaDosis, provincia, region);
+                VacunaAplicada nuevaVacunaAplicada = new VacunaAplicada(persona, vacuna,(segundaDosis == null? 1 : 2), primeraDosis, segundaDosis, provincia, region);
 
-//                modeloVacunasAplicadas.actualizarVacunaAplicada(vacunaAplicada);
+                modeloVacunasAplicadas.actualizarVacunaAplicada(nuevaVacunaAplicada,vacunaAplicada.obtenerPersona().obtenerDni());
                 fin();
             }
         } catch (NombreNoValidoException e) {

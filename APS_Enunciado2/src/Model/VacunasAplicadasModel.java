@@ -126,4 +126,21 @@ public class VacunasAplicadasModel
 		return year + "-" + month + "-" + day;
 	}
 	
+	public void actualizarVacunaAplicada(VacunaAplicada nuevaVacunaAplicada, int dni)
+	{
+		DBConnection database = DBConnection.getInstance();
+		
+		/*Fecha segunda_dosis = null;
+		
+		if(nuevaVacunaAplicada.obtenerSegundaDosis() != null)
+		{
+			segunda_dosis = nuevaVacunaAplicada.obtenerSegundaDosis();
+		}*/
+				
+		
+		database.realizarStatement("UPDATE Vacunas_Aplicadas SET primera_dosis = '" + nuevaVacunaAplicada.obtenerPrimeraDosis() + "', " +
+									"segunda_dosis = " + (nuevaVacunaAplicada.obtenerSegundaDosis() != null? "'"+nuevaVacunaAplicada.obtenerSegundaDosis()+"'" : "NULL")+ ", cantidad_dosis = " + nuevaVacunaAplicada.obtenerCantidadDosis() + ", " +
+									"dni = " + dni + ", id_vacuna = " + nuevaVacunaAplicada.obtenerVacuna().obtenerId()+ ", id_provincia = " +nuevaVacunaAplicada.obtenerProvincia().obtenerId()+ ", id_region = " +nuevaVacunaAplicada.obtenerRegion() + " WHERE dni = " + dni + ";");
+	}
+	
 }

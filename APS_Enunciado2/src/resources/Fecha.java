@@ -6,14 +6,13 @@ public class Fecha implements Comparable<Fecha>{
 	private int mes;
 	private int anio;
 	
-	public Fecha(int dia, int mes, int anio) {
+	public Fecha(int anio, int mes ,int dia) {
 		this.dia = dia;
 		this.mes = mes;
 		this.anio = anio;
 	}
 	
 	public Fecha(String fecha) {
-		String string = "2312-23-12";
 
         String[] sep = fecha.split("-");
         this.anio = Integer.valueOf(sep[0]);
@@ -46,7 +45,7 @@ public class Fecha implements Comparable<Fecha>{
 	}
 	
 	public String toString() {
-		return anio + " - " +  mes + " - " + dia;
+		return anio + "-" +  mes + "-" + dia;
 	}
 
 	public int compareTo(Fecha fechaSegunda) {

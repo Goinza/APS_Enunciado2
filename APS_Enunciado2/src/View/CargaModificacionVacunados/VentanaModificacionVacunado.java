@@ -17,7 +17,7 @@ public class VentanaModificacionVacunado extends VentanaDatosVacunado
 
     public VentanaModificacionVacunado(PresentadorDatos presentador)
     {
-        super("ModificaciÃ³n", presentador);
+        super("Modificación", presentador);
         this.presentador = presentador;
         presentador.establecerVista(this);
 
