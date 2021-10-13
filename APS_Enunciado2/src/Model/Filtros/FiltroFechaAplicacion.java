@@ -2,12 +2,14 @@ package Model.Filtros;
 
 import java.sql.Date;
 
+import resources.Fecha;
+
 public class FiltroFechaAplicacion implements Filtro {
 	
-	private Date desde;
-	private Date hasta;
+	private Fecha desde;
+	private Fecha hasta;
 	
-	public FiltroFechaAplicacion(Date desde, Date hasta) {
+	public FiltroFechaAplicacion(Fecha desde, Fecha hasta) {
 		this.desde = desde;
 		this.hasta = hasta;		
 	}
