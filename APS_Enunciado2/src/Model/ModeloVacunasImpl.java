@@ -35,7 +35,7 @@ public class ModeloVacunasImpl implements ModeloVacunas {
 	public Vacuna obtenerVacuna(int id)
 	{
 		DBConnection database = DBConnection.getInstance();
-		ResultSet result = database.realizarConsulta("SELECT * FROM Vacunas WHERE id_vacuna ;");
+		ResultSet result = database.realizarConsulta("SELECT * FROM Vacunas WHERE id_vacuna=" + id + ";");
 		Vacuna vac = null;
 		try
 		{
@@ -54,7 +54,7 @@ public class ModeloVacunasImpl implements ModeloVacunas {
 	public List<Vacuna> obtenerVacunasPorProvincia(Provincia provincia) {
 		String query = "SELECT DISTINCT id_vacuna, nombre_vacuna FROM " +
 				"Vacunas_entregadas NATURAL JOIN Vacunas" + 
-				" WHERE id_vacuna=" + provincia.obtenerId() + ";";
+				" WHERE id_provincia=" + provincia.obtenerId() + ";";
 		DBConnection database = DBConnection.getInstance();
 		ResultSet result = database.realizarConsulta(query);
 		List<Vacuna> lista = new LinkedList<Vacuna>();
