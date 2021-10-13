@@ -201,6 +201,7 @@ public class LoginUserAdminView extends JFrame{
 	private void adminLoginInput() {
 		if (presenter.adminLogin(txtUsuario.getText(), txtPassword.getText())) {
 			presenter.success("Administrador");	
+			setVisible(false);
 		}		
 		else {
 			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
@@ -213,6 +214,7 @@ public class LoginUserAdminView extends JFrame{
 	private void usuarioLoginInput() {
 		if (presenter.usuarioLogin(txtUsuario.getText(), txtPassword.getText())) {
 			presenter.success("Usuario");	
+			setVisible(false);
 		}	
 		else {
 			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
