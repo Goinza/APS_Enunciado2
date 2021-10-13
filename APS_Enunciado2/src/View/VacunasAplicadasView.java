@@ -63,7 +63,7 @@ public class VacunasAplicadasView extends JFrame {
 			JButton btnModificar = new JButton("Modificar");
 			btnModificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					presenter.crearVistaModificacionVacunas(vacunasAplicadasTable);
 				}
 			});
 			btnModificar.setBounds(883, 397, 100, 21);

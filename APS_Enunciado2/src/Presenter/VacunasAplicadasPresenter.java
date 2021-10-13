@@ -1,6 +1,10 @@
 package Presenter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -45,21 +49,34 @@ public class VacunasAplicadasPresenter
 
 		String nombre = vacunasAplicadasTable.getValueAt(selectedRow, 0).toString(); // Nombre
 		String apellido = vacunasAplicadasTable.getValueAt(selectedRow, 1).toString(); // Apellido
-		Date fecha = (Date) vacunasAplicadasTable.getValueAt(selectedRow, 2); // Fecha de nacimiento?
+		Date fecha = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 2).toString()); // Fecha de nacimiento?
 		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString(); // Nombre de vacuna
-		Date primeraDosis = (Date) vacunasAplicadasTable.getValueAt(selectedRow, 4);
-		Date segundaDosis = (Date) vacunasAplicadasTable.getValueAt(selectedRow, 5);
-		int cantidadDosis = (int) vacunasAplicadasTable.getValueAt(selectedRow, 6);
+		Date primeraDosis = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
+		Date segundaDosis = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
+		System.out.println(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
+		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString()) ;
 		String mail = vacunasAplicadasTable.getValueAt(selectedRow, 7).toString();
-		int dni = (int)vacunasAplicadasTable.getValueAt(selectedRow, 8);
+		int dni = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 8).toString());
 		String provincia = vacunasAplicadasTable.getValueAt(selectedRow, 9).toString();
-		int region = (int) vacunasAplicadasTable.getValueAt(selectedRow, 10);
+		int region = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 10).toString());
 
 		Persona persona = new Persona(dni, nombre, apellido, mail, fecha);
 		VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, new Vacuna(nombreVacuna), primeraDosis, segundaDosis, new Provincia(provincia), region);
 
 		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);
 		VentanaModificacionVacunado vista = new VentanaModificacionVacunado(presentador);
+	}
+	
+	private Date getFechaNacimientoFromString(String stringFecha) {
+		Date date = null;
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			date = format.parse(stringFecha);
+		}
+		catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
 	}
 
 }
