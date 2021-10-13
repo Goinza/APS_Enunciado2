@@ -1,6 +1,9 @@
 package View.CargaModificacionVacunados;
 
 import javax.swing.*;
+
+import resources.Fecha;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,15 +112,15 @@ public class PanelFecha extends JPanel
         }
     }
 
-    public Date obtenerFecha()
+    public Fecha obtenerFecha()
     {
         if (seleccionValida())
-            return new Date(obtenerAgno(), obtenerMes(), obtenerDia());
+            return new Fecha(obtenerAgno(), obtenerMes(), obtenerDia());
         else
             return null;
     }
 
-    public void establecerFecha(Date fecha)
+    public void establecerFecha(Fecha fecha)
     {
         cbDia.setSelectedItem(String.valueOf(fecha.getDay()));
         cbMes.setSelectedItem(String.valueOf(fecha.getMonth()));

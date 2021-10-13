@@ -4,6 +4,7 @@ import Excepciones.*;
 import Model.*;
 import Presenter.VacunasAplicadasPresenter;
 import View.CargaModificacionVacunados.VistaDatosVacunado;
+import resources.Fecha;
 
 import java.util.Date;
 import java.util.List;
@@ -65,7 +66,7 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     private void validarFechaNacimiento() throws FechaDeNacimientoNoValidaException
     {
-        Date fecha = vista.obtenerFechaDeNacimiento();
+    	Fecha fecha = vista.obtenerFechaDeNacimiento();
         if (fecha == null)
             throw new FechaDeNacimientoNoValidaException();
     }

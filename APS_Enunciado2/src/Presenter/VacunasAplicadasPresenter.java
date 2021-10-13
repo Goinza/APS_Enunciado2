@@ -14,6 +14,7 @@ import Model.Filtros.Filtro;
 import Model.Filtros.SinFiltro;
 import Presenter.CargaModificacionVacunados.PresentadorModificacion;
 import View.CargaModificacionVacunados.VentanaModificacionVacunado;
+import resources.Fecha;
 import View.VacunasAplicadasView;
 
 
@@ -49,10 +50,10 @@ public class VacunasAplicadasPresenter
 
 		String nombre = vacunasAplicadasTable.getValueAt(selectedRow, 0).toString(); // Nombre
 		String apellido = vacunasAplicadasTable.getValueAt(selectedRow, 1).toString(); // Apellido
-		Date fecha = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 2).toString()); // Fecha de nacimiento?
+		Fecha fecha = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 2).toString()); // Fecha de nacimiento?
 		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString(); // Nombre de vacuna
-		Date primeraDosis = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
-		Date segundaDosis = getFechaNacimientoFromString(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
+		Fecha primeraDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
+		Fecha segundaDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
 		System.out.println(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
 		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString()) ;
 		String mail = vacunasAplicadasTable.getValueAt(selectedRow, 7).toString();
@@ -65,18 +66,6 @@ public class VacunasAplicadasPresenter
 
 		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);
 		VentanaModificacionVacunado vista = new VentanaModificacionVacunado(presentador);
-	}
-	
-	private Date getFechaNacimientoFromString(String stringFecha) {
-		Date date = null;
-		try {
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-			date = format.parse(stringFecha);
-		}
-		catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
 	}
 
 }

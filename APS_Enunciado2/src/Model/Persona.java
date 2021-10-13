@@ -2,19 +2,21 @@ package Model;
 
 import java.util.Date;
 
+import resources.Fecha;
+
 public class Persona
 {
     int dni;
     String nombre;
     String apellido;
     String mail;
-    Date fechaNacimiento;
+    Fecha fechaNacimiento;
 
     public Persona()
     {
     }
 
-    public Persona(int dni, String nombre, String apellido, String mail, Date fechaNacimiento)
+    public Persona(int dni, String nombre, String apellido, String mail, Fecha fechaNacimiento)
     {
         this.dni = dni;
         this.nombre = nombre;
@@ -63,12 +65,12 @@ public class Persona
         this.mail = mail;
     }
 
-    public Date obtenerFechaNacimiento()
+    public Fecha obtenerFechaNacimiento()
     {
         return fechaNacimiento;
     }
 
-    public void establecerFechaNacimiento(Date fechaNacimiento)
+    public void establecerFechaNacimiento(Fecha fechaNacimiento)
     {
         this.fechaNacimiento = fechaNacimiento;
     }

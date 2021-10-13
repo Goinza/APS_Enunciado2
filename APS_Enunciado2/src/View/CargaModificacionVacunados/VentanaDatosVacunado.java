@@ -3,6 +3,7 @@ package View.CargaModificacionVacunados;
 import Model.Provincia;
 import Model.Vacuna;
 import Presenter.CargaModificacionVacunados.PresentadorDatos;
+import resources.Fecha;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -221,13 +222,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public Date obtenerFechaDeNacimiento()
+    public Fecha obtenerFechaDeNacimiento()
     {
         return pnFechaDeNacimiento.obtenerFecha();
     }
 
     @Override
-    public void establecerFecha(Date fecha)
+    public void establecerFecha(Fecha fecha)
     {
         pnFechaDeNacimiento.establecerFecha(fecha);
     }
@@ -245,25 +246,25 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public Date obtenerFechaPrimeraDosis()
+    public Fecha obtenerFechaPrimeraDosis()
     {
         return pnFechaPrimeraDosis.obtenerFecha();
     }
 
     @Override
-    public void establecerFechaPrimeraDosis(Date fecha)
+    public void establecerFechaPrimeraDosis(Fecha fecha)
     {
         pnFechaPrimeraDosis.establecerFecha(fecha);
     }
 
     @Override
-    public Date obtenerFechaSegundaDosis()
+    public Fecha obtenerFechaSegundaDosis()
     {
         return pnFechaSegundaDosis.obtenerFecha();
     }
 
     @Override
-    public void establecerFechaSegundaDosis(Date fecha)
+    public void establecerFechaSegundaDosis(Fecha fecha)
     {
         pnFechaSegundaDosis.establecerFecha(fecha);
     }
@@ -384,8 +385,8 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         boolean valido = pnFechaPrimeraDosis.seleccionValida() && (pnFechaSegundaDosis.seleccionValida() || pnFechaSegundaDosis.seleccionNula());
         if (valido && pnFechaSegundaDosis.seleccionValida())
         {
-            Date fechaPrimera = pnFechaPrimeraDosis.obtenerFecha();
-            Date fechaSegunda = pnFechaSegundaDosis.obtenerFecha();
+        	Fecha fechaPrimera = pnFechaPrimeraDosis.obtenerFecha();
+        	Fecha fechaSegunda = pnFechaSegundaDosis.obtenerFecha();
             if(fechaPrimera.compareTo(fechaSegunda) > 0)
                 valido = false;
         }

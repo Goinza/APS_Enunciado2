@@ -2,19 +2,21 @@ package Model;
 
 import java.util.Date;
 
+import resources.Fecha;
+
 public class VacunaAplicada
 {
     private Persona persona;
     private Vacuna vacuna;
     private int cantDosis;
-    private Date primeraDosis;
-    private Date segundaDosis;
+    private Fecha primeraDosis;
+    private Fecha segundaDosis;
     private Provincia provincia;
     private int region;
 
     public VacunaAplicada() {}
 
-    public VacunaAplicada(Persona persona, Vacuna vacuna, Date primeraDosis, Date segundaDosis, Provincia provincia, int region)
+    public VacunaAplicada(Persona persona, Vacuna vacuna, Fecha primeraDosis, Fecha segundaDosis, Provincia provincia, int region)
     {
         this.persona = persona;
         this.vacuna = vacuna;
@@ -24,7 +26,7 @@ public class VacunaAplicada
         this.region = region;
     }
 
-    public VacunaAplicada(Persona persona, Vacuna vacuna, int cantDosis, Date primeraDosis, Date segundaDosis, Provincia provincia, int region)
+    public VacunaAplicada(Persona persona, Vacuna vacuna, int cantDosis, Fecha primeraDosis, Fecha segundaDosis, Provincia provincia, int region)
     {
         this(persona, vacuna, primeraDosis, segundaDosis, provincia, region);
         this.cantDosis = cantDosis;
@@ -50,22 +52,22 @@ public class VacunaAplicada
         this.vacuna = vacuna;
     }
 
-    public Date obtenerPrimeraDosis()
+    public Fecha obtenerPrimeraDosis()
     {
         return primeraDosis;
     }
 
-    public void establecerPrimeraDosis(Date primeraDosis)
+    public void establecerPrimeraDosis(Fecha primeraDosis)
     {
         this.primeraDosis = primeraDosis;
     }
 
-    public Date obtenerSegundaDosis()
+    public Fecha obtenerSegundaDosis()
     {
         return segundaDosis;
     }
 
-    public void establecerSegundaDosis(Date segundaDosis)
+    public void establecerSegundaDosis(Fecha segundaDosis)
     {
         this.segundaDosis = segundaDosis;
     }

@@ -2,6 +2,7 @@ package View.CargaModificacionVacunados;
 
 import Model.Provincia;
 import Model.Vacuna;
+import resources.Fecha;
 
 import java.util.Date;
 import java.util.List;
@@ -16,21 +17,21 @@ public interface VistaDatosVacunado
     
     void establecerApellido(String apellido);
     
-    Date obtenerFechaDeNacimiento();
+    Fecha obtenerFechaDeNacimiento();
     
-    void establecerFecha(Date fecha);
+    void establecerFecha(Fecha fecha);
     
     Vacuna obtenerVacuna();
 
     void establecerVacuna(String nombre);
     
-    Date obtenerFechaPrimeraDosis();
+    Fecha obtenerFechaPrimeraDosis();
     
-    void establecerFechaPrimeraDosis(Date fecha);
+    void establecerFechaPrimeraDosis(Fecha fecha);
 
-    Date obtenerFechaSegundaDosis();
+    Fecha obtenerFechaSegundaDosis();
 
-    void establecerFechaSegundaDosis(Date fecha);
+    void establecerFechaSegundaDosis(Fecha fecha);
 
     int obtenerCantidadDeDosisAplicadas();
 

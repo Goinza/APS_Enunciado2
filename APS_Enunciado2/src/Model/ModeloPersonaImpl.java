@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import resources.DBConnection;
+import resources.Fecha;
 
 public class ModeloPersonaImpl implements ModeloPersonas {
 
@@ -22,11 +23,11 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 				String nombre = result.getString("nombre");
 				String apellido = result.getString("apellido");
 				String mail = result.getString("mail");
-				Date fechaNacimiento = getFechaNacimientoFromString(result.getString("fecha_nacimiento"));
+				Fecha fechaNacimiento = new Fecha(result.getString("fecha_nacimiento"));
 				persona = new Persona(dni, nombre, apellido, mail, fechaNacimiento);	
 			}
 		}
-		catch (SQLException | ParseException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}		
 		
@@ -37,7 +38,7 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 	public void almacenarPersona(Persona persona) {
 		String nombre = persona.obtenerNombre();
 		String apellido = persona.obtenerApellido();
-		String fechaNacimiento = getFechaNacimientoFromDate(persona.obtenerFechaNacimiento());
+		String fechaNacimiento = persona.obtenerFechaNacimiento().toString();
 		String mail = persona.obtenerMail();
 		int dni = persona.obtenerDni();
 		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ");";
@@ -52,21 +53,8 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 	{
 		DBConnection database = DBConnection.getInstance();
 		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "' " +
-									"apellido = '" + persona.obtenerApellido() + "' fecha_nacimiento = '" + getFechaNacimientoFromDate(persona.obtenerFechaNacimiento()) + "' " +
+									"apellido = '" + persona.obtenerApellido() + "' fecha_nacimiento = '" + persona.obtenerFechaNacimiento().toString() + "' " +
 									"mal = '" + persona.obtenerMail() + "' dni = " + persona.obtenerDni() + " WHERE dni = " + dni + ";");
-	}
-
-	private Date getFechaNacimientoFromString(String stringFecha) throws ParseException {
-		 DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		 return format.parse(stringFecha);
-	}
-	
-	private String getFechaNacimientoFromDate(Date dateFecha) {
-		int year = dateFecha.getYear();
-		int month = dateFecha.getMonth();
-		int day = dateFecha.getDay();
-		
-		return year + "-" + month + "-" + day;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Vector;
 import Model.Filtros.Filtro;
 import Model.Filtros.SinFiltro;
 import resources.DBConnection;
+import resources.Fecha;
 
 public class VacunasAplicadasModel
 {
@@ -115,7 +116,7 @@ public class VacunasAplicadasModel
 		database.realizarStatement(query);
 	}
 	
-	private String getFechaFromDate(Date dateFecha) {
+	private String getFechaFromDate(Fecha dateFecha) {
 		if (dateFecha == null) return null;
 		
 		int year = dateFecha.getYear();

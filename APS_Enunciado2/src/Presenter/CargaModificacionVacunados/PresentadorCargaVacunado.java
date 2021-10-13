@@ -6,6 +6,7 @@ import Model.Provincia;
 import Model.Vacuna;
 import Model.VacunaAplicada;
 import Presenter.VacunasAplicadasPresenter;
+import resources.Fecha;
 
 import java.util.Date;
 
@@ -35,8 +36,8 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
                 Vacuna vacuna = vista.obtenerVacuna();
                 Provincia provincia = vista.obtenerProvincia();
                 int region = vista.obtenerRegion();
-                Date primeraDosis = vista.obtenerFechaPrimeraDosis();
-                Date segundaDosis = vista.obtenerFechaSegundaDosis();
+                Fecha primeraDosis = vista.obtenerFechaPrimeraDosis();
+                Fecha segundaDosis = vista.obtenerFechaSegundaDosis();
 
                 VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, vacuna, segundaDosis == null? 1 : 2, primeraDosis, segundaDosis, provincia, region);
                 
