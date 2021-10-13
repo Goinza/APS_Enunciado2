@@ -34,7 +34,7 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         vista.establecerApellido(persona.obtenerApellido());
         vista.establecerDNI(persona.obtenerDni());
         vista.establecerFecha(persona.obtenerFechaNacimiento());
-        vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
+        vista.establecerMail(vacunaAplicada.obtenerPersona().obtenerMail());
         vista.establecerRegion(region);
         vista.establecerVacuna(vacunaAplicada.obtenerVacuna().obtenerNombre());
         vista.establecerFechaPrimeraDosis(primeraDosis);
