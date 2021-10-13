@@ -54,7 +54,7 @@ public class PanelFecha extends JPanel
     private void initCBAgno()
     {
         String[] agnos = new String[121];
-        llenarArregloHasta(agnos, 120, 1901);
+        llenarArregloHasta(agnos, 121, 1900);
         cbAgno.setModel(new DefaultComboBoxModel(agnos));
     }
 
@@ -122,9 +122,9 @@ public class PanelFecha extends JPanel
 
     public void establecerFecha(Fecha fecha)
     {
-        cbDia.setSelectedItem(String.valueOf(fecha.getDate()));
-        cbMes.setSelectedItem(String.valueOf(fecha.getMonth()) + 1);
-        cbAgno.setSelectedItem(String.valueOf(fecha.getYear()) + 1900);
+        cbDia.setSelectedItem(String.valueOf(fecha.getDay()));
+        cbMes.setSelectedItem(String.valueOf(fecha.getMonth()));
+        cbAgno.setSelectedItem(String.valueOf(fecha.getYear()));
     }
 
     public int obtenerAgno()

@@ -7,6 +7,7 @@ public class Vacuna
 
     public Vacuna(String nombre)
     {
+        id = 0;
         this.nombre = nombre;
     }
 

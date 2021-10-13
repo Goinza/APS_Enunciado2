@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="Falta:&#10;&#10;- Agregar método actualización de vacunas aplicadas.">
+    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="HotFix a PanelFecha.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Testing/TestCargaDeVacunados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/PanelFecha.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/PanelFecha.java" afterDir="false" />
@@ -125,7 +126,7 @@
       <workItem from="1633986012428" duration="4051000" />
       <workItem from="1634001185780" duration="2328000" />
       <workItem from="1634053970081" duration="2501000" />
-      <workItem from="1634073742735" duration="7565000" />
+      <workItem from="1634073742735" duration="9544000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia.">
       <created>1633995846479</created>
@@ -148,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634083581760</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="HotFix a PanelFecha.">
+      <created>1634091135079</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1634091135079</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,14 +178,15 @@
     <MESSAGE value="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia." />
     <MESSAGE value="Hecho:&#10;- Agregado método para actualizar un vacunado en el modelo de Personas.&#10;&#10;Falta:&#10;- Métodos para agregar y actualizar vacunas aplicadas en el modelo correspondiente que sigan la interfaz planteada." />
     <MESSAGE value="Falta:&#10;&#10;- Agregar método actualización de vacunas aplicadas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Falta:&#10;&#10;- Agregar método actualización de vacunas aplicadas." />
+    <MESSAGE value="HotFix a PanelFecha." />
+    <option name="LAST_COMMIT_MESSAGE" value="HotFix a PanelFecha." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/APS_Enunciado2/src/Presenter/VacunasAplicadasPresenter.java</url>
-          <line>45</line>
+          <line>46</line>
           <properties class="Presenter.VacunasAplicadasPresenter" method="crearVistaModificacionVacunas">
             <option name="EMULATED" value="true" />
           </properties>

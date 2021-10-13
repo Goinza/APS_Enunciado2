@@ -30,12 +30,12 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         Fecha primeraDosis = vacunaAplicada.obtenerPrimeraDosis();
         Fecha segundaDosis = vacunaAplicada.obtenerSegundaDosis();
 
-        vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
         vista.establecerNombre(persona.obtenerNombre());
         vista.establecerApellido(persona.obtenerApellido());
         vista.establecerDNI(persona.obtenerDni());
-        vista.establecerFecha(persona.obtenerFechaNacimiento());
         vista.establecerMail(vacunaAplicada.obtenerPersona().obtenerMail());
+        vista.establecerFecha(persona.obtenerFechaNacimiento());
+        vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
         vista.establecerRegion(region);
         vista.establecerVacuna(vacunaAplicada.obtenerVacuna().obtenerNombre());
         vista.establecerFechaPrimeraDosis(primeraDosis);
