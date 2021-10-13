@@ -70,7 +70,7 @@ public class VacunasAplicadasPresenter
 	private Date getFechaNacimientoFromString(String stringFecha) {
 		Date date = null;
 		try {
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd"); //, Locale.ENGLISH
 			date = format.parse(stringFecha);
 		}
 		catch (ParseException e) {
