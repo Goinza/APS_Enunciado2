@@ -53,7 +53,7 @@ public class PanelFecha extends JPanel
 
     private void initCBAgno()
     {
-        String[] agnos = new String[121];
+        String[] agnos = new String[122];
         llenarArregloHasta(agnos, 121, 1900);
         cbAgno.setModel(new DefaultComboBoxModel(agnos));
     }
