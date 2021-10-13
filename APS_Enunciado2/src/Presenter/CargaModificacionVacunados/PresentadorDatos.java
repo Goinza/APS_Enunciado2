@@ -11,6 +11,4 @@ public interface PresentadorDatos
     void provinciaSeleccionada();
 
     void actuar();
-    
-    void fin();
 }

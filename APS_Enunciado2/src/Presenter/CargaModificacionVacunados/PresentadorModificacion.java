@@ -23,20 +23,20 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
     public void inicializarVista()
     {
         super.inicializarVista();
-        Persona persona = modeloPersona.obtenerPersona(vacunaAplicada.obtenerDni());
-        Provincia provincia = modeloProvincias.obtenerProvincia(vacunaAplicada.obtenerIdProvincia());
+        Persona persona = vacunaAplicada.obtenerPersona();
+
         int region = vacunaAplicada.obtenerRegion();
-        Vacuna vacuna = modeloVacunas.obtenerVacuna(vacunaAplicada.obtenerIdVacuna());
         Date primeraDosis = vacunaAplicada.obtenerPrimeraDosis();
         Date segundaDosis = vacunaAplicada.obtenerSegundaDosis();
 
+        vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
         vista.establecerNombre(persona.obtenerNombre());
         vista.establecerApellido(persona.obtenerApellido());
         vista.establecerDNI(persona.obtenerDni());
         vista.establecerFecha(persona.obtenerFechaNacimiento());
-        vista.establecerProvincia(provincia.obtenerNombre());
+        vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
         vista.establecerRegion(region);
-        vista.establecerVacuna(vacuna.obtenerNombre());
+        vista.establecerVacuna(vacunaAplicada.obtenerVacuna().obtenerNombre());
         vista.establecerFechaPrimeraDosis(primeraDosis);
         if(segundaDosis != null)
             vista.establecerFechaSegundaDosis(segundaDosis);
@@ -49,14 +49,14 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         {
             validarDatos();
             int dni = Integer.valueOf(vista.obtenerDNI());
-            if (dni != vacunaAplicada.obtenerDni() && modeloPersona.obtenerPersona(dni) != null)
+            if (dni != vacunaAplicada.obtenerPersona().obtenerDni() && modeloPersona.obtenerPersona(dni) != null)
                 throw new PersonaYaAlmacenadaException();
             else
             {
                 Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerFechaDeNacimiento());
 
 
-                modeloPersona.actualizarPersona(vacunaAplicada.obtenerDni(), persona);
+                modeloPersona.actualizarPersona(vacunaAplicada.obtenerPersona().obtenerDni(), persona);
 
                 Vacuna vacuna = vista.obtenerVacuna();
                 Provincia provincia = vista.obtenerProvincia();
@@ -64,12 +64,10 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
                 Date primeraDosis = vista.obtenerFechaPrimeraDosis();
                 Date segundaDosis = vista.obtenerFechaSegundaDosis();
 
-                VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.obtenerDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
+                VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, vacuna, primeraDosis, segundaDosis, provincia, region);
 
-                // TODO: 12/10/2021 <<ACTUALIZAR>> la entrada en la tabla de Vacunas Aplicadas
-
-                vista.mostrarAviso("La entrada ha sido modificada exitosamente");
-                vista.cerrar();
+//                modeloVacunasAplicadas.actualizarVacunaAplicada(vacunaAplicada);
+                fin();
             }
         } catch (NombreNoValidoException e) {
             vista.mostrarAlerta("El campo Nombre se encuentra vacío o presenta un formato no válido.");

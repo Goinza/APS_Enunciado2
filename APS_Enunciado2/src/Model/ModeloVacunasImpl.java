@@ -36,7 +36,7 @@ public class ModeloVacunasImpl implements ModeloVacunas {
 	{
 		DBConnection database = DBConnection.getInstance();
 		ResultSet result = database.realizarConsulta("SELECT * FROM Vacunas WHERE id_vacuna ;");
-		Vacuna vac = new Vacuna();
+		Vacuna vac = null;
 		try
 		{
 			result.next();

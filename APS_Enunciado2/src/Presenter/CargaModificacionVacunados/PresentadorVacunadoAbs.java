@@ -15,14 +15,14 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     protected ModeloProvincias modeloProvincias;
     protected ModeloVacunas modeloVacunas;
     protected VacunasAplicadasModel modeloVacunasAplicadas;
-    protected VacunasAplicadasPresenter presenterVacunasAplicadas;
+    protected VacunasAplicadasPresenter presentadorVacunasAplicadas;
     
-    protected PresentadorVacunadoAbs(VacunasAplicadasPresenter presenterVacunasAplicadas) {
+    protected PresentadorVacunadoAbs(VacunasAplicadasPresenter presentadorVacunasAplicadas) {
     	modeloPersona = new ModeloPersonaImpl();
     	modeloProvincias = new ModeloProvinciasImpl();
     	modeloVacunas = new ModeloVacunasImpl();
     	modeloVacunasAplicadas = new VacunasAplicadasModel();
-    	this.presenterVacunasAplicadas = presenterVacunasAplicadas;
+    	this.presentadorVacunasAplicadas = presentadorVacunasAplicadas;
     }
 
     private void validarNombre() throws NombreNoValidoException
@@ -43,11 +43,7 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     private void validarDNI() throws DNINoValidoException
     {
-        String dni = vista.obtenerDNI();
-        boolean valido = !dni.isBlank();
-        for (int i = 0; i < dni.length() && valido; i++)
-            valido = valido && Character.isDigit(dni.charAt(i));
-        if (!valido)
+        if (vista.obtenerDNI() == -1)
             throw new DNINoValidoException();
     }
 
@@ -94,7 +90,7 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     private void validarRegion() throws RegionSanitariaNoValidaException
     {
-        if (vista.obtenerRegion() == null)
+        if (vista.obtenerRegion() == -1)
             throw new RegionSanitariaNoValidaException();
     }
 
@@ -136,7 +132,10 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
         }
     }
     
-    public void fin() {
-    	presenterVacunasAplicadas.renderizarVista();
+    protected void fin()
+    {
+        vista.mostrarAviso("La entrada ha sido modificada exitosamente");
+        vista.cerrar();
+    	presentadorVacunasAplicadas.renderizarVista();
     }
 }

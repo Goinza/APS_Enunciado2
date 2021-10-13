@@ -4,23 +4,50 @@ import java.util.Date;
 
 public class VacunaAplicada
 {
+    private Persona persona;
+    private Vacuna vacuna;
+    private int cantDosis;
     private Date primeraDosis;
     private Date segundaDosis;
-    private int cantidadDosis;
-    private int dni;
-    private int idVacuna;
-    private int idProvincia;
-    private int idRegion;
+    private Provincia provincia;
+    private int region;
 
-    public VacunaAplicada(Date primeraDosis, Date segundaDosis, int cantidadDosis, int dni, int idVacuna, int idProvincia, int idRegion)
+    public VacunaAplicada() {}
+
+    public VacunaAplicada(Persona persona, Vacuna vacuna, Date primeraDosis, Date segundaDosis, Provincia provincia, int region)
     {
+        this.persona = persona;
+        this.vacuna = vacuna;
         this.primeraDosis = primeraDosis;
         this.segundaDosis = segundaDosis;
-        this.cantidadDosis = cantidadDosis;
-        this.dni = dni;
-        this.idVacuna = idVacuna;
-        this.idProvincia = idProvincia;
-        this.idRegion = idRegion;
+        this.provincia = provincia;
+        this.region = region;
+    }
+
+    public VacunaAplicada(Persona persona, Vacuna vacuna, int cantDosis, Date primeraDosis, Date segundaDosis, Provincia provincia, int region)
+    {
+        this(persona, vacuna, primeraDosis, segundaDosis, provincia, region);
+        this.cantDosis = cantDosis;
+    }
+
+    public Persona obtenerPersona()
+    {
+        return persona;
+    }
+
+    public void establecerPersona(Persona persona)
+    {
+        this.persona = persona;
+    }
+
+    public Vacuna obtenerVacuna()
+    {
+        return vacuna;
+    }
+
+    public void establecerVacuna(Vacuna vacuna)
+    {
+        this.vacuna = vacuna;
     }
 
     public Date obtenerPrimeraDosis()
@@ -45,51 +72,31 @@ public class VacunaAplicada
 
     public int obtenerCantidadDosis()
     {
-        return cantidadDosis;
+        return cantDosis;
     }
 
-    public void establecerCantidadDosis(int cantidadDosis)
+    public void establecerCantDosis(int cantDosis)
     {
-        this.cantidadDosis = cantidadDosis;
+        this.cantDosis = cantDosis;
     }
 
-    public int obtenerDni()
+    public Provincia obtenerProvincia()
     {
-        return dni;
+        return provincia;
     }
 
-    public void establecerDni(int dni)
+    public void establecerProvincia(Provincia provincia)
     {
-        this.dni = dni;
-    }
-
-    public int obtenerIdVacuna()
-    {
-        return idVacuna;
-    }
-
-    public void establecerIdVacuna(int idVacuna)
-    {
-        this.idVacuna = idVacuna;
-    }
-
-    public int obtenerIdProvincia()
-    {
-        return idProvincia;
-    }
-
-    public void establecerIdProvincia(int idProvincia)
-    {
-        this.idProvincia = idProvincia;
+        this.provincia = provincia;
     }
 
     public int obtenerRegion()
     {
-        return idRegion;
+        return region;
     }
 
-    public void establecerIdRegion(int idRegion)
+    public void establecerRegion(int region)
     {
-        this.idRegion = idRegion;
+        this.region = region;
     }
 }

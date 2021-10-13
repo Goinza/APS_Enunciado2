@@ -293,9 +293,16 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public String obtenerDNI()
+    public int obtenerDNI()
     {
-        return tfDNI.getText();
+        String dniString = tfDNI.getText();
+        try
+        {
+            return Integer.valueOf(dniString);
+        }
+        catch(NumberFormatException e) {
+            return -1;
+        }
     }
 
     @Override
@@ -317,9 +324,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public Integer obtenerRegion()
+    public int obtenerRegion()
     {
-        return Integer.valueOf(valorComboBox(cbRegion));
+        String regionString = valorComboBox(cbRegion);
+        if (regionString == null)
+            return -1;
+        else
+            return Integer.valueOf(regionString);
     }
 
     @Override
@@ -397,7 +408,6 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     public void cerrar()
     {
         setVisible(false);
-        presentador.fin();
         dispose();
     }
 

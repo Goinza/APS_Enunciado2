@@ -40,7 +40,7 @@ public interface VistaDatosVacunado
 
     void establecerMail(String mail);
 
-    String obtenerDNI();
+    int obtenerDNI();
 
     void establecerDNI(int dni);
 
@@ -48,7 +48,7 @@ public interface VistaDatosVacunado
 
     void establecerProvincia(String provincia);
 
-    Integer obtenerRegion();
+    int obtenerRegion();
 
     void establecerRegion(int region);
 

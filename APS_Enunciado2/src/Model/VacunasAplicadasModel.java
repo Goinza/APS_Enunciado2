@@ -101,9 +101,9 @@ public class VacunasAplicadasModel
 		String primeraDosis = getFechaFromDate(vacunaAplicada.obtenerPrimeraDosis());
 		String segundaDosis = getFechaFromDate(vacunaAplicada.obtenerSegundaDosis());
 		int cantidadDosis = vacunaAplicada.obtenerCantidadDosis();
-		int dni = vacunaAplicada.obtenerDni();
-		int idVacuna = vacunaAplicada.obtenerIdVacuna();
-		int idProvincia = vacunaAplicada.obtenerIdProvincia();
+		int dni = vacunaAplicada.obtenerPersona().obtenerDni();
+		int idVacuna = vacunaAplicada.obtenerVacuna().obtenerId();
+		int idProvincia = vacunaAplicada.obtenerProvincia().obtenerId();
 		int idRegion = vacunaAplicada.obtenerRegion();
 		String query;
 		if (segundaDosis == null) {

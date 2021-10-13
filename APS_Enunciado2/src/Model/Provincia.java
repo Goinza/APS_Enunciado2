@@ -5,6 +5,11 @@ public class Provincia
     private int id;
     private java.lang.String nombre;
 
+    public Provincia(String nombre)
+    {
+        this.nombre = nombre;
+    }
+
     public Provincia(int id, java.lang.String nombre)
     {
         this.id = id;

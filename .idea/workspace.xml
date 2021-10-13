@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia.">
+    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="Hecho:&#10;- Agregado método para actualizar un vacunado en el modelo de Personas.&#10;&#10;Falta:&#10;- Métodos para agregar y actualizar vacunas aplicadas en el modelo correspondiente que sigan la interfaz planteada.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonas.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Provincia.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Provincia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Vacuna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunaAplicada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunasAplicadasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/VacunasAplicadasModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorDatos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorVacunadoAbs.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorVacunadoAbs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/VacunasAplicadasPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/VacunasAplicadasPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +118,8 @@
       <workItem from="1633981451912" duration="1120000" />
       <workItem from="1633986012428" duration="4051000" />
       <workItem from="1634001185780" duration="2328000" />
-      <workItem from="1634053970081" duration="2103000" />
+      <workItem from="1634053970081" duration="2501000" />
+      <workItem from="1634073742735" duration="4837000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia.">
       <created>1633995846479</created>
@@ -119,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633995846479</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Hecho:&#10;- Agregado método para actualizar un vacunado en el modelo de Personas.&#10;&#10;Falta:&#10;- Métodos para agregar y actualizar vacunas aplicadas en el modelo correspondiente que sigan la interfaz planteada.">
+      <created>1634057058157</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1634057058157</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia." />
+    <MESSAGE value="Hecho:&#10;- Agregado método para actualizar un vacunado en el modelo de Personas.&#10;&#10;Falta:&#10;- Métodos para agregar y actualizar vacunas aplicadas en el modelo correspondiente que sigan la interfaz planteada." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hecho:&#10;- Agregado método para actualizar un vacunado en el modelo de Personas.&#10;&#10;Falta:&#10;- Métodos para agregar y actualizar vacunas aplicadas en el modelo correspondiente que sigan la interfaz planteada." />
   </component>
 </project>

@@ -38,12 +38,11 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
                 Date primeraDosis = vista.obtenerFechaPrimeraDosis();
                 Date segundaDosis = vista.obtenerFechaSegundaDosis();
 
-                VacunaAplicada vacunaAplicada = new VacunaAplicada(primeraDosis, segundaDosis, segundaDosis == null? 1 : 2, persona.obtenerDni(), vacuna.obtenerId(), provincia.obtenerId(), region);
+                VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, vacuna, segundaDosis == null? 1 : 2, primeraDosis, segundaDosis, provincia, region);
                 
                 modeloVacunasAplicadas.agregarVacunaAplicada(vacunaAplicada);
                 
-                vista.mostrarAviso("La nueva entrada ha sido almacenada exitosamente");
-                vista.cerrar();
+                fin();
             }
         } catch (NombreNoValidoException e) {
             vista.mostrarAlerta("El campo Nombre se encuentra vacío o presenta un formato no válido.");

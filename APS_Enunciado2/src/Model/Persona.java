@@ -10,6 +10,10 @@ public class Persona
     String mail;
     Date fechaNacimiento;
 
+    public Persona()
+    {
+    }
+
     public Persona(int dni, String nombre, String apellido, String mail, Date fechaNacimiento)
     {
         this.dni = dni;
