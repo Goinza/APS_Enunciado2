@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/areli/Downloads/mysql-connector-java-8.0.21.jar"/>
-	<classpathentry kind="lib" path="C:/Users/areli/Downloads/quicktable-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Gonzalo/Documentos Gonza/UNS/2020 2º Cuatrimestre/Base de Datos/SQL/ejemplo java-MySQL/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="C:/Gonzalo/Documentos Gonza/UNS/2020 2º Cuatrimestre/Base de Datos/SQL/ejemplo java-MySQL/quicktable-3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
