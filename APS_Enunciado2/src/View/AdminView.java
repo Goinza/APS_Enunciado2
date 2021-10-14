@@ -28,6 +28,7 @@ public class AdminView extends JFrame {
 	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
 	private AltaUsuarioView altaUsuarioView;
 	private LoginUserAdminView loginUserAdminView;
+	
 
 	public AdminView(String adminName) {
 		super("Administrador");
@@ -69,7 +70,7 @@ public class AdminView extends JFrame {
 		JButton btnRegistrarNuevoUsuario = new JButton("Registrar nuevo usuario");
 		btnRegistrarNuevoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				altaUsuarioView = new AltaUsuarioView();
+				altaUsuarioView = new AltaUsuarioView(adminName);
 				altaUsuarioView.setVisible(true);
 				setVisible(false);
 			}
