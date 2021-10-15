@@ -7,6 +7,8 @@ import resources.Fecha;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class PanelFecha extends JPanel
@@ -207,5 +209,17 @@ public class PanelFecha extends JPanel
         }
         else
             return 28;
+    }
+    
+    public void establecerFechaHoy()
+    {
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+    	LocalDateTime now = LocalDateTime.now();
+    	String [] array_today = dtf.format(now).split("/");
+
+    	Fecha hoy = new Fecha(Integer.valueOf(array_today[0]),Integer.valueOf(array_today[1]),Integer.valueOf(array_today[2]));
+    	
+    	establecerFecha(hoy);
+    	
     }
 }

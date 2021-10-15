@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Model.Filtros.*;
 import Presenter.VacunasAplicadasPresenter;
 import Presenter.CargaModificacionVacunados.PresentadorCargaVacunado;
 import Presenter.CargaModificacionVacunados.PresentadorDatos;
@@ -17,7 +19,10 @@ import View.CargaModificacionVacunados.VentanaCargaVacunado;
 import View.CargaModificacionVacunados.VistaDatosVacunado;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -28,6 +33,8 @@ public class VacunasAplicadasView extends JFrame {
 	private JScrollPane scrollAplicadas;
 	private boolean esAdmin;
 	private VacunasAplicadasPresenter presenter;
+    private JComboBox dropDownFiltros;
+    private Filtro filtroActual;
 
 	public VacunasAplicadasView(boolean admin)
 	{
@@ -48,6 +55,17 @@ public class VacunasAplicadasView extends JFrame {
 		lblTitulo.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		lblTitulo.setBounds(10, 10, 187, 38);
 		contentPane.add(lblTitulo);
+
+		dropDownFiltros = new JComboBox();
+		String[] opciones_filtros = {"Sin Filtros","Edad","Fecha de Aplicación","Cantidad de Dosis Aplicadas"};
+		dropDownFiltros.setModel(new DefaultComboBoxModel(opciones_filtros));
+		dropDownFiltros.setBounds(10, 40, 187, 20);
+		contentPane.add(dropDownFiltros);
+		dropDownFiltros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				mostrarFiltro();
+			}
+		});;
 
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(10, 397, 100, 21);
@@ -79,6 +97,8 @@ public class VacunasAplicadasView extends JFrame {
 			btnCargar.setBounds(1000, 397, 100, 21);
 			contentPane.add(btnCargar);
 		}
+		
+		filtroActual = new SinFiltro();
 	}
 	
 	public void setPresenter(VacunasAplicadasPresenter presenter) {
@@ -92,11 +112,55 @@ public class VacunasAplicadasView extends JFrame {
 		}
 		vacunasAplicadasTable = new JTable(datos, nombreColumnas);
 		vacunasAplicadasTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		vacunasAplicadasTable.setBounds(33, 45, 655, 327);
+		vacunasAplicadasTable.setBounds(33, 65, 655, 327);
 			
 		scrollAplicadas = new JScrollPane(vacunasAplicadasTable);
-		scrollAplicadas.setBounds(10, 45, 1113, 327);
+		scrollAplicadas.setBounds(10, 65, 1113, 327);
 		contentPane.add(scrollAplicadas);
         contentPane.repaint();	        
 	}
+	
+	public void mostrarFiltro()
+    {
+		switch(dropDownFiltros.getSelectedIndex())
+		{
+			case 0:
+			{
+				filtroActual = new SinFiltro();
+				break;
+			}
+			case 1:
+			{
+				JOptionPane.showOptionDialog(this,filtroEdad(), "Por favor, seleccione el Filtro que desea aplicar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
+				break;
+			}
+			case 2:
+			{
+				JOptionPane.showOptionDialog(this, filtroFechaAplicacion(), "Por favor, seleccione el Filtro que desea aplicar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
+				break;
+			}
+			case 3:
+			{
+				JOptionPane.showOptionDialog(this, filtroCantidadDosis(), "Por favor, seleccione el Filtro que desea aplicar", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
+				break;
+			}
+		}
+    }
+	
+	private JPanel filtroEdad()
+	{
+		return new FiltroEdad();
+	}
+	
+	private JPanel filtroFechaAplicacion()
+	{
+		return new FiltroFechaAplicacion();
+	}
+	
+	private JPanel filtroCantidadDosis()
+	{
+		return new FiltroCantidadDosis();
+	}
+	
+	
 }
