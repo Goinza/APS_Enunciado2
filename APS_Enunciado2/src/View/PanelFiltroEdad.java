@@ -70,10 +70,30 @@ public class PanelFiltroEdad extends JPanel {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ChequeosSSSSSSSSS HIJO DE PUTA
-				presenter.setFiltro(new FiltroEdad(Integer.valueOf(desde.getText()),Integer.valueOf(hasta.getText())));
-				cerrarFiltro();
-				presenter.renderizarVista();
+				
+				String str_desde = desde.getText();
+				String str_hasta = hasta.getText();
+				
+				if(str_desde.length() != 0 && str_hasta.length() != 0)
+				{
+					int edad_desde = Integer.valueOf(str_desde);
+					int edad_hasta = Integer.valueOf(str_hasta);
+					
+					if(edad_hasta < edad_desde)
+					{
+						presenter.mostrarAlerta("El límite inferior debe ser menor o igual al límite superior para el rango de Edad en este Filtro");
+					}
+					else
+					{
+						presenter.setFiltro(new FiltroEdad(edad_desde,edad_hasta));
+						cerrarFiltro();
+						presenter.renderizarVista();
+					}
+				}				
+				else
+				{
+					presenter.mostrarAlerta("Debe ingresar ambos límites de Edad para este tipo de Filtro");
+				}
 			}
 		});
 		btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
