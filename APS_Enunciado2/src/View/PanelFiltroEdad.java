@@ -9,21 +9,28 @@ import java.awt.Window;
 
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import Model.Filtros.FiltroEdad;
+import Presenter.VacunasAplicadasPresenter;
+
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FiltroEdad extends JPanel {
+public class PanelFiltroEdad extends JPanel {
 	private JTextField desde;
 	private JTextField hasta;
+	private VacunasAplicadasPresenter presenter;
 
 	/**
 	 * Create the panel.
 	 */
-	public FiltroEdad()
+	public PanelFiltroEdad(VacunasAplicadasPresenter presenter)
 	{	
 		this.setLayout(null);
+		
+		this.presenter = presenter;
 		
 		JLabel lblNewLabel = new JLabel("Ingrese rango de edad (en a\u00F1os)");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -53,8 +60,7 @@ public class FiltroEdad extends JPanel {
 		JButton botonSalir = new JButton("Salir");
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Window w = SwingUtilities.getWindowAncestor(FiltroEdad.this);
-				w.setVisible(false);
+				cerrarFiltro();
 			}
 		});
 		botonSalir.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -62,10 +68,24 @@ public class FiltroEdad extends JPanel {
 		add(botonSalir);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ChequeosSSSSSSSSS HIJO DE PUTA
+				presenter.setFiltro(new FiltroEdad(Integer.valueOf(desde.getText()),Integer.valueOf(hasta.getText())));
+				cerrarFiltro();
+				presenter.renderizarVista();
+			}
+		});
 		btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnConfirmar.setBounds(225, 188, 102, 21);
 		add(btnConfirmar);
 		
 		this.setPreferredSize(new Dimension(500, 250));
+	}
+	
+	private void cerrarFiltro()
+	{
+		Window w = SwingUtilities.getWindowAncestor(PanelFiltroEdad.this);
+		w.setVisible(false);
 	}
 }

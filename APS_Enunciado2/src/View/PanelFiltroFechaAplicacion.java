@@ -11,18 +11,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Presenter.VacunasAplicadasPresenter;
 import View.CargaModificacionVacunados.PanelFecha;
 
-public class FiltroFechaAplicacion extends JPanel {
-	PanelFecha fechaDesde;
-	PanelFecha fechaHasta;
+public class PanelFiltroFechaAplicacion extends JPanel {
+	private PanelFecha fechaDesde;
+	private PanelFecha fechaHasta;
+	private VacunasAplicadasPresenter presenter;
 
 	/**
 	 * Create the panel.
 	 */
-	public FiltroFechaAplicacion()
+	public PanelFiltroFechaAplicacion(VacunasAplicadasPresenter presenter)
 	{
 		this.setLayout(null);
+		
+		this.presenter = presenter;
 		
 		JLabel lblNewLabel = new JLabel("Ingrese rango de edad (en años)");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -42,7 +46,7 @@ public class FiltroFechaAplicacion extends JPanel {
 		JButton botonSalir = new JButton("Salir");
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Window w = SwingUtilities.getWindowAncestor(FiltroFechaAplicacion.this);
+				Window w = SwingUtilities.getWindowAncestor(PanelFiltroFechaAplicacion.this);
 				w.setVisible(false);
 			}
 		});

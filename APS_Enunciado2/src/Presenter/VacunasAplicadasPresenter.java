@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import Model.*;
@@ -67,5 +68,17 @@ public class VacunasAplicadasPresenter
 		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);
 		VentanaModificacionVacunado vista = new VentanaModificacionVacunado(presentador);
 	}
+	
+	public void setFiltro(Filtro filtro)
+	{
+		modelo = new VacunasAplicadasModel(filtro);
+		
+	}
+	
+	public void mostrarAlerta(String msg)
+	{
+		vista.mostrarAlerta(msg);
+	}
+	
 
 }

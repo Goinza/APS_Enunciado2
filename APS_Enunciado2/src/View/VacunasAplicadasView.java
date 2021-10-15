@@ -126,7 +126,8 @@ public class VacunasAplicadasView extends JFrame {
 		{
 			case 0:
 			{
-				filtroActual = new SinFiltro();
+				presenter.setFiltro(new SinFiltro());
+				presenter.renderizarVista();
 				break;
 			}
 			case 1:
@@ -149,18 +150,22 @@ public class VacunasAplicadasView extends JFrame {
 	
 	private JPanel filtroEdad()
 	{
-		return new FiltroEdad();
+		return new PanelFiltroEdad(presenter);
 	}
 	
 	private JPanel filtroFechaAplicacion()
 	{
-		return new FiltroFechaAplicacion();
+		return new PanelFiltroFechaAplicacion(presenter);
 	}
 	
 	private JPanel filtroCantidadDosis()
 	{
-		return new FiltroCantidadDosis();
+		return new PanelFiltroCantidadDosis(presenter);
 	}
 	
+	public void mostrarAlerta(String msg)
+	{
+		JOptionPane.showMessageDialog(this, msg, "Información", JOptionPane.ERROR_MESSAGE);
+	}
 	
 }

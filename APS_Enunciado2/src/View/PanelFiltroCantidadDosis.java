@@ -9,22 +9,29 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-public class FiltroCantidadDosis extends JPanel
+import Model.Filtros.FiltroCantidadDosis;
+import Model.Filtros.FiltroEdad;
+import Presenter.VacunasAplicadasPresenter;
+
+public class PanelFiltroCantidadDosis extends JPanel
 {
-	ButtonGroup seleccionDosis = new ButtonGroup();
-	JRadioButton dosDosis;
-	JRadioButton unaDosis;
+	private ButtonGroup seleccionDosis = new ButtonGroup();
+	private JRadioButton dosDosis;
+	private JRadioButton unaDosis;
+	private VacunasAplicadasPresenter presenter;
 
 	/**
 	 * Create the panel.
 	 */
-	public FiltroCantidadDosis()
+	public PanelFiltroCantidadDosis(VacunasAplicadasPresenter presenter)
 	{
 		this.setLayout(null);
+		this.presenter = presenter;
 		
 		JLabel lblNewLabel = new JLabel("Seleccione la cantidad de dosis por las que desea filtrar");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -34,7 +41,7 @@ public class FiltroCantidadDosis extends JPanel
 		JButton botonSalir = new JButton("Salir");
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Window w = SwingUtilities.getWindowAncestor(FiltroCantidadDosis.this);
+				Window w = SwingUtilities.getWindowAncestor(PanelFiltroCantidadDosis.this);
 				w.setVisible(false);
 			}
 		});
@@ -43,6 +50,30 @@ public class FiltroCantidadDosis extends JPanel
 		add(botonSalir);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(unaDosis.isSelected() || dosDosis.isSelected())
+				{
+					if(unaDosis.isSelected())
+					{
+						presenter.setFiltro(new FiltroCantidadDosis(1));
+					}
+					else
+					{
+						presenter.setFiltro(new FiltroCantidadDosis(2));
+					}
+					
+					cerrarFiltro();
+					presenter.renderizarVista();
+				}
+				else
+				{
+					presenter.mostrarAlerta("Debe seleccionar la Cantidad de Dosis para este tipo de Filtro");
+				}
+				
+			}
+		});
 		btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnConfirmar.setBounds(225, 188, 102, 21);
 		add(btnConfirmar);
@@ -62,5 +93,11 @@ public class FiltroCantidadDosis extends JPanel
 		
 		this.setPreferredSize(new Dimension(500, 250));
 		
+	}
+	
+	private void cerrarFiltro()
+	{
+		Window w = SwingUtilities.getWindowAncestor(PanelFiltroCantidadDosis.this);
+		w.setVisible(false);
 	}
 }
