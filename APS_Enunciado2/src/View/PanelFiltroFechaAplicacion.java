@@ -11,8 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Model.Filtros.FiltroCantidadDosis;
+import Model.Filtros.FiltroFechaAplicacion;
 import Presenter.VacunasAplicadasPresenter;
 import View.CargaModificacionVacunados.PanelFecha;
+import resources.Fecha;
 
 public class PanelFiltroFechaAplicacion extends JPanel {
 	private PanelFecha fechaDesde;
@@ -52,9 +55,37 @@ public class PanelFiltroFechaAplicacion extends JPanel {
 		});
 		botonSalir.setFont(new Font("Tahoma", Font.BOLD, 12));
 		botonSalir.setBounds(82, 207, 85, 21);
-		add(botonSalir);
-		
+		add(botonSalir);		
 		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				boolean validacion_fecha_desde = fechaDesde.seleccionValida();
+				boolean validacion_fecha_hasta = fechaHasta.seleccionValida();
+				
+				if(validacion_fecha_desde && validacion_fecha_hasta)
+				{
+					Fecha fec_desde = new Fecha(fechaDesde.obtenerAgno(),fechaDesde.obtenerMes(),fechaDesde.obtenerDia());
+					Fecha fec_hasta = new Fecha(fechaHasta.obtenerAgno(),fechaHasta.obtenerMes(),fechaHasta.obtenerDia());
+					
+					if(fec_desde.compareTo(fec_hasta) <= 0)
+					{
+						presenter.setFiltro(new FiltroFechaAplicacion(fec_desde,fec_hasta));
+						cerrarFiltro();
+						presenter.renderizarVista();
+					}
+					else
+					{
+						presenter.mostrarAlerta("La Fecha Desde no puede ser mayor a la Fecha Hasta para este tipo de Filtro");
+					}
+				}
+				else
+				{
+					presenter.mostrarAlerta("Debe completar correctamente ambas Fechas para este tipo de Filtro");
+				}
+				
+			}
+		});
 		btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnConfirmar.setBounds(255, 207, 102, 21);
 		add(btnConfirmar);
@@ -73,6 +104,12 @@ public class PanelFiltroFechaAplicacion extends JPanel {
 		
 		this.setPreferredSize(new Dimension(500, 250));
 		
+	}
+	
+	private void cerrarFiltro()
+	{
+		Window w = SwingUtilities.getWindowAncestor(PanelFiltroFechaAplicacion.this);
+		w.setVisible(false);
 	}
 
 }

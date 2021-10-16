@@ -222,4 +222,6 @@ public class PanelFecha extends JPanel
     	establecerFecha(hoy);
     	
     }
+    
+    
 }
