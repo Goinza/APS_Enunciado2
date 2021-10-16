@@ -20,18 +20,13 @@ public class ModeloNuevoUsuario {
 		return existe;
 	}
 
-	public void agregarUsuario(String usuario, String password, String email, String telefono, String cargo) {
+	public void agregarUsuario(int dni, String usuario, String password, String email, String telefono, String cargo, String mail) {
 		DBConnection database = DBConnection.getInstance();
 		String nombre = "Juan";
 		String apellido = "Perez";
-		String mail = "hola@hotmail.com";
-		int dni = 10;
-		String domicilio = "Alem 203";
 		String query = "insert into Usuarios values ('" + usuario + "', '" + password + "', '" + nombre + "', '"
-				+ apellido + "', '" + cargo + "', '" + mail + ", " + dni + ", " + telefono + ", '" + domicilio
-				+ "', " + false;
-		database.realizarStatement(query);
-		
+				+ apellido + "', '" + cargo + "', '" + mail + ", " + dni + ", " + telefono + ", " + false;
+		database.realizarStatement(query);		
 	}
 	
 	

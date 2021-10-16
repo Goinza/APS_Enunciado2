@@ -95,7 +95,6 @@ CREATE TABLE Usuarios (
     mail VARCHAR(50) NOT NULL,
     dni INT UNSIGNED NOT NULL,
     telefono INT UNSIGNED NOT NULL,
-    domicilio VARCHAR(50) NOT NULL,
     es_admin BOOLEAN NOT NULL,
 
     CONSTRAINT pk_usuario
@@ -469,6 +468,6 @@ INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,4,10
 INSERT INTO Vacunas_Entregadas (id_provincia,id_vacuna,cantidad) VALUES (24,5,1000000);
 
 
-INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, domicilio, es_admin) VALUES ("admin", "admin", "Jose", "Admin", "Empleado", "admin@gmail.com", 1111, 291457231, "Calle 123", 1);
-INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, domicilio, es_admin) VALUES ("user", "user", "Jose", "User", "Empleado", "user@gmail.com", 1112, 291457331, "Calle 123", 0);
-INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, domicilio, es_admin) VALUES ("Fede45", "123", "Federico", "Garcia", "Empleado", "fg@gmail.com", 25681248, 291457131, "Calle 123", 0);
+INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, es_admin) VALUES ("admin", "admin", "Jose", "Admin", "Empleado", "admin@gmail.com", 1111, 291457231, 1);
+INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, es_admin) VALUES ("user", "user", "Jose", "User", "Empleado", "user@gmail.com", 1112, 291457331, 0);
+INSERT INTO Usuarios (usuario, contrasena, nombre, apellido, cargo, mail, dni, telefono, es_admin) VALUES ("Fede45", "123", "Federico", "Garcia", "Empleado", "fg@gmail.com", 25681248, 291457131, 0);
