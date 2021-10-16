@@ -20,7 +20,7 @@ public class ModeloNuevoUsuario {
 		return existe;
 	}
 
-	public void agregarUsuario(String usuario, String password, String email, String telefono, String cargo) {
+	public void agregarUsuario(String usuario, String password, String DNI, String email, String telefono, String cargo) {
 		DBConnection database = DBConnection.getInstance();
 		String nombre = "Juan";
 		String apellido = "Perez";

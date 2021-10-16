@@ -33,6 +33,7 @@ public class AltaUsuarioView extends JFrame {
 	private AdminView adminView;
 
 	private ModeloNuevoUsuario modeloNuevoUsuario;
+	private JTextField txtDNI;
 	
 	public AltaUsuarioView(String nombreAdmin) {
 		
@@ -59,15 +60,15 @@ public class AltaUsuarioView extends JFrame {
 		contentPane.add(lblPassword);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(38, 227, 49, 14);
+		lblEmail.setBounds(38, 260, 49, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(38, 275, 49, 14);
+		lblTelefono.setBounds(38, 298, 49, 14);
 		contentPane.add(lblTelefono);
 		
 		JLabel lblCargo = new JLabel("Cargo");
-		lblCargo.setBounds(38, 331, 49, 14);
+		lblCargo.setBounds(38, 339, 49, 14);
 		contentPane.add(lblCargo);
 		
 		txtNombre = new JTextField();
@@ -82,18 +83,28 @@ public class AltaUsuarioView extends JFrame {
 		
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(212, 224, 161, 20);
+		txtEmail.setBounds(212, 257, 161, 20);
 		contentPane.add(txtEmail);
 		
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(212, 272, 161, 20);
+		txtTelefono.setBounds(212, 295, 161, 20);
 		contentPane.add(txtTelefono);
 		
 		txtCargo = new JTextField();
 		txtCargo.setColumns(10);
-		txtCargo.setBounds(212, 328, 161, 20);
+		txtCargo.setBounds(212, 336, 161, 20);
 		contentPane.add(txtCargo);
+		
+		JLabel lblDNI = new JLabel("DNI");
+		lblDNI.setBounds(38, 221, 49, 14);
+		contentPane.add(lblDNI);
+		
+		txtDNI = new JTextField();
+		txtDNI.setBounds(212, 218, 161, 20);
+		contentPane.add(txtDNI);
+		txtDNI.setColumns(10);
+		
 		
 		JButton btnNewButton = new JButton("Dar de alta usuario");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -101,6 +112,7 @@ public class AltaUsuarioView extends JFrame {
 				if(modeloNuevoUsuario.existeUsuario(txtNombre.getText())) {
 					modeloNuevoUsuario.agregarUsuario(txtNombre.getText(), 
 							txtPassword.getText(),
+							txtDNI.getText(),
 							txtEmail.getText(),
 							txtTelefono.getText(),
 							txtCargo.getText());
@@ -128,6 +140,7 @@ public class AltaUsuarioView extends JFrame {
 		btnSalir.setBounds(383, 461, 89, 23);
 		contentPane.add(btnSalir);
 		
+
 		
 	}
 	
