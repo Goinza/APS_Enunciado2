@@ -25,7 +25,7 @@ public class ModeloNuevoUsuario {
 		String nombre = "Juan";
 		String apellido = "Perez";
 		String query = "insert into Usuarios values ('" + usuario + "', '" + password + "', '" + nombre + "', '"
-				+ apellido + "', '" + cargo + "', '" + mail + ", " + dni + ", " + telefono + ", " + false;
+				+ apellido + "', '" + cargo + "', '" + email + ", " + dni + ", " + telefono + ", " + false;
 		database.realizarStatement(query);		
 	}
 	
