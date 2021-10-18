@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Presenter.AltaUsuarioPresenter;
 import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
 
@@ -71,6 +72,7 @@ public class AdminView extends JFrame {
 		btnRegistrarNuevoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				altaUsuarioView = new AltaUsuarioView(adminName);
+				altaUsuarioView.setPresenter(new AltaUsuarioPresenter());
 				altaUsuarioView.setVisible(true);
 				setVisible(false);
 			}

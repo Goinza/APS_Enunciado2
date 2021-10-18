@@ -31,7 +31,7 @@ public class PanelFiltroFechaAplicacion extends JPanel {
 		
 		this.presenter = presenter;
 		
-		JLabel lblNewLabel = new JLabel("Ingrese rango de edad (en años)");
+		JLabel lblNewLabel = new JLabel("Ingrese rango de fechas");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(95, 32, 238, 33);
 		add(lblNewLabel);

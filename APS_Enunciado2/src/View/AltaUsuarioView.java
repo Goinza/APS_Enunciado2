@@ -9,6 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import Model.ModeloNuevoUsuario;
+import Presenter.AltaUsuarioPresenter;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,13 +32,14 @@ public class AltaUsuarioView extends JFrame {
 	private JTextField txtCargo;
 	
 	private AdminView adminView;
+	private String nombreAdmin;
 
-	private ModeloNuevoUsuario modeloNuevoUsuario;
+	private AltaUsuarioPresenter presenter;
+	
 	private JTextField txtDNI;
 	
 	public AltaUsuarioView(String nombreAdmin) {
-		
-		modeloNuevoUsuario = new ModeloNuevoUsuario();
+		this.nombreAdmin = nombreAdmin;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 496, 532);
@@ -109,21 +111,7 @@ public class AltaUsuarioView extends JFrame {
 		JButton btnNewButton = new JButton("Dar de alta usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(modeloNuevoUsuario.existeUsuario(txtNombre.getText())) {
-					modeloNuevoUsuario.agregarUsuario(txtNombre.getText(), 
-							txtPassword.getText(),
-							txtDNI.getText(),
-							txtEmail.getText(),
-							txtTelefono.getText(),
-							txtCargo.getText());
-					
-					adminView = new AdminView(nombreAdmin);
-					adminView.setVisible(true);
-					setVisible(false);
-					
-				}else {
-					errorUsuarioExistente();
-				}
+				presenter.agregarUsuario(txtNombre.getText(), txtPassword.getText(), txtDNI.getText(), txtEmail.getText(), txtTelefono.getText(), txtCargo.getText());			
 			}
 		});
 		btnNewButton.setBounds(152, 414, 161, 23);
@@ -132,23 +120,52 @@ public class AltaUsuarioView extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				adminView = new AdminView(nombreAdmin);
-				adminView.setVisible(true);
-				setVisible(false);
+				cerrarVista();
 			}
 		});
 		btnSalir.setBounds(383, 461, 89, 23);
 		contentPane.add(btnSalir);
 		
-
-		
 	}
 	
-	private void errorUsuarioExistente() {
+	public void setPresenter(AltaUsuarioPresenter altaUsuarioPresenter) {
+		presenter = altaUsuarioPresenter;
+		presenter.setVista(this);
+	}
+	
+	public void cerrarVista() {
+		adminView = new AdminView(nombreAdmin);
+		adminView.setVisible(true);
+		setVisible(false);
+	}
+	
+	public void errorUsuarioExistente() {
 		JOptionPane optionPane = new JOptionPane("Usuario existente", JOptionPane.ERROR_MESSAGE);    
 		JDialog dialog = optionPane.createDialog(this, "Advertencia");
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
 	}
+	
+	public void errorCampoVacio() {
+		JOptionPane optionPane = new JOptionPane("Uno de los campos está vacío", JOptionPane.ERROR_MESSAGE);    
+		JDialog dialog = optionPane.createDialog(this, "Advertencia");
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+	}
+	
+	public void errorNumeros() {
+		JOptionPane optionPane = new JOptionPane("Teléfono y DNI deben ser valores numéricos", JOptionPane.ERROR_MESSAGE);    
+		JDialog dialog = optionPane.createDialog(this, "Advertencia");
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+	}
+	
+	public void errorDni() {
+		JOptionPane optionPane = new JOptionPane("DNI no puede tener mas de 8 caracteres", JOptionPane.ERROR_MESSAGE);    
+		JDialog dialog = optionPane.createDialog(this, "Advertencia");
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+	}
+	
 }
 
