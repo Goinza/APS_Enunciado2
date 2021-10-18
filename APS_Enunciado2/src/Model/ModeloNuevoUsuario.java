@@ -24,7 +24,6 @@ public class ModeloNuevoUsuario {
 		DBConnection database = DBConnection.getInstance();
 		String query = "insert into Usuarios values ('" + usuario + "', '" + password + "', '" + nombre + "', '"
 				+ apellido + "', '" + cargo + "', '" + email + "', " + dni + ", " + telefono + "," + 0 + ");";
-		System.out.println(query);
 		database.realizarStatement(query);		
 	}
 	
