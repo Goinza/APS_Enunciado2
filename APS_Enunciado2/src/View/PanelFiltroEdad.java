@@ -75,24 +75,18 @@ public class PanelFiltroEdad extends JPanel {
 				String str_hasta = hasta.getText();
 				
 				if(str_desde.length() != 0 && str_hasta.length() != 0)
-				{
-					int edad_desde = Integer.valueOf(str_desde);
-					int edad_hasta = Integer.valueOf(str_hasta);
-					
-					boolean letras_en_desde = str_desde.matches("[a-zA-Z]+");
-					boolean letras_en_hasta = str_hasta.matches("[a-zA-Z]+");
-					boolean desde_negativo = edad_desde <= 0;
-					boolean hasta_negativo = edad_hasta <= 0;
-					
-					if(desde_negativo || hasta_negativo)
+				{					
+					try
 					{
-						presenter.mostrarAlerta("La Edad no puede ser un número negativo");
-					}
-					else
-					{
-						if(letras_en_desde || letras_en_hasta)
+						int edad_desde = Integer.valueOf(str_desde);
+						int edad_hasta = Integer.valueOf(str_hasta);
+						
+						boolean desde_negativo = edad_desde <= 0;
+						boolean hasta_negativo = edad_hasta <= 0;
+						
+						if(desde_negativo || hasta_negativo)
 						{
-							presenter.mostrarAlerta("La Edad solo puede ser un número entero");
+							presenter.mostrarAlerta("La Edad solo puede ser un número entero positivo");
 						}
 						else
 						{
@@ -108,6 +102,11 @@ public class PanelFiltroEdad extends JPanel {
 							}
 						}
 					}
+					catch(NumberFormatException exception)
+					{
+						presenter.mostrarAlerta("Solo son admisibles números enteros.");
+					}
+					
 				}				
 				else
 				{
