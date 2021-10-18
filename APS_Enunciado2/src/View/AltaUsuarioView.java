@@ -25,11 +25,13 @@ import java.awt.event.ActionEvent;
 public class AltaUsuarioView extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNombre;
+	private JTextField txtUsuario;
 	private JTextField txtPassword;
 	private JTextField txtEmail;
 	private JTextField txtTelefono;
 	private JTextField txtCargo;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
 	
 	private AdminView adminView;
 	private String nombreAdmin;
@@ -53,65 +55,94 @@ public class AltaUsuarioView extends JFrame {
 		lblNuevoUsuario.setBounds(169, 44, 133, 20);
 		contentPane.add(lblNuevoUsuario);
 		
-		JLabel lblUsuario = new JLabel("Usuario");
-		lblUsuario.setBounds(38, 130, 65, 14);
-		contentPane.add(lblUsuario);
+		int widthLabel = 78;
+		int widthText = 164;
+		int height = 20;
 		
-		JLabel lblPassword = new JLabel("Contrase\u00F1a");
-		lblPassword.setBounds(38, 177, 78, 14);
-		contentPane.add(lblPassword);
+		int xLabel = 38;
+		int xText = 212;
+		int y = 90;
 		
-		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(38, 260, 49, 14);
-		contentPane.add(lblEmail);
-		
-		JLabel lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(38, 298, 49, 14);
-		contentPane.add(lblTelefono);
-		
-		JLabel lblCargo = new JLabel("Cargo");
-		lblCargo.setBounds(38, 339, 49, 14);
-		contentPane.add(lblCargo);
-		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblNombre);		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(212, 127, 161, 20);
+		txtNombre.setBounds(xText, y, widthText, height);
 		contentPane.add(txtNombre);
-		txtNombre.setColumns(10);
 		
-		txtPassword = new JPasswordField();
-		txtPassword.setColumns(10);
-		txtPassword.setBounds(212, 174, 161, 20);
-		contentPane.add(txtPassword);
+		y += 40;
 		
-		txtEmail = new JTextField();
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(212, 257, 161, 20);
-		contentPane.add(txtEmail);
+		JLabel lblApellido = new JLabel("Apellido");
+		lblApellido.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblApellido);		
+		txtApellido = new JTextField();
+		txtApellido.setBounds(xText, y, widthText, height);
+		contentPane.add(txtApellido);
 		
-		txtTelefono = new JTextField();
-		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(212, 295, 161, 20);
-		contentPane.add(txtTelefono);
-		
-		txtCargo = new JTextField();
-		txtCargo.setColumns(10);
-		txtCargo.setBounds(212, 336, 161, 20);
-		contentPane.add(txtCargo);
+		y += 40;
 		
 		JLabel lblDNI = new JLabel("DNI");
-		lblDNI.setBounds(38, 221, 49, 14);
-		contentPane.add(lblDNI);
-		
+		lblDNI.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblDNI);		
 		txtDNI = new JTextField();
-		txtDNI.setBounds(212, 218, 161, 20);
+		txtDNI.setBounds(xText, y, widthText, height);
 		contentPane.add(txtDNI);
 		txtDNI.setColumns(10);
 		
+		y += 40;		
 		
+		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblUsuario);	
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(xText, y, widthText, height);
+		contentPane.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		y += 40;
+		
+		JLabel lblPassword = new JLabel("Contrase\u00F1a");
+		lblPassword.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblPassword);
+		txtPassword = new JPasswordField();
+		txtPassword.setColumns(10);
+		txtPassword.setBounds(xText, y, widthText, height);
+		contentPane.add(txtPassword);
+		
+		y += 40;
+		
+		JLabel lblEmail = new JLabel("Mail");
+		lblEmail.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblEmail);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(xText, y, widthText, height);
+		contentPane.add(txtEmail);
+		
+		y += 40;
+		
+		JLabel lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblTelefono);
+		txtTelefono = new JTextField();
+		txtTelefono.setColumns(10);
+		txtTelefono.setBounds(xText, y, widthText, height);
+		contentPane.add(txtTelefono);
+		
+		y += 40;
+		
+		JLabel lblCargo = new JLabel("Cargo");
+		lblCargo.setBounds(xLabel, y, widthLabel, height);
+		contentPane.add(lblCargo);
+		txtCargo = new JTextField();
+		txtCargo.setColumns(10);
+		txtCargo.setBounds(xText, y, widthText, height);
+		contentPane.add(txtCargo);
+
 		JButton btnNewButton = new JButton("Dar de alta usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				presenter.agregarUsuario(txtNombre.getText(), txtPassword.getText(), txtDNI.getText(), txtEmail.getText(), txtTelefono.getText(), txtCargo.getText());			
+				presenter.agregarUsuario(txtNombre.getText(), txtApellido.getText(), txtUsuario.getText(), txtPassword.getText(), txtDNI.getText(), txtEmail.getText(), txtTelefono.getText(), txtCargo.getText());			
 			}
 		});
 		btnNewButton.setBounds(152, 414, 161, 23);
@@ -162,6 +193,13 @@ public class AltaUsuarioView extends JFrame {
 	
 	public void errorDni() {
 		JOptionPane optionPane = new JOptionPane("DNI no puede tener mas de 8 caracteres", JOptionPane.ERROR_MESSAGE);    
+		JDialog dialog = optionPane.createDialog(this, "Advertencia");
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+	}
+	
+	public void errorLetras() {
+		JOptionPane optionPane = new JOptionPane("Los campos Nombre, Apellido, Usuario y Cargo deben comenzar con una letra", JOptionPane.ERROR_MESSAGE);    
 		JDialog dialog = optionPane.createDialog(this, "Advertencia");
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
