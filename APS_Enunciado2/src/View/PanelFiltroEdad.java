@@ -79,15 +79,34 @@ public class PanelFiltroEdad extends JPanel {
 					int edad_desde = Integer.valueOf(str_desde);
 					int edad_hasta = Integer.valueOf(str_hasta);
 					
-					if(edad_hasta < edad_desde)
+					boolean letras_en_desde = str_desde.matches("[a-zA-Z]+");
+					boolean letras_en_hasta = str_hasta.matches("[a-zA-Z]+");
+					boolean desde_negativo = edad_desde <= 0;
+					boolean hasta_negativo = edad_hasta <= 0;
+					
+					if(desde_negativo || hasta_negativo)
 					{
-						presenter.mostrarAlerta("El límite inferior debe ser menor o igual al límite superior para el rango de Edad en este Filtro");
+						presenter.mostrarAlerta("La Edad no puede ser un número negativo");
 					}
 					else
 					{
-						presenter.setFiltro(new FiltroEdad(edad_desde,edad_hasta));
-						cerrarFiltro();
-						presenter.renderizarVista();
+						if(letras_en_desde || letras_en_hasta)
+						{
+							presenter.mostrarAlerta("La Edad solo puede ser un número entero");
+						}
+						else
+						{
+							if(edad_hasta < edad_desde)
+							{
+								presenter.mostrarAlerta("El límite inferior debe ser menor o igual al límite superior para el rango de Edad en este Filtro");
+							}
+							else
+							{
+								presenter.setFiltro(new FiltroEdad(edad_desde,edad_hasta));
+								cerrarFiltro();
+								presenter.renderizarVista();
+							}
+						}
 					}
 				}				
 				else
