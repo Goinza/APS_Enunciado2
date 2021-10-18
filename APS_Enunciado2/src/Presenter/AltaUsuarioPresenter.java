@@ -21,6 +21,8 @@ public class AltaUsuarioPresenter {
 		if (camposCorrectos) {
 			modelo.agregarUsuario(nombre, apellido, usuario, password, dni, email, telefono, cargo);
 		}
+
+		vista.exitoUsuarioCreado();
 	}
 	
 	private boolean verificarCampos(String nombre, String apellido, String usuario, String password, String dni, String email, String telefono, String cargo) {
