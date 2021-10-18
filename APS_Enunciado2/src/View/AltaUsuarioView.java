@@ -176,16 +176,23 @@ public class AltaUsuarioView extends JFrame {
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
 	}
+
+	public void exitoUsuarioCreado() {
+		JOptionPane optionPane = new JOptionPane("Usuario creado con Ã©xito", JOptionPane.OK_MESSAGE);    
+		JDialog dialog = optionPane.createDialog(this, "Exito");
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+	}
 	
 	public void errorCampoVacio() {
-		JOptionPane optionPane = new JOptionPane("Uno de los campos está vacío", JOptionPane.ERROR_MESSAGE);    
+		JOptionPane optionPane = new JOptionPane("Uno de los campos estï¿½ vacï¿½o", JOptionPane.ERROR_MESSAGE);    
 		JDialog dialog = optionPane.createDialog(this, "Advertencia");
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
 	}
 	
 	public void errorNumeros() {
-		JOptionPane optionPane = new JOptionPane("Teléfono y DNI deben ser valores numéricos", JOptionPane.ERROR_MESSAGE);    
+		JOptionPane optionPane = new JOptionPane("Telï¿½fono y DNI deben ser valores numï¿½ricos", JOptionPane.ERROR_MESSAGE);    
 		JDialog dialog = optionPane.createDialog(this, "Advertencia");
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
