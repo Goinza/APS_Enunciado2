@@ -178,7 +178,7 @@ public class AltaUsuarioView extends JFrame {
 	}
 
 	public void exitoUsuarioCreado() {
-		JOptionPane optionPane = new JOptionPane("Usuario creado con éxito", JOptionPane.PLAIN_MESSAGE);    
+		JOptionPane optionPane = new JOptionPane("Alta de usuario exitosa", JOptionPane.PLAIN_MESSAGE);    
 		JDialog dialog = optionPane.createDialog(this, "Exito");
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
