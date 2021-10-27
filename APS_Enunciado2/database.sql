@@ -11,6 +11,7 @@ CREATE TABLE Personas (
     fecha_nacimiento DATE NOT NULL,
     mail VARCHAR(50) NOT NULL,
     dni INT UNSIGNED NOT NULL,
+    cargo VARCHAR(50) NOT NULL,
 
     CONSTRAINT pk_dni
     PRIMARY KEY (dni)

@@ -24,7 +24,8 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 				String apellido = result.getString("apellido");
 				String mail = result.getString("mail");
 				Fecha fechaNacimiento = new Fecha(result.getString("fecha_nacimiento"));
-				persona = new Persona(dni, nombre, apellido, mail, fechaNacimiento);	
+				String cargo = result.getString("cargo");
+				persona = new Persona(dni, nombre, apellido, mail, cargo, fechaNacimiento);
 			}
 		}
 		catch (SQLException e) {
@@ -41,7 +42,8 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		String fechaNacimiento = persona.obtenerFechaNacimiento().toString();
 		String mail = persona.obtenerMail();
 		int dni = persona.obtenerDni();
-		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ");";
+		String cargo = persona.obtenerCargo();
+		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ", "+ cargo + ");";
 		
 		DBConnection database = DBConnection.getInstance();
 		database.realizarStatement(query);
@@ -54,7 +56,7 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		DBConnection database = DBConnection.getInstance();
 		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "', " +
 									"apellido = '" + persona.obtenerApellido() + "', fecha_nacimiento = '" + persona.obtenerFechaNacimiento().toString() + "', " +
-									"mail = '" + persona.obtenerMail() + "', dni = " + persona.obtenerDni() + " WHERE dni = " + dni + ";");
+									"mail = '" + persona.obtenerMail() + "', dni = " + persona.obtenerDni() + ", cargo = " + persona.obtenerCargo() + " WHERE dni = " + dni + ";");
 	}
 
 }

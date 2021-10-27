@@ -1,15 +1,10 @@
 package View.CargaModificacionVacunados;
 
-import Model.Persona;
-import Model.Provincia;
-import Model.Vacuna;
 import Presenter.CargaModificacionVacunados.PresentadorDatos;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class VentanaModificacionVacunado extends VentanaDatosVacunado
 {
@@ -17,7 +12,7 @@ public class VentanaModificacionVacunado extends VentanaDatosVacunado
 
     public VentanaModificacionVacunado(PresentadorDatos presentador)
     {
-        super("Modificación", presentador);
+        super("ModificaciÃ³n", presentador);
         this.presentador = presentador;
         presentador.establecerVista(this);
 
