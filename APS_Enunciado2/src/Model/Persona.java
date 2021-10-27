@@ -6,22 +6,20 @@ import resources.Fecha;
 
 public class Persona
 {
-    int dni;
-    String nombre;
-    String apellido;
-    String mail;
-    Fecha fechaNacimiento;
+    private int dni;
+    private String nombre;
+    private String apellido;
+    private String mail;
+    private String cargo;
+    private Fecha fechaNacimiento;
 
-    public Persona()
-    {
-    }
-
-    public Persona(int dni, String nombre, String apellido, String mail, Fecha fechaNacimiento)
+    public Persona(int dni, String nombre, String apellido, String mail, String cargo, Fecha fechaNacimiento)
     {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
+        this.cargo = cargo;
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -63,6 +61,16 @@ public class Persona
     public void establecerMail(String mail)
     {
         this.mail = mail;
+    }
+
+    public String obtenerCargo()
+    {
+        return cargo;
+    }
+
+    public void establecerCargo(String cargo)
+    {
+        this.cargo = cargo;
     }
 
     public Fecha obtenerFechaNacimiento()

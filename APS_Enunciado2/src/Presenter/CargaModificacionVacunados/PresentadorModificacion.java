@@ -40,6 +40,7 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         vista.establecerRegion(region);
         vista.establecerVacuna(vacunaAplicada.obtenerVacuna().obtenerNombre());
         vista.establecerFechaPrimeraDosis(primeraDosis);
+        vista.deshabilitarCampoDNI();
         if(segundaDosis != null)
             vista.establecerFechaSegundaDosis(segundaDosis);
     }
@@ -50,27 +51,21 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         try
         {
             validarDatos();
-            int dni = Integer.valueOf(vista.obtenerDNI());
-            if (dni != vacunaAplicada.obtenerPersona().obtenerDni() && modeloPersona.obtenerPersona(dni) != null)
-                throw new PersonaYaAlmacenadaException();
-            else
-            {
-                Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerFechaDeNacimiento());
 
+            Persona persona = new Persona(vista.obtenerDNI(), vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerCargo(), vista.obtenerFechaDeNacimiento());
 
-                modeloPersona.actualizarPersona(vacunaAplicada.obtenerPersona().obtenerDni(), persona);
+            modeloPersona.actualizarPersona(vacunaAplicada.obtenerPersona().obtenerDni(), persona);
 
-                Vacuna vacuna = vista.obtenerVacuna();
-                Provincia provincia = vista.obtenerProvincia();
-                int region = vista.obtenerRegion();
-                Fecha primeraDosis = vista.obtenerFechaPrimeraDosis();
-                Fecha segundaDosis = vista.obtenerFechaSegundaDosis();
+            Vacuna vacuna = vista.obtenerVacuna();
+            Provincia provincia = vista.obtenerProvincia();
+            int region = vista.obtenerRegion();
+            Fecha primeraDosis = vista.obtenerFechaPrimeraDosis();
+            Fecha segundaDosis = vista.obtenerFechaSegundaDosis();
 
-                VacunaAplicada nuevaVacunaAplicada = new VacunaAplicada(persona, vacuna,(segundaDosis == null? 1 : 2), primeraDosis, segundaDosis, provincia, region);
+            VacunaAplicada nuevaVacunaAplicada = new VacunaAplicada(persona, vacuna,(segundaDosis == null? 1 : 2), primeraDosis, segundaDosis, provincia, region);
 
-                modeloVacunasAplicadas.actualizarVacunaAplicada(nuevaVacunaAplicada,vacunaAplicada.obtenerPersona().obtenerDni());
-                fin();
-            }
+            modeloVacunasAplicadas.actualizarVacunaAplicada(nuevaVacunaAplicada,vacunaAplicada.obtenerPersona().obtenerDni());
+            fin();
         } catch (NombreNoValidoException e) {
             vista.mostrarAlerta("El campo Nombre se encuentra vacío o presenta un formato no válido.");
         } catch (MailNoValidoException e) {
@@ -89,8 +84,8 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
             vista.mostrarAlerta("Seleccione una Provincia.");
         } catch (DNINoValidoException e) {
             vista.mostrarAlerta("El campo DNI se encuentra vacío o presenta un formato no válido.");
-        } catch (PersonaYaAlmacenadaException e) {
-            vista.mostrarAlerta("Imposible guardar: ya se registra una instancia de vacunación para el documento ingresado.");
+        } catch (CargoNoValidoException e) {
+            vista.mostrarAlerta("Ingrese un cargo.");
         }
     }
 }

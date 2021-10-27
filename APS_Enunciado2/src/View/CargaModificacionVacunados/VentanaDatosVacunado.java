@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Map;
 
 public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosVacunado
@@ -24,7 +23,8 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     JTextField tfApellido;
     JTextField tfDNI;
     PanelFecha pnFechaDeNacimiento;
-    JTextField tfMailVacunado;
+    JTextField tfMail;
+    JTextField tfCargo;
     JComboBox cbVacuna;
     PanelFecha pnFechaPrimeraDosis;
     PanelFecha pnFechaSegundaDosis;
@@ -67,6 +67,18 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         });
     }
 
+    @Override
+    public String obtenerCargo()
+    {
+        return tfCargo.getText();
+    }
+
+    @Override
+    public void establecerCargo(String cargo)
+    {
+        tfCargo.setText(cargo);
+    }
+
     private void inicializarPanelCampos()
     {
         JPanel panelCampos = new JPanel(new GridLayout(0, 2, 5, 5));
@@ -76,6 +88,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         JLabel lbDNIVacunado = new JLabel("   DNI");
         JLabel lbFechaNacimiento = new JLabel("   Fecha de nacimiento");
         JLabel lbMailVacunado = new JLabel("   Correo electrónico");
+        JLabel lbCargo = new JLabel("   Cargo");
         JLabel lbVacuna = new JLabel("   Vacuna");
         JLabel lbFechaPrimeraDosis = new JLabel("   Fecha de primera dosis");
         JLabel lbFechaSegundaDosis = new JLabel("   Fecha de segunda dosis");
@@ -86,11 +99,12 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         tfNombre = new JTextField();
         tfApellido = new JTextField();
         pnFechaDeNacimiento = new PanelFecha();
+        tfCargo = new JTextField();
         cbVacuna = new JComboBox();
         pnFechaPrimeraDosis = new PanelFecha();
         pnFechaSegundaDosis = new PanelFecha();
         tfDosisAplicadas = new JTextField();
-        tfMailVacunado = new JTextField();
+        tfMail = new JTextField();
         tfDNI = new JTextField();
         cbProvincia = new JComboBox();
         cbRegion = new JComboBox();
@@ -109,7 +123,9 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         panelCampos.add(lbDNIVacunado);
         panelCampos.add(tfDNI);
         panelCampos.add(lbMailVacunado);
-        panelCampos.add(tfMailVacunado);
+        panelCampos.add(tfMail);
+        panelCampos.add(lbCargo);
+        panelCampos.add(tfCargo);
         panelCampos.add(lbFechaNacimiento);
         panelCampos.add(pnFechaDeNacimiento);
         panelCampos.add(lbProvinciaDeVacunacion);
@@ -141,7 +157,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
                 {
                     cbProvincia.setSelectedIndex(0);
                     cbRegion.setEnabled(false);
-                    //cbVacuna.setSelectedIndex(0);
+                    cbVacuna.setSelectedIndex(0);
                     cbVacuna.setEnabled(false);
                 }
             }
@@ -164,6 +180,20 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
             }
         });
 
+        pnFechaPrimeraDosis.establecerOyente(new OyentePanelFecha()
+        {
+            @Override
+            public void seleccionValida()
+            {
+                pnFechaSegundaDosis.activar();
+            }
+
+            @Override
+            public void seleccionNoValida()
+            {
+                pnFechaSegundaDosis.desactivar();
+            }
+        });
     }
 
     private void inicializarPanelInferior()
@@ -284,13 +314,13 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     @Override
     public String obtenerMail()
     {
-        return tfMailVacunado.getText();
+        return tfMail.getText();
     }
 
     @Override
     public void establecerMail(String mail)
     {
-        tfMailVacunado.setText(mail);
+        tfMail.setText(mail);
     }
 
     @Override
@@ -310,6 +340,18 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     public void establecerDNI(int dni)
     {
         tfDNI.setText(String.valueOf(dni));
+    }
+
+    @Override
+    public void habilitarCampoDNI()
+    {
+        tfDNI.setEnabled(true);
+    }
+
+    @Override
+    public void deshabilitarCampoDNI()
+    {
+        tfDNI.setEnabled(false);
     }
 
     @Override
