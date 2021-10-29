@@ -22,11 +22,13 @@ import View.VacunasVencidasView;
 public class VacunasVencidasPresenter {
 		private VacunasVencidasModel modelo;
 		private VacunasVencidasView vista;
+		private int cant_vencidas;
 		
 		public VacunasVencidasPresenter()
 		{
 			modelo = new VacunasVencidasModel();
 			vista = new VacunasVencidasView();
+			cant_vencidas = 0;
 		}
 		
 		/*public VacunasVencidasPresenter(boolean admin_logueado, Filtro filtro) {
@@ -40,7 +42,16 @@ public class VacunasVencidasPresenter {
 			Vector<String> columnas = modelo.getNombreColumnas();
 			Vector<Vector<Object>> filas = modelo.getFilas();
 			
-			vista.rellenarTabla(filas, columnas);
+			for(Vector<Object> fila : filas)
+			{
+				if(fila.get(11).equals("Si"))
+				{
+					cant_vencidas++;
+				}
+				
+			}
+			
+			vista.rellenarTabla(filas, columnas,cant_vencidas);
 			vista.setVisible(true);
 		}
 		
