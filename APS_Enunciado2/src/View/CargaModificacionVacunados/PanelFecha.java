@@ -16,6 +16,7 @@ public class PanelFecha extends JPanel
     private JComboBox cbDia;
     private JComboBox cbMes;
     private JComboBox cbAgno;
+    private OyentePanelFecha oyente;
 
     public PanelFecha()
     {
@@ -37,6 +38,11 @@ public class PanelFecha extends JPanel
         desactivar();
 
         asignarListeners();
+    }
+
+    public void establecerOyente(OyentePanelFecha oyente)
+    {
+        this.oyente = oyente;
     }
 
     private void initCBDia(int cantDias)
@@ -222,6 +228,4 @@ public class PanelFecha extends JPanel
     	establecerFecha(hoy);
     	
     }
-    
-    
 }

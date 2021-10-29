@@ -29,7 +29,7 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
                 throw new PersonaYaAlmacenadaException();
             else
             {
-                Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerFechaDeNacimiento());
+                Persona persona = new Persona(dni, vista.obtenerNombre(), vista.obtenerApellido(), vista.obtenerMail(), vista.obtenerCargo(), vista.obtenerFechaDeNacimiento());
 
                 modeloPersona.almacenarPersona(persona);
 
@@ -65,6 +65,8 @@ public class PresentadorCargaVacunado extends PresentadorVacunadoAbs
             vista.mostrarAlerta("El campo DNI se encuentra vacío o presenta un formato no válido.");
         } catch (PersonaYaAlmacenadaException e) {
             vista.mostrarAlerta("Imposible guardar: ya se registra una instancia de vacunación para el ciudadano ingresado.");
+        } catch (CargoNoValidoException e) {
+            vista.mostrarAlerta("Ingrese un cargo.");
         }
     }
 }

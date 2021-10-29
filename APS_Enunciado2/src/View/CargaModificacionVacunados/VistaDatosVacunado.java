@@ -4,7 +4,6 @@ import Model.Provincia;
 import Model.Vacuna;
 import resources.Fecha;
 
-import java.util.Date;
 import java.util.List;
 
 public interface VistaDatosVacunado
@@ -41,9 +40,17 @@ public interface VistaDatosVacunado
 
     void establecerMail(String mail);
 
+    String obtenerCargo();
+
+    void establecerCargo(String cargo);
+
     int obtenerDNI();
 
     void establecerDNI(int dni);
+
+    void habilitarCampoDNI();
+
+    void deshabilitarCampoDNI();
 
     Provincia obtenerProvincia();
 

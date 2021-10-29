@@ -64,6 +64,12 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
             throw new MailNoValidoException();
     }
 
+    private void validarCargo() throws CargoNoValidoException
+    {
+        if (vista.obtenerCargo().isBlank())
+            throw new CargoNoValidoException();
+    }
+
     private void validarFechaNacimiento() throws FechaDeNacimientoNoValidaException
     {
     	Fecha fecha = vista.obtenerFechaDeNacimiento();
@@ -97,12 +103,13 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     protected void validarDatos() throws RegionSanitariaNoValidaException, ProvinciaNoValidException, DosisNoValidasException,
             VacunaNoValidaException, MailNoValidoException, FechaDeNacimientoNoValidaException,
-                        DNINoValidoException, ApellidoNoValidoException, NombreNoValidoException
+            DNINoValidoException, ApellidoNoValidoException, NombreNoValidoException, CargoNoValidoException
     {
         validarNombre();
         validarApellido();
         validarDNI();
         validarMail();
+        validarCargo();
         validarFechaNacimiento();
         validarVacuna();
         validarDosis();

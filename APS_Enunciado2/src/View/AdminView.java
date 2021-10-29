@@ -8,8 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Presenter.AltaUsuarioPresenter;
+import Presenter.UsuariosRegistradosPresenter;
 import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
+import Presenter.VacunasVencidasPresenter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -27,6 +29,9 @@ public class AdminView extends JFrame {
 	private JPanel contentPane;
 	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
 	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
+	private VacunasVencidasPresenter vacunasVencidasPresenter;
+	private UsuariosRegistradosPresenter usuariosRegistradosPresenter;
+	private UsuariosRegistradosView usuariosRegistradosView;
 	private AltaUsuarioView altaUsuarioView;
 	private LoginUserAdminView loginUserAdminView;
 	
@@ -87,6 +92,24 @@ public class AdminView extends JFrame {
 			}
 		});
 		
+		JButton btnVerUsuariosRegistrados = new JButton("Ver usuarios registrados");
+		btnVerUsuariosRegistrados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				usuariosRegistradosView = new UsuariosRegistradosView();
+				usuariosRegistradosView.setPresenter(new UsuariosRegistradosPresenter());
+				usuariosRegistradosView.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
+		JButton btnVacunasVencidas = new JButton("Vacunas Vencidas");
+		btnVacunasVencidas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vacunasVencidasPresenter = new VacunasVencidasPresenter();
+				vacunasVencidasPresenter.renderizarVista();
+			}
+		});
+		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -102,10 +125,14 @@ public class AdminView extends JFrame {
 						.addComponent(lblUsuarioAdministrador, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(221)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnRegistrarNuevoUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnVacunasVencidas, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVerUsuariosRegistrados, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnRegistrarNuevoUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(209))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -116,13 +143,17 @@ public class AdminView extends JFrame {
 						.addComponent(lblNombreUsuario))
 					.addGap(18)
 					.addComponent(lblUsuarioAdministrador)
-					.addGap(70)
+					.addGap(58)
 					.addComponent(btnVerVacunasAplicadas)
-					.addGap(29)
+					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addGap(29)
+					.addGap(13)
+					.addComponent(btnVacunasVencidas)
+					.addGap(18)
 					.addComponent(btnRegistrarNuevoUsuario)
-					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(btnVerUsuariosRegistrados)
+					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
 					.addComponent(btnSalir)
 					.addContainerGap())
 		);

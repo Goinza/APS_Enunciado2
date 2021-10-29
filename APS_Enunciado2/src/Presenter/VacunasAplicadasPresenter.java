@@ -1,15 +1,7 @@
 package Presenter;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Vector;
-
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import Model.*;
 import Model.Filtros.Filtro;
 import Model.Filtros.SinFiltro;
@@ -53,6 +45,9 @@ public class VacunasAplicadasPresenter
 		String apellido = vacunasAplicadasTable.getValueAt(selectedRow, 1).toString(); // Apellido
 		Fecha fecha = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 2).toString()); // Fecha de nacimiento?
 		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString(); // Nombre de vacuna
+
+		String cargo = "";// TODO: 27/10/2021 PREGUNTAR SI EL CARGO VA EN LA TABLA DE VACUNAS APLICADAS
+
 		Fecha primeraDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
 		Fecha segundaDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
 		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
@@ -61,11 +56,11 @@ public class VacunasAplicadasPresenter
 		String provincia = vacunasAplicadasTable.getValueAt(selectedRow, 9).toString();
 		int region = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 10).toString());
 
-		Persona persona = new Persona(dni, nombre, apellido, mail, fecha);
+		Persona persona = new Persona(dni, nombre, apellido, mail, "", fecha);
 		VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, new Vacuna(nombreVacuna), primeraDosis, segundaDosis, new Provincia(provincia), region);
 
 		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);
-		VentanaModificacionVacunado vista = new VentanaModificacionVacunado(presentador);
+		new VentanaModificacionVacunado(presentador);
 	}
 	
 	public void setFiltro(Filtro filtro)
