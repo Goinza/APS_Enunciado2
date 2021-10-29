@@ -55,8 +55,7 @@ public class VacunasAplicadasPresenter
 		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString(); // Nombre de vacuna
 		Fecha primeraDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
 		Fecha segundaDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
-		System.out.println(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
-		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString()) ;
+		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
 		String mail = vacunasAplicadasTable.getValueAt(selectedRow, 7).toString();
 		int dni = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 8).toString());
 		String provincia = vacunasAplicadasTable.getValueAt(selectedRow, 9).toString();
