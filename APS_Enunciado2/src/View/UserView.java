@@ -73,17 +73,8 @@ public class UserView extends JFrame {
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnVerVacunasDisponibles))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(177)
-							.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
-					.addGap(181))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addGap(34)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -93,6 +84,12 @@ public class UserView extends JFrame {
 						.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(35, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(129, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE))
+					.addGap(103))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -103,11 +100,11 @@ public class UserView extends JFrame {
 						.addComponent(lblBienvenido))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblUsuarioComun)
-					.addGap(83)
+					.addGap(97)
 					.addComponent(btnVerVacunasAplicadas)
 					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addGap(115)
+					.addGap(101)
 					.addComponent(btnSalir)
 					.addContainerGap(57, Short.MAX_VALUE))
 		);
