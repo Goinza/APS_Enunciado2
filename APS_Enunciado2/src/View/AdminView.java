@@ -96,7 +96,7 @@ public class AdminView extends JFrame {
 		btnVerUsuariosRegistrados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				usuariosRegistradosView = new UsuariosRegistradosView();
-				usuariosRegistradosView.setPresenter(new UsuariosRegistradosPresenter());
+				usuariosRegistradosView.setPresenter(new UsuariosRegistradosPresenter(usuariosRegistradosView));
 				usuariosRegistradosView.setVisible(true);
 				setVisible(false);
 			}
