@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -25,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 public class VacunasVencidasView extends JFrame
 {
@@ -33,6 +35,7 @@ public class VacunasVencidasView extends JFrame
 	private JScrollPane scrollAplicadas;
 	private boolean esAdmin;
 	private VacunasVencidasPresenter presenter;
+	private JButton btnTotalDePersonas;
     //private JComboBox dropDownFiltros;
     private Filtro filtroActual;
 
@@ -76,7 +79,7 @@ public class VacunasVencidasView extends JFrame
 		});
 		contentPane.add(btnVolver);
 		
-		JButton btnTotalDePersonas = new JButton("Total de Personas con 1\u00B0 dosis Vencida");
+		btnTotalDePersonas = new JButton("Total de Personas con 1ra dosis Vencida");
 		btnTotalDePersonas.setBounds(863, 397, 225, 21);
 		contentPane.add(btnTotalDePersonas);
 		
@@ -87,7 +90,7 @@ public class VacunasVencidasView extends JFrame
 		this.presenter = presenter;
 	}
 	
-	public void rellenarTabla(Vector<Vector<Object>> datos, Vector<String> nombreColumnas)
+	public void rellenarTabla(Vector<Vector<Object>> datos, Vector<String> nombreColumnas,int cant_vacunas_vencidas)
 	{
 		if (scrollAplicadas != null) {
 			contentPane.remove(scrollAplicadas);
@@ -95,6 +98,12 @@ public class VacunasVencidasView extends JFrame
 		vacunasAplicadasTable = new JTable(datos, nombreColumnas);
 		vacunasAplicadasTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		vacunasAplicadasTable.setBounds(33, 65, 655, 327);
+		
+		btnTotalDePersonas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarCantidad("El total de personas con la 1° dosis vencida es\n\n",cant_vacunas_vencidas);
+			}
+		});
 			
 		scrollAplicadas = new JScrollPane(vacunasAplicadasTable);
 		scrollAplicadas.setBounds(10, 65, 1113, 327);
@@ -149,6 +158,27 @@ public class VacunasVencidasView extends JFrame
 	public void mostrarAlerta(String msg)
 	{
 		JOptionPane.showMessageDialog(this, msg, "Información", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mostrarCantidad(String msg,int cant)
+	{
+		JPanel panelCantidad = new JPanel();
+		panelCantidad.setLayout(null);
+		
+		JLabel msg_label = new JLabel(msg);
+		msg_label.setHorizontalAlignment(SwingConstants.CENTER);
+		msg_label.setBounds(0, 20, 300, 23);
+		
+		JLabel cant_label = new JLabel(Integer.toString(cant));
+		cant_label.setHorizontalAlignment(SwingConstants.CENTER);
+		cant_label.setBounds(75, 45, 100, 30);
+		
+		panelCantidad.add(msg_label);
+		panelCantidad.add(cant_label);
+		
+		panelCantidad.setPreferredSize(new Dimension(300, 75));
+		
+		JOptionPane.showMessageDialog(this, panelCantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
