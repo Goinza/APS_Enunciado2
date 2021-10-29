@@ -113,6 +113,11 @@ SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha 
  VA.cantidad_dosis AS "Cantidad Dosis", P.mail AS Mail, P.dni as DNI, Pr.nombre_provincia AS Provincia, R.id_region AS "Region Sanitaria"
 FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
 
+CREATE VIEW Vacunas_Vencidas AS
+SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha Nacimiento", V.nombre_vacuna AS Vacuna, VA.primera_dosis AS "Primera Dosis", VA.segunda_dosis AS "Segunda Dosis",
+ VA.cantidad_dosis AS "Cantidad Dosis", P.mail AS Mail, P.dni as DNI, Pr.nombre_provincia AS Provincia, R.id_region AS "Region Sanitaria", (CASE WHEN (VA.segunda_dosis IS NOT NULL) THEN "No" ELSE (IF(V.nombre_vacuna = 'Sinopharm', IF(TIMESTAMPDIFF(WEEK, VA.primera_dosis, curdate())>4,"Si","No"),IF(TIMESTAMPDIFF(WEEK, VA.primera_dosis, curdate())>12,"Si","No"))) END) AS "1ra Dosis Vencida"
+FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
+
 CREATE VIEW Vacunas_Disponibles AS
 SELECT p.nombre_provincia AS 'Provincia',(CASE WHEN (tabla_aplicadas.idpcia IS NOT NULL) THEN vent.cantidad - tabla_aplicadas.aplicadas ELSE vent.cantidad END) AS 'Cantidad de Vacunas Disponibles', v.nombre_vacuna 'Tipo de Vacuna'
 FROM Vacunas_Entregadas vent 
