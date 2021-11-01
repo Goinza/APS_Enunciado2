@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
+import Presenter.VacunasVencidasPresenter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,6 +25,7 @@ public class UserView extends JFrame {
 	private JPanel contentPane;
 	private VacunasDisponiblesPresenter vacunasDisponiblesPresenter;
 	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
+	private VacunasVencidasPresenter vacunasVencidasPresenter;
 	private LoginUserAdminView loginUserAdminView;
 
 	public UserView(String userName) {
@@ -71,9 +73,17 @@ public class UserView extends JFrame {
 				setVisible(false);
 			}
 		});
+		
+		JButton btnVacunasVencidas = new JButton("Vacunas Vencidas");
+		btnVacunasVencidas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vacunasVencidasPresenter = new VacunasVencidasPresenter();
+				vacunasVencidasPresenter.renderizarVista();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(34)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -84,11 +94,12 @@ public class UserView extends JFrame {
 						.addComponent(lblUsuarioComun, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(35, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(129, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnVacunasVencidas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
 					.addGap(103))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -104,9 +115,11 @@ public class UserView extends JFrame {
 					.addComponent(btnVerVacunasAplicadas)
 					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addGap(101)
+					.addGap(28)
+					.addComponent(btnVacunasVencidas)
+					.addGap(52)
 					.addComponent(btnSalir)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addContainerGap(64, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

@@ -44,7 +44,7 @@ public class AdminView extends JFrame {
 	
 	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 596, 450);
+		setBounds(100, 100, 540, 466);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,6 +110,8 @@ public class AdminView extends JFrame {
 			}
 		});
 		
+		JButton btnPersonalEsencialVacunado = new JButton("Personal Esencial Vacunado");
+		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -123,12 +125,15 @@ public class AdminView extends JFrame {
 							.addComponent(lblBienvenido, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 							.addGap(35)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(btnRegistrarNuevoUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnVerVacunasDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnVerVacunasAplicadas, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnVerUsuariosRegistrados, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-									.addComponent(btnVacunasVencidas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(btnVacunasVencidas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnRegistrarNuevoUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnVerVacunasAplicadas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+										.addComponent(btnVerVacunasDisponibles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnVerUsuariosRegistrados, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+										.addComponent(btnPersonalEsencialVacunado, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE))
+									.addContainerGap())
 								.addComponent(lblNombreUsuario, GroupLayout.PREFERRED_SIZE, 425, GroupLayout.PREFERRED_SIZE)))))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -140,19 +145,21 @@ public class AdminView extends JFrame {
 						.addComponent(lblNombreUsuario))
 					.addGap(18)
 					.addComponent(lblUsuarioAdministrador)
-					.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+					.addGap(45)
 					.addComponent(btnVerVacunasAplicadas)
 					.addGap(18)
 					.addComponent(btnVerVacunasDisponibles)
-					.addGap(13)
+					.addGap(18)
 					.addComponent(btnVacunasVencidas)
 					.addGap(18)
 					.addComponent(btnRegistrarNuevoUsuario)
 					.addGap(18)
 					.addComponent(btnVerUsuariosRegistrados)
-					.addGap(47)
+					.addGap(18)
+					.addComponent(btnPersonalEsencialVacunado)
+					.addGap(33)
 					.addComponent(btnSalir)
-					.addContainerGap())
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
