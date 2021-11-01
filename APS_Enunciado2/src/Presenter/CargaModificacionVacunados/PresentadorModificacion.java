@@ -8,8 +8,6 @@ import Model.VacunaAplicada;
 import Presenter.VacunasAplicadasPresenter;
 import resources.Fecha;
 
-import java.util.Date;
-
 public class PresentadorModificacion extends PresentadorVacunadoAbs
 {
     VacunaAplicada vacunaAplicada;
@@ -34,6 +32,7 @@ public class PresentadorModificacion extends PresentadorVacunadoAbs
         vista.establecerApellido(persona.obtenerApellido());
         vista.establecerDNI(persona.obtenerDni());
         vista.establecerMail(vacunaAplicada.obtenerPersona().obtenerMail());
+        vista.establecerCargo(vacunaAplicada.obtenerPersona().obtenerCargo().obtenerNombreCargo());
         vista.establecerFecha(persona.obtenerFechaNacimiento());
         vista.establecerProvincia(vacunaAplicada.obtenerProvincia().obtenerNombre());
         provinciaSeleccionada();

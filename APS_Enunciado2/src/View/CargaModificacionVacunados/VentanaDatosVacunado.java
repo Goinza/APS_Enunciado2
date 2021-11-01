@@ -1,5 +1,6 @@
 package View.CargaModificacionVacunados;
 
+import Model.Cargo;
 import Model.Provincia;
 import Model.Vacuna;
 import Presenter.CargaModificacionVacunados.PresentadorDatos;
@@ -24,7 +25,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     JTextField tfDNI;
     PanelFecha pnFechaDeNacimiento;
     JTextField tfMail;
-    JTextField tfCargo;
+    JComboBox cbCargos;
     JComboBox cbVacuna;
     PanelFecha pnFechaPrimeraDosis;
     PanelFecha pnFechaSegundaDosis;
@@ -34,6 +35,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
 
     Map<String, Provincia> mapeoProvincias;
     Map<String, Vacuna> mapeoVacunas;
+    Map<String, Cargo> mapeoCargos;
 
     JPanel[][] celdasInferiores;
     JButton btnCancelar;
@@ -68,15 +70,15 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
     }
 
     @Override
-    public String obtenerCargo()
+    public Cargo obtenerCargo()
     {
-        return tfCargo.getText();
+        return mapeoCargos.get(cbCargos.getSelectedItem());
     }
 
     @Override
     public void establecerCargo(String cargo)
     {
-        tfCargo.setText(cargo);
+        cbCargos.setSelectedItem(cargo);
     }
 
     private void inicializarPanelCampos()
@@ -99,7 +101,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         tfNombre = new JTextField();
         tfApellido = new JTextField();
         pnFechaDeNacimiento = new PanelFecha();
-        tfCargo = new JTextField();
+        cbCargos = new JComboBox();
         cbVacuna = new JComboBox();
         pnFechaPrimeraDosis = new PanelFecha();
         pnFechaSegundaDosis = new PanelFecha();
@@ -125,7 +127,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         panelCampos.add(lbMailVacunado);
         panelCampos.add(tfMail);
         panelCampos.add(lbCargo);
-        panelCampos.add(tfCargo);
+        panelCampos.add(cbCargos);
         panelCampos.add(lbFechaNacimiento);
         panelCampos.add(pnFechaDeNacimiento);
         panelCampos.add(lbProvinciaDeVacunacion);
@@ -420,6 +422,21 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         for (Integer n : regionesSanitarias)
             a[i++] = n.toString();
         actualizarComboBox(cbRegion, a);
+    }
+
+    @Override
+    public void actualizarCargos(List<Cargo> cargos)
+    {
+        String[] a = new String[cargos.size()];
+        mapeoCargos = new HashMap<>();
+
+        int i = 0;
+        for (Cargo c : cargos)
+        {
+            a[i++] = c.toString();
+            mapeoCargos.put(c.obtenerNombreCargo(), c);
+        }
+        actualizarComboBox(cbCargos, a);
     }
 
     @Override

@@ -44,19 +44,17 @@ public class VacunasAplicadasPresenter
 		String nombre = vacunasAplicadasTable.getValueAt(selectedRow, 0).toString(); // Nombre
 		String apellido = vacunasAplicadasTable.getValueAt(selectedRow, 1).toString(); // Apellido
 		Fecha fecha = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 2).toString()); // Fecha de nacimiento?
-		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString(); // Nombre de vacuna
+		String cargo = vacunasAplicadasTable.getValueAt(selectedRow, 3).toString();
+		String nombreVacuna = vacunasAplicadasTable.getValueAt(selectedRow, 4).toString(); // Nombre de vacuna
+		Fecha primeraDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
+		Fecha segundaDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
+		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 7).toString());
+		String mail = vacunasAplicadasTable.getValueAt(selectedRow, 8).toString();
+		int dni = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 9).toString());
+		String provincia = vacunasAplicadasTable.getValueAt(selectedRow, 10).toString();
+		int region = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 11).toString());
 
-		String cargo = "";// TODO: 27/10/2021 PREGUNTAR SI EL CARGO VA EN LA TABLA DE VACUNAS APLICADAS
-
-		Fecha primeraDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 4).toString());
-		Fecha segundaDosis = new Fecha(vacunasAplicadasTable.getValueAt(selectedRow, 5).toString());
-		int cantidadDosis = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 6).toString());
-		String mail = vacunasAplicadasTable.getValueAt(selectedRow, 7).toString();
-		int dni = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 8).toString());
-		String provincia = vacunasAplicadasTable.getValueAt(selectedRow, 9).toString();
-		int region = Integer.valueOf(vacunasAplicadasTable.getValueAt(selectedRow, 10).toString());
-
-		Persona persona = new Persona(dni, nombre, apellido, mail, "", fecha);
+		Persona persona = new Persona(dni, nombre, apellido, mail, new Cargo(0, cargo, true), fecha);
 		VacunaAplicada vacunaAplicada = new VacunaAplicada(persona, new Vacuna(nombreVacuna), primeraDosis, segundaDosis, new Provincia(provincia), region);
 
 		PresentadorModificacion presentador = new PresentadorModificacion(vacunaAplicada, this);

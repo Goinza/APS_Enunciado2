@@ -2,11 +2,6 @@ package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import resources.DBConnection;
 import resources.Fecha;
@@ -24,7 +19,7 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 				String apellido = result.getString("apellido");
 				String mail = result.getString("mail");
 				Fecha fechaNacimiento = new Fecha(result.getString("fecha_nacimiento"));
-				String cargo = result.getString("cargo");
+				Cargo cargo =  new ModeloCargosImpl().obtenerCargo(Integer.valueOf(result.getString("cargo")));
 				persona = new Persona(dni, nombre, apellido, mail, cargo, fechaNacimiento);
 			}
 		}
@@ -42,7 +37,7 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		String fechaNacimiento = persona.obtenerFechaNacimiento().toString();
 		String mail = persona.obtenerMail();
 		int dni = persona.obtenerDni();
-		String cargo = persona.obtenerCargo();
+		int cargo = persona.obtenerCargo().obtenerId();
 		String query = "INSERT INTO Personas VALUES ('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "', '" + mail + "', " + dni + ", "+ cargo + ");";
 		
 		DBConnection database = DBConnection.getInstance();

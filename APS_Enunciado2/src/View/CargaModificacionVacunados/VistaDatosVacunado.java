@@ -1,5 +1,6 @@
 package View.CargaModificacionVacunados;
 
+import Model.Cargo;
 import Model.Provincia;
 import Model.Vacuna;
 import resources.Fecha;
@@ -40,7 +41,7 @@ public interface VistaDatosVacunado
 
     void establecerMail(String mail);
 
-    String obtenerCargo();
+    Cargo obtenerCargo();
 
     void establecerCargo(String cargo);
 
@@ -65,6 +66,8 @@ public interface VistaDatosVacunado
     void actualizarProvincias(List<Provincia> provincias);
 
     void actualizarRegiones(List<Integer> regionesSanitarias);
+
+    void actualizarCargos(List<Cargo> cargos);
 
     boolean dosisValidas();
 

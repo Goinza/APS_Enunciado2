@@ -14,12 +14,14 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     protected VistaDatosVacunado vista;
     protected ModeloPersonas modeloPersona;
     protected ModeloProvincias modeloProvincias;
+    protected ModeloCargos modeloCargos;
     protected ModeloVacunas modeloVacunas;
     protected VacunasAplicadasModel modeloVacunasAplicadas;
     protected VacunasAplicadasPresenter presentadorVacunasAplicadas;
     
     protected PresentadorVacunadoAbs(VacunasAplicadasPresenter presentadorVacunasAplicadas) {
     	modeloPersona = new ModeloPersonaImpl();
+        modeloCargos = new ModeloCargosImpl();
     	modeloProvincias = new ModeloProvinciasImpl();
     	modeloVacunas = new ModeloVacunasImpl();
     	modeloVacunasAplicadas = new VacunasAplicadasModel();
@@ -66,7 +68,8 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
 
     private void validarCargo() throws CargoNoValidoException
     {
-        if (vista.obtenerCargo().isBlank())
+        Cargo cargo = vista.obtenerCargo();
+        if (cargo == null)
             throw new CargoNoValidoException();
     }
 
@@ -128,6 +131,8 @@ public abstract class PresentadorVacunadoAbs implements PresentadorDatos
     {
         List<Provincia> provincias = modeloProvincias.obtenerProvincias();
         vista.actualizarProvincias(provincias);
+        List<Cargo> cargos = modeloCargos.obtenerCargos();
+        vista.actualizarCargos(cargos);
     }
 
     @Override

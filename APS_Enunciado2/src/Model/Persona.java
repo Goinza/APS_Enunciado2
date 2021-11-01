@@ -10,10 +10,10 @@ public class Persona
     private String nombre;
     private String apellido;
     private String mail;
-    private String cargo;
+    private Cargo cargo;
     private Fecha fechaNacimiento;
 
-    public Persona(int dni, String nombre, String apellido, String mail, String cargo, Fecha fechaNacimiento)
+    public Persona(int dni, String nombre, String apellido, String mail, Cargo cargo, Fecha fechaNacimiento)
     {
         this.dni = dni;
         this.nombre = nombre;
@@ -63,12 +63,12 @@ public class Persona
         this.mail = mail;
     }
 
-    public String obtenerCargo()
+    public Cargo obtenerCargo()
     {
         return cargo;
     }
 
-    public void establecerCargo(String cargo)
+    public void establecerCargo(Cargo cargo)
     {
         this.cargo = cargo;
     }
