@@ -109,7 +109,7 @@ GRANT ALL PRIVILEGES ON vacunas.* TO "administrador"@"localhost" WITH GRANT OPTI
 # ---------------------------------------------------------------------------- VISTAS ----------------------------------------------------------------------------------------------
 
 CREATE VIEW Aplicacion_Vacunas AS
-SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.fecha_nacimiento AS "Fecha Nacimiento", V.nombre_vacuna AS Vacuna, VA.primera_dosis AS "Primera Dosis", VA.segunda_dosis AS "Segunda Dosis",
+SELECT P.nombre AS Nombre, P.apellido AS Apellido, P.cargo, P.fecha_nacimiento AS "Fecha Nacimiento", V.nombre_vacuna AS Vacuna, VA.primera_dosis AS "Primera Dosis", VA.segunda_dosis AS "Segunda Dosis",
  VA.cantidad_dosis AS "Cantidad Dosis", P.mail AS Mail, P.dni as DNI, Pr.nombre_provincia AS Provincia, R.id_region AS "Region Sanitaria"
 FROM Vacunas_Aplicadas VA NATURAL JOIN Personas P NATURAL JOIN Vacunas V NATURAL JOIN Provincias PR NATURAL JOIN Regiones_Sanitarias R;
 
@@ -133,6 +133,11 @@ LEFT JOIN
         ) tabla_aplicadas ON vent.id_provincia = tabla_aplicadas.idpcia AND vent.id_vacuna = tabla_aplicadas.id_vacuna
 GROUP BY p.nombre_provincia,vent.id_vacuna
 ORDER BY p.nombre_provincia;
+
+CREATE VIEW Usuarios_Registrados AS
+SELECT U.usuario AS Usuario, U.nombre AS Nombre, U.apellido as Apellido, U.cargo as Cargo, U.mail as Mail, U.dni as DNI, U.telefono as Telefono
+FROM Usuarios U
+WHERE U.es_admin = 0;
 
 # ---------------------------------------------------------------------------- CARGA DE DATOS INICIALES ----------------------------------------------------------------------------
 
@@ -305,17 +310,17 @@ INSERT INTO Regiones_Sanitarias (id_provincia,id_region) VALUES (24,2);
 # ---------------------------------------------------------------------------- TESTS (BORRAR CUANDO SE TENGA LA UI COMPLETA) ----------------------------------------------------------------------------
 
 #Tabla Personas
-INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-05-12", "rp@gmail.com", 25987124);
-INSERT INTO Personas VALUES ("Luis", "Miguel", "1983-11-02", "lm@gmail.com", 42581357);
-INSERT INTO Personas VALUES ("Raul", "Rodriguez", "1960-01-30", "rr@gmail.com", 12345678);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Domingo Faustino','Sarmiento','1850-07-15','dsarmi_bokita@gmail.com',11111111);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Julian','Alvarez','1950-11-01','madrid_091218@hotmail.com',11111112);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Marcelo','Gallardo','1980-08-10','elmuneco@river.com',11111113);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan Carlos','Hola','1953-12-24','dsarmi_bokita@gmail.com',11111114);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan Pedro','Molina','1990-02-14','hola1234@gmail.com',11111115);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Juan','Lopez','1978-07-03','hola1234@gmail.com',11111116);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Rodrigo','Rodriguez','1958-01-12','hola12345@gmail.com',11111117);
-INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni) VALUES ('Alan','Turing','1940-05-25','enigma123@gmail.com',11111118);
+INSERT INTO Personas VALUES ("Roberto", "Perez", "1980-05-12", "rp@gmail.com", 25987124, "Docente");
+INSERT INTO Personas VALUES ("Luis", "Miguel", "1983-11-02", "lm@gmail.com", 42581357, "Docente");
+INSERT INTO Personas VALUES ("Raul", "Rodriguez", "1960-01-30", "rr@gmail.com", 12345678, "Docente");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Domingo Faustino','Sarmiento','1850-07-15','dsarmi_bokita@gmail.com',11111111, "Personal de salud");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Julian','Alvarez','1950-11-01','madrid_091218@hotmail.com',11111112, "Estudiante");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Marcelo','Gallardo','1980-08-10','elmuneco@river.com',11111113, "Estudiante");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Juan Carlos','Hola','1953-12-24','dsarmi_bokita@gmail.com',11111114, "Personal de salud");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Juan Pedro','Molina','1990-02-14','hola1234@gmail.com',11111115, "Estudiante");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Juan','Lopez','1978-07-03','hola1234@gmail.com',11111116, "Estudiante");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Rodrigo','Rodriguez','1958-01-12','hola12345@gmail.com',11111117, "Personal de salud");
+INSERT INTO Personas (nombre,apellido,fecha_nacimiento,mail,dni,cargo) VALUES ('Alan','Turing','1940-05-25','enigma123@gmail.com',11111118, "Estudiante");
 
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-15", "2021-09-23", 2, 25987124, 1, 2, 1);
 INSERT INTO Vacunas_Aplicadas VALUES ("2021-08-16", "2021-09-20", 2, 42581357, 1, 2, 1);

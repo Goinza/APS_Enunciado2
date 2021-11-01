@@ -64,7 +64,7 @@ public class UsuariosRegistradosModel {
 
 	private void updateQuery() {
 		DBConnection database = DBConnection.getInstance();
-		query_vista_aplicadas = database.realizarConsulta("SELECT * FROM Usuarios;");
+		query_vista_aplicadas = database.realizarConsulta("SELECT * FROM Usuarios_Registrados;");
 		try
 		{
 			md = query_vista_aplicadas.getMetaData();
