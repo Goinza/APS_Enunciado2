@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Presenter.AltaUsuarioPresenter;
+import Presenter.PersonalEsencialPresenter;
 import Presenter.UsuariosRegistradosPresenter;
 import Presenter.VacunasAplicadasPresenter;
 import Presenter.VacunasDisponiblesPresenter;
@@ -31,6 +32,7 @@ public class AdminView extends JFrame {
 	private VacunasAplicadasPresenter vacunasAplicadasPresenter;
 	private VacunasVencidasPresenter vacunasVencidasPresenter;
 	private UsuariosRegistradosPresenter usuariosRegistradosPresenter;
+	private PersonalEsencialPresenter personalEsencialPresenter;
 	private UsuariosRegistradosView usuariosRegistradosView;
 	private AltaUsuarioView altaUsuarioView;
 	private LoginUserAdminView loginUserAdminView;
@@ -44,7 +46,7 @@ public class AdminView extends JFrame {
 	
 	private void buildGraphicComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 540, 466);
+		setBounds(100, 100, 540, 495);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,6 +113,12 @@ public class AdminView extends JFrame {
 		});
 		
 		JButton btnPersonalEsencialVacunado = new JButton("Personal Esencial Vacunado");
+		btnPersonalEsencialVacunado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				personalEsencialPresenter = new PersonalEsencialPresenter();
+				personalEsencialPresenter.renderizarVista();
+			}
+		});
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
