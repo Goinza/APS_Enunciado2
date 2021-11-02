@@ -51,7 +51,7 @@ public class ModeloPersonaImpl implements ModeloPersonas {
 		DBConnection database = DBConnection.getInstance();
 		database.realizarStatement("UPDATE Personas SET nombre = '" + persona.obtenerNombre() + "', " +
 									"apellido = '" + persona.obtenerApellido() + "', fecha_nacimiento = '" + persona.obtenerFechaNacimiento().toString() + "', " +
-									"mail = '" + persona.obtenerMail() + "', dni = " + persona.obtenerDni() + ", cargo = " + persona.obtenerCargo() + " WHERE dni = " + dni + ";");
+									"mail = '" + persona.obtenerMail() + "', dni = " + persona.obtenerDni() + ", cargo = " + persona.obtenerCargo().obtenerId() + " WHERE dni = " + dni + ";");
 	}
 
 }

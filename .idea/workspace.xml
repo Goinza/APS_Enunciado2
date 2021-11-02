@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="Hipotética corrección de bug en la carga de datos en la ventana de modificación.">
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Cargo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloCargos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloCargosImpl.java" afterDir="false" />
+    <list default="true" id="a98e7073-3628-48f9-b411-2c53aebe71e2" name="Changes" comment="Dinámica de Cargo agregada">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/database.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/ModeloPersonaImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Model/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorModificacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorVacunadoAbs.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/CargaModificacionVacunados/PresentadorVacunadoAbs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/VacunasAplicadasPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/Presenter/VacunasAplicadasPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VentanaDatosVacunado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" beforeDir="false" afterPath="$PROJECT_DIR$/APS_Enunciado2/src/View/CargaModificacionVacunados/VistaDatosVacunado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +127,9 @@
       <workItem from="1634073742735" duration="13006000" />
       <workItem from="1634130130825" duration="600000" />
       <workItem from="1635374172367" duration="6621000" />
-      <workItem from="1635805801561" duration="4697000" />
+      <workItem from="1635805801561" duration="8148000" />
+      <workItem from="1635854384201" duration="30000" />
+      <workItem from="1635882795524" duration="144000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado de obtenerProvincia(int id) a la interfaz del modelo de Provincia.">
       <created>1633995846479</created>
@@ -194,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635383217580</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Dinámica de Cargo agregada">
+      <created>1635810582992</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1635810582992</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +221,7 @@
     <MESSAGE value="lmao out of bounds" />
     <MESSAGE value="- Agregado campo 'Cargo' en la BD, así como las consideraciones pertinentes en toda clase cliente.&#10;- Deshabilitado campo DNI ante una modificación de Vacunado." />
     <MESSAGE value="Hipotética corrección de bug en la carga de datos en la ventana de modificación." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hipotética corrección de bug en la carga de datos en la ventana de modificación." />
+    <MESSAGE value="Dinámica de Cargo agregada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dinámica de Cargo agregada" />
   </component>
 </project>
