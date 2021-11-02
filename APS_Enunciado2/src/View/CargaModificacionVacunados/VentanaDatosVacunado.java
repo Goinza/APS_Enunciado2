@@ -433,7 +433,7 @@ public abstract class VentanaDatosVacunado extends JFrame implements VistaDatosV
         int i = 0;
         for (Cargo c : cargos)
         {
-            a[i++] = c.toString();
+            a[i++] = c.obtenerNombreCargo();
             mapeoCargos.put(c.obtenerNombreCargo(), c);
         }
         actualizarComboBox(cbCargos, a);

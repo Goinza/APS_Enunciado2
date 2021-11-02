@@ -21,7 +21,7 @@ public class ModeloCargosImpl implements ModeloCargos
         Cargo cargo = null;
         try {
             if (result.next()) {
-                String nombre = result.getString("nombre");
+                String nombre = result.getString("nombre_cargo");
                 boolean esencial = result.getInt("es_esencial") == 1? true : false;
                 cargo = new Cargo(id, nombre, esencial);
             }
@@ -46,8 +46,9 @@ public class ModeloCargosImpl implements ModeloCargos
         try {
             while (result.next()) {
                 id = result.getInt("id_cargo");
-                nombre = result.getString("nombre");
+                nombre = result.getString("nombre_cargo");
                 esencial = result.getInt("es_esencial") == 1? true : false;
+                System.out.println(id + " - " + nombre + " - " + esencial);
                 cargo = new Cargo(id, nombre, esencial);
                 lista.add(cargo);
             }
