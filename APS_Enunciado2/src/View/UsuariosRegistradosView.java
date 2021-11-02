@@ -42,14 +42,6 @@ public class UsuariosRegistradosView extends JFrame{
 		btnSalir.setBounds(320, 434, 89, 23);
 		getContentPane().add(btnSalir);
 		
-		JButton btnModificarUsuario = new JButton("Modificar usuario");
-		btnModificarUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//lanzar venta emergente y pasarle la seleccion de la tabla?
-			}
-		});
-		btnModificarUsuario.setBounds(572, 434, 205, 23);
-		getContentPane().add(btnModificarUsuario);
 	}
 	
 	public void cerrarVista() {

@@ -55,7 +55,7 @@ public class LoginUserAdminView extends JFrame{
 	private void buildGraphicComponents() {
 		this.setBounds(100, 100, 486, 340);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
 		
@@ -63,7 +63,7 @@ public class LoginUserAdminView extends JFrame{
 		txtUsuario.setColumns(10);
 		txtUsuario.setText("");
 		
-		JLabel lblPassword = new JLabel("Contraseña");
+		JLabel lblPassword = new JLabel("Contraseï¿½a");
 		
 		txtPassword = new JPasswordField();
 		txtPassword.setColumns(10);
@@ -165,7 +165,7 @@ public class LoginUserAdminView extends JFrame{
 	
 	private boolean checkPassword() {
 		if((txtPassword.getText().equals(""))) {
-			JOptionPane optionPane = new JOptionPane("Campo contraseña requerido", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("Campo contraseï¿½a requerido", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog(this, "Advertencia");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
@@ -210,7 +210,7 @@ public class LoginUserAdminView extends JFrame{
 			setVisible(false);
 		}		
 		else {
-			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseï¿½a es incorrecta", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog(this, "Error");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
@@ -223,7 +223,7 @@ public class LoginUserAdminView extends JFrame{
 			setVisible(false);
 		}	
 		else {
-			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseña es incorrecta", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("El usuario no existe o la constraseï¿½a es incorrecta", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog(this, "Error");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);

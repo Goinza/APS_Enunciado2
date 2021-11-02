@@ -113,6 +113,7 @@ public class AdminView extends JFrame {
 		});
 		
 		JButton btnPersonalEsencialVacunado = new JButton("Personal Esencial Vacunado");
+		btnPersonalEsencialVacunado.setEnabled(false);
 		btnPersonalEsencialVacunado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				personalEsencialPresenter = new PersonalEsencialPresenter();
